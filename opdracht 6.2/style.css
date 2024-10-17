@@ -1,0 +1,33 @@
+nav
+{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-content: center;
+    width: 1200px;
+    margin-left: 250px;
+}
+#blokje
+{
+height: 200px;
+width: 200px;
+}
+
+.blauw
+{
+background-color: blue;
+
+}
+.zwart
+{
+
+background-color: black;
+}
+.rood{
+
+background-color: red;
+}
+.groen{
+
+background-color: green;
+}
