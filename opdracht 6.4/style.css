@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Goldman", sans-serif;
+  height: 1000vh;
+  min-height: 100vh;
+  
+}
+
+
+nav {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+  min-height: 10vh;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: auto;
+  background: #00a8c7;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+nav li {
+  font-size: 2.5rem;
+  padding: 0 4rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav img {
+  width: 5vw;
+}
+
+
+
+.dropdown
+{
+  position:relative;
+  display: inline-flex;
+}
+
+.dropdown-content
+{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  box-shadow: inset;
+  background-color: black;
+  z-index: 10;
+  padding: 3px;
+  border: none;
+  visibility: hidden;
+  top:100%;
+}
+
+nav .dropdownbtn
+{
+position:relative;
+background-color: #00a8c7;
+padding: 18px;
+border: none;
+font-size: 18px;
+color: white;
+}
+nav .dropdownbtn:hover
+{
+  background-color: white;
+  color: blue;
+}
+
+.dropdown:hover .dropdown-content
+{    
+visibility: visible;
+}
+
+.dropdown-content a
+{
+ display: block;
+ padding: 12px;
+
+}
+.dropdown-content a:hover
+{
+  background-color: #E9E9E9;
+
+}
+
+
+main {
+  font-family: "Goldman", sans-serif;
+  position: relative;
+  height: 100vh;
+  z-index: 0; 
+}
+
+main::before {
+  content: "";
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  background-image: url('./img/background_aangepast.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;  
+  z-index: -1;
+}
+
+.article{
+  position: relative;
+  top: 50px; 
+  left: 550px; 
+  right: 0; 
+  bottom: 0; 
+  border: 3px solid #00AEEF; 
+  margin-top: 200px;
+  background-color: rgba(30, 195, 201, 0.5);
+  height: 300px;
+  width: 810px;
+  word-wrap: break-word;
+  font-size: 12px;
+  align-items: center;
+  text-align: center;
+}
+
+.article h2
+{
+    color: blue;
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 20px;
+
+}
+
+.article h3{
+    font-size: 20px;
+    color: Teal;
+    font-weight: bolder;
+    margin: 3px;
+    margin: 10px;
+
+}
+
+.article p
+{
+    color: rgb(255, 255, 255);
+    text-align: left;
+    line-height: 1.3;
+    margin: 5px;
+
+}
+
+
+.article a
+{
+color: #8A2BE2;
+text-decoration: none;
+}
+
+.article img
+{
+
+width: 40%;
+height: auto;
+display: flex;
+float: right;
+margin-right: 4px;
+}
+
+
+
+.link
+{
+  position: relative;
+  text-align: center;
+  color: white;
+  text-decoration: dashed;
+  z-index: 11;
+}
+.link a{
+  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #00a8c7;
+  text-align: center;
+  font-size: 34px;  
+}
