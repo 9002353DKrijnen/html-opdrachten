@@ -1,0 +1,21 @@
+.cookie{
+    display: hiden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.cookie-content{
+background-color: aliceblue;
+border: 1px solid;
+width: 50%;
+padding: 20px;
+}
+
+.close{
+    color: beige;
+    font-size: large;
+    cursor: pointer;
+}
