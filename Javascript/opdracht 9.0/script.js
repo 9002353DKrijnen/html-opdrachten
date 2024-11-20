@@ -1,15 +1,28 @@
-var coockie = document.getElementById("coockiewall");
-var btn = document.getElementById("koekies");
-var span = document.getElementById("close");
+window.onload = function() {
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("coockieknop");
+    var span = document.getElementById("close");
+    var verifyButton = document.getElementById("verifyButton");
+    
+    modal.style.display = "block";
+    
+    verifyButton.onclick = function() {
+        var age = document.getElementById("verify").value;
 
-btn.onclick = function(){
- coockie.style.display = "block";
-}
-
-span.onclick = function()
-{
- coockie.style.display = "none";
-}
+        if (age >= 18) {
+            modal.style.display = "none";  
+        } else {
+            window.location.href = "./rooie.html";  
+        }
+    };
 
 
+    btn.onclick = function() {
+        modal.style.display = "block";  
+    };
 
+
+    span.onclick = function() {
+        modal.style.display = "none";  // 
+    };
+};

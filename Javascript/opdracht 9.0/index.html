@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9.0</title>
-<link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
 </head>
 <body>
-<button id="koekies">Toon Koekmuur</button>
-<div id="coockiewall" class="coockie">
-    <div class="cookie-content">
-        <span id="close">☺</span>
-        <p>tekst hier</p>
+    <button id="coockieknop"> Open coockiewall</button>
+    <div id="myModal" class="modal">
+
+        <!-- Cookie content-->
+        <div class="model-content"> 
+            <span  class="close"  id="close">X</span>
+                <p>Wilt u mij uw bankpas meegeven? Vul dan uw leeftijd in!</p>
+            <input id="verify" type="text" placeholder="Vul uw leeftijd in">  
+            <input type="button" value="verify" id="verifyButton">
+             </div>
+
     </div>
-</div>
+
 </body>
 </html>
