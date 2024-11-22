@@ -23,6 +23,6 @@ window.onload = function() {
 
 
     span.onclick = function() {
-        modal.style.display = "none";  // 
+        modal.style.display = "none"; 
     };
 };
