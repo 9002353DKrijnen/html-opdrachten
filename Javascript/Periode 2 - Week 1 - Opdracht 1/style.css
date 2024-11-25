@@ -1,0 +1,18 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;   
+}
+body{
+    display: flex;
+}
+
+.cookiewall{
+    height: 50%;
+    width: 75%;
+    background-color: skyblue;
+}
+
+.cookiewall p {
+    color: black;
+}
