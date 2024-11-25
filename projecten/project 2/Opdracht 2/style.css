@@ -14,6 +14,7 @@ body {
     display: flex;
     overflow-y: auto;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 .sidebar {
@@ -84,10 +85,10 @@ color: #bbff00;
 
 .login-field{
     background-color: #5EB6FF;
-    flex: 0,8;
-    margin: 200px;
+    margin-top: 12%;
+    margin-left: 25%;
     padding: 10px;
-    height: 550px;
+    height: 500px;
     width: 1000px;
     text-align: center;
     border-radius: 10px;

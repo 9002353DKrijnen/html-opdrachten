@@ -7,7 +7,7 @@ btn.onclick = function(){
     var username = form.userid.value;
     var password = form.pwd.value;
  if (username === "admin" && password === "admin") {
-    window.location.href = "./index.html"; 
+    window.location.href = "./overzicht.html"; 
         return true; 
     } else {
         alert("Onjuiste gebruikersnaam of wachtwoord");
