@@ -1,9 +1,17 @@
-function resetStyles() {
-    var topSection = document.querySelector(".top-section");
-        topSection.style.background = "initial";
-        topSection.style.cursor = "initial";
-        topSection.style.color = "initial";
-        topSection.style.zIndex = "auto";
-        topSection.style.filter = "none";
-    
+window.onload = function() {
+
+var btn = document.getElementById("btn");
+var form = document.querySelector(".loginForm");
+btn.onclick = function(){
+    event.preventDefault();
+    var username = form.userid.value;
+    var password = form.pwd.value;
+ if (username === "admin" && password === "admin") {
+    window.location.href = "./index.html"; 
+        return true; 
+    } else {
+        alert("Onjuiste gebruikersnaam of wachtwoord");
+        return false; 
+    }
+}
 }

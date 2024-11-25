@@ -83,17 +83,36 @@ color: #bbff00;
 }
 
 .login-field{
-        display: flex;
-        justify-content: space-around;
-}
-.in{
     background-color: #5EB6FF;
     flex: 0,8;
-    margin: 0 10px;
-    margin-top:  20px;
+    margin: 200px;
     padding: 10px;
     height: 550px;
-    width: 300px;
+    width: 1000px;
     text-align: center;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.login-field input{
+    border: solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    background: url(./images.jpg);
+}
+.login-field input::placeholder{
+  color:  white;
+}
+.login-field button{
+    border: solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    background: url(./images.jpg);
+}
+.login-field button:hover
+{
+    cursor: pointer;
 }

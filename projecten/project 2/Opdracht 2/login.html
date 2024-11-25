@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="./script.js"></script>
 
     <nav class="sidebar">
         <ul>
@@ -20,31 +19,17 @@
     
     </nav>
     <main class="main">
-        <section class="login-field">
-            <p>Vul hier uw gebruikersnaam en wachtwoord in, zodat we u kunnen doorverwijzen naar uw rekening.</p>
-            <input type="text" placeholder="Vul uw gebruikersnaam in">
-            <input type="password" placeholder="Vul uw wachtwoord in">
-        </section>
-
-        <section class="info-section">
-            <div class="info-box">
-                <h2>Info Box 1</h2>
-                <p>Details</p>
-            </div>
-            <div class="info-box">
-                <h2>Info Box 2</h2>
-                <p>Details </p>
-            </div>
-            <div class="info-box">
-                <h2>Info Box 3</h2>
-                <p>Details </p>
-            </div>
-        </section>
-
-        <section class="bottom-section">
-            <p>Bottom Section</p>
-            <p>Tekst.</p>
-        </section>
-    </main>
+            <form class="loginForm">
+                <section class="login-field">
+                    <p>Vul hier uw gebruikersnaam en wachtwoord in, zodat we u kunnen doorverwijzen naar uw rekening.</p>
+                    <br><br>
+                    <input type="text" placeholder="Vul uw gebruikersnaam in" name="userid" required>
+                    <input type="password" placeholder="Vul uw wachtwoord in" name="pwd" required>
+                    <br> <br> <br>
+                    <button id="btn" class="submitBtn" type="submit" onclick="return check(this.form)" >Verstuur</button>
+                </section>
+            </form>
+</main>
 </body>
+<script src="./script.js"></script>
 </html>
