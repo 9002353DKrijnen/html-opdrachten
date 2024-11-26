@@ -103,6 +103,7 @@ color: #bbff00;
     border-radius: 10px;
     padding: 10px;
     background: url(./images.jpg);
+    color: aliceblue;
 }
 .login-field input::placeholder{
   color:  white;
