@@ -1,8 +1,10 @@
 
-        setInterval(
-       function myfunction(){
-            var x = document.getElementById("x").value;
-            document.getElementById("output").innerHTML =x;
-        },500)
-
+//functie aanmaken
+// Waarde ophalen bij product invoer
+//Uitvoer met console.log
+function addProduct()
+{
+    var product = document.getElementById("productInvoer").value;
+    console.log("Ingevoerde product:" + product);
+}
    
