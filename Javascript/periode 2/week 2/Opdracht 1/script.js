@@ -1,10 +1,8 @@
+//functie aanmaken animiatie
+// Waarde ophalen bij animatie invoer
+// naam verwijst naar CSS, 100ms in de opdracht, alhoewel het niet vloeiend lijkt, maar goed
+// infinite, oneindig lang, tot de heat death van het universum, of tot de zon de aarde opslokt. 
+window.onload = function() {
 
-//functie aanmaken
-// Waarde ophalen bij product invoer
-//Uitvoer met console.log
-function addProduct()
-{
-    var product = document.getElementById("productInvoer").value;
-    console.log("Ingevoerde product:" + product);
+ document.getElementById("animation").style.animation = "JsAnimatie 100ms infinite";
 }
-   
