@@ -7,39 +7,55 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
+
     <nav class="sidebar">
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Rekeningen</a></li>
             <li><a href="#">Overschrijvingen</a></li>
+
         </ul>
         <p>Home</p> 
+    
     </nav>
     <main class="main">
         <section class="top-section">
-            <h1>Top Section</h1>
-            <p>top sectie.</p>
+            <h1>Hallo admin, Welkom bij UwBank</h1>
+            <p>Hier kunt u uw overzicht vinden van uw rekeningen.</p>
         </section>
 
         <section class="info-section">
-            <div class="info-box">
-                <h2>Info Box 1</h2>
-                <p>Details</p>
+            <div class="info-box" id="info-box">
+                <h2>Betaalrekening</h2>
+                <p>€ 5.879,94</p>
             </div>
             <div class="info-box">
-                <h2>Info Box 2</h2>
-                <p>Details </p>
+                <h2> Huidg saldo</h2>
+                <p>€ 5.879,94</p>
             </div>
             <div class="info-box">
-                <h2>Info Box 3</h2>
-                <p>Details </p>
+                <h2>Spaarrekening</h2>
+                <p>€ 100.879,94</p>
             </div>
         </section>
 
         <section class="bottom-section">
-            <p>Bottom Section</p>
-            <p>Tekst.</p>
+            <p>Lijst laatste uitgaven</p>
+            <p>€62,80
+                IBAN: NL22 RABO 0123 4567 89
+                Omschrijving: Diner - Restaurant Het Zand, Alkmaar
+            </p>
+            <p>
+            €9,50
+            
+                IBAN: NL78 SNSB 0345 6789 01
+                Omschrijving: Lunch - Eetcafé De Graaf, Haarlem
+                </p>
+                <button id="rekeningToevoegen"> Voeg nieuwe rekening toe</button>
+                <p id="input"></p>
         </section>
     </main>
+    <script src="./script.js"></script>
 </body>
 </html>

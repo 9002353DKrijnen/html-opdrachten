@@ -74,7 +74,7 @@ color: #bbff00;
 
 .bottom-section {
     background-color: #5EB6FF;
-    padding: 100px;
+    padding: 125px;
     margin-left: 100px;
     border-radius: 10px;
     text-align: center;
@@ -117,4 +117,18 @@ color: #bbff00;
 .login-field button:hover
 {
     cursor: pointer;
+}
+#rekeningToevoegen{
+border: solid 3px #0E8BF2;
+border-radius: 10px;
+padding: 20px;
+background-color: #4ba2e9;
+cursor: pointer;
+color: lightblue;
+}
+
+#rekeningToevoegen:hover{
+    border-color: bisque;
+    color: #fbff00;
+    padding: 22px;
 }
