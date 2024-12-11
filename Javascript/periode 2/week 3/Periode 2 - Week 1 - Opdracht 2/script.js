@@ -4,6 +4,8 @@
 // Opdracht w3 1
 // waardes van het mandje
 const winkelmandje = ["Appels","Boeken","Bananen","Gehakt"];
+// kwantiteit definieren met .length 
+let quantity = winkelmandje.length;
 // variabel definieren
 let i, len, text;
 for (i = 0, len = winkelmandje.length, text = ""; i < len; i++)
@@ -12,6 +14,4 @@ for (i = 0, len = winkelmandje.length, text = ""; i < len; i++)
     text += winkelmandje[i] + "<br>"
 }
 // waarde schrijven naar 
-document.getElementById("winkelmandje").innerHTML =  "productnaam = " + text;
-
-
+document.getElementById("winkelmandje").innerHTML =      "Er zitten " + quantity + " producten in uw winkelmand:<br>" + text;
