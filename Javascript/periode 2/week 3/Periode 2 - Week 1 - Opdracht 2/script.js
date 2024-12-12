@@ -1,7 +1,7 @@
 // bron : https://www.w3schools.com/js/tryit.asp?filename=tryjs_loop_for_om1
 
 // Auteur: damien krijnen 
-// Opdracht w3 2
+// Opdracht w3 2l
 // waardes van het mandje
 
 // variabel definieren
