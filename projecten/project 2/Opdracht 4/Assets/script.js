@@ -13,7 +13,7 @@ btn.onclick = function(){
     var username = form.userid.value;
     var password = form.pwd.value;
     if (username === "admin" && password === "admin") {
-        window.location.href = "./overzicht.html"; 
+        window.location.href = "./HTML/overzicht.html"; 
             return true; 
 
          
@@ -22,7 +22,7 @@ btn.onclick = function(){
         } 
         
         else if (username === "Mario" && password === "Mario2") {
-                window.location.href = "./rekening_mario.html"; 
+                window.location.href = "./HTML/rekening_mario.html"; 
                     return true; 
                 }
                 
@@ -65,7 +65,40 @@ if (rekeningNaam){
     alert("Ge moet wat toevoegen eh!")
   }
  }
+
+
+
+
+}
+
+
+}
+var overschrijving = document.getElementById("overschrijving");
+overschrijving.onclick = function() {
+    // Hoeveel geld zal er versuurt worden?
+    var overschrijvingBedrag = document.getElementById("bedragWaarde").value;
+    
+    // Controleer of de ingevoerde waarde alleen cijfers bevat  
+    if (!/^\d+$/.test(overschrijvingBedrag)) {
+        alert('Alleen cijfers zijn toegestaan.');
+        return;
+    }
+    // Welke rekening
+    var rekeningVan = document.getElementById("rekeningVan").value;
+    var rekeningNaar = document.getElementById("rekeningNaar").value;
+
+    if (overschrijvingBedrag > 5879.95 || overschrijvingBedrag <= 0) {
+        alert("helaas is uw saldo niet toereikend of is uw ingevoerde bedrag te laag.");
+    } else {
+        var OKnotificatie = document.getElementById("overschrijvingResultaat");
+        // schrijft variabel(spaar/betaal) + overschijvingsbedrag naar een .innertekst 
+        OKnotificatie.innerText = `U heeft €${overschrijvingBedrag} overgeschreven van ${rekeningVan} naar ${rekeningNaar}.`;
+    }
 }
 
 }
-}
+
+
+
+
+
