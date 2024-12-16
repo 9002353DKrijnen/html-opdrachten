@@ -96,6 +96,45 @@ overschrijving.onclick = function() {
     }
 }
 
+
+function(){
+var infoRekeningen = document.querySelector("overschrijvingenRecent");
+var transactieGeschiedenis = document.getElementById("recenteOverschrijvingen");
+
+const transactions = [
+
+    { id: 1, type: 'inkomend', datum: '2024-11-01', bedrag: 1.70 },
+
+    { id: 2, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
+
+    { id: 3, type: 'inkomend', datum: '2024-11-05', bedrag: 2000.00 },
+
+    { id: 4, type: 'uitgaand', datum: '2024-11-10', bedrag: -30.00 },
+
+    { id: 5, type: 'inkomend', datum: '2024-11-01', bedrag: 10.00 },
+
+    { id: 6, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
+
+    { id: 7, type: 'inkomend', datum: '2024-11-05', bedrag: 20.00 },
+
+    { id: 8, type: 'uitgaand', datum: '2024-11-10', bedrag: -130.00 }
+
+];
+
+transactieGeschiedenis.innerText = transactions[];
+
+
+}
+
+
+
+
+
+
+
+
+
+
 }
 
 
