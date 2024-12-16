@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="../Assets/style.css">
+</head>
+<body>
+  
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Rekeningen</a></li>
+            <li><a href="#">Overschrijvingen</a></li>
+
+        </ul>
+        <p>Home</p> 
+    
+    </nav>
+    <main class="main">
+        <section class="top-section">
+            <h1>Hallo admin, Welkom bij UwBank</h1>
+            <p>Hier kunt u uw overzicht vinden van uw rekeningen.</p>
+        </section>
+
+        <section class="info-section">
+            <div class="info-box" id="info-box">
+                <h2>Betaalrekening</h2>
+                <p>€ 5.879,94</p>
+                <br><br><br>
+                <button id="overschijfKnop"><a href="../HTML/overschrijvingen.html">overschijven</a></button>
+            </div>
+            <div class="info-box">
+                <h2> Huidig saldo</h2>
+                <p>€ 5.879,94</p>
+                <br><br><br>
+                <button id="overschijfKnop"><a href="../HTML/overschrijvingen.html">overschijven</a></button>
+            </div>
+            <div class="info-box">
+                <h2>Spaarrekening</h2>
+                <p>€ 100.879,94</p>
+                <br><br><br>
+                <button id="overschijfKnop"><a href="../HTML/overschrijvingen.html">overschijven</a></button>
+            </div>
+        </section>
+
+        <section class="bottom-section">
+            <p>Lijst laatste uitgaven</p>
+            <p>€62,80
+                IBAN: NL22 RABO 0123 4567 89
+                Omschrijving: Diner - Restaurant Het Zand, Alkmaar
+            </p>
+            <p>
+            €9,50
+            
+                IBAN: NL78 SNSB 0345 6789 01
+                Omschrijving: Lunch - Eetcafé De Graaf, Haarlem
+                </p>
+                <button id="rekeningToevoegen"> Voeg nieuwe rekening toe</button
+        </section>
+    </main>
+    <script src="../Assets/script.js"></script>
+</body>
+</html>

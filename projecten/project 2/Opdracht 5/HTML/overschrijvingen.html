@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="../Assets/style.css">
+</head>
+<body>
+        <main class="main">
+            <form class="loginForm">
+                <section class="login-field">
+                    <p>Vul hier het gewenste bedrag in dat u wilt overschijven</p>
+                    <br><br>
+                    <label for="rekeningVan">Kies hier van welke rekening:</label>
+                    <br><br>
+                    <select for="rekening" id="rekeningVan" required>
+                        <option value="Spaarrekening">Uw Spaarrekening</option>
+                        <option value="Betaalrekening">Uw Betaalrekening</option>
+                        </select>
+                        <br><br>
+                    <br><br>
+                    <label for="rekeningNaar">Kies hier naar welke rekening:</label>
+                    <br><br>
+                        <select for="rekening" id="rekeningNaar" required>
+                            <option value="Spaarrekening">Uw Spaarrekening</option>
+                            <option value="Betaalrekening">Uw Betaalrekening</option>
+                            </select>
+                    <br> <br> <br>
+                    <input type="text" placeholder="bedrag"  id="bedragWaarde" pattern="[0-9]" required >
+                    <button  id="overschrijving" class="submitBtn" type="button">Verstuur</button>
+                    <p id="overschrijvingResultaat"></p>
+                </section>
+            </form>
+        </section>
+    </main>
+    <script src="../Assets/script.js"></script>
+</body>
+</html>
