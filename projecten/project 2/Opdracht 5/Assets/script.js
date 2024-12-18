@@ -1,10 +1,7 @@
 window.onload = function(){
     var currentPage = window.location.pathname;
-
-
-
     // laden van index.html, zodat de uitvoer correct is
-   
+   /* OPDRACHT 1*/
 if (currentPage.includes("index.html")){
 var btn = document.getElementById("btn");
 var form = document.querySelector(".loginForm");
@@ -15,10 +12,6 @@ btn.onclick = function(){
     if (username === "admin" && password === "admin") {
         window.location.href = "./HTML/overzicht.html"; 
             return true; 
-
-         
-
-
         } 
         
         else if (username === "Mario" && password === "Mario2") {
@@ -34,6 +27,7 @@ btn.onclick = function(){
         }
             
     }
+      /* OPDRACHT 2*/
 // ophalen locatie en dan pas functie uitvoeren
     // ophalen en nieuwe rekening toevoegen (opdracht 3) met een simpele onClick:
     if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mario.html")) { {
@@ -73,6 +67,7 @@ if (rekeningNaam){
 
 
 }
+  /* OPDRACHT 3*/
 var overschrijving = document.getElementById("overschrijving");
 overschrijving.onclick = function() {
     // Hoeveel geld zal er versuurt worden?
@@ -83,6 +78,8 @@ overschrijving.onclick = function() {
         alert('Alleen cijfers zijn toegestaan.');
         return;
     }
+
+      /* OPDRACHT 4*/
     // Welke rekening
     var rekeningVan = document.getElementById("rekeningVan").value;
     var rekeningNaar = document.getElementById("rekeningNaar").value;
@@ -97,43 +94,27 @@ overschrijving.onclick = function() {
 }
 
 
-function(){
-var infoRekeningen = document.querySelector("overschrijvingenRecent");
-var transactieGeschiedenis = document.getElementById("recenteOverschrijvingen");
+  /* OPDRACHT 5*/
 
-const transactions = [
+    const transactions = [
 
-    { id: 1, type: 'inkomend', datum: '2024-11-01', bedrag: 1.70 },
+        { id: 1, type: 'inkomend', datum: '2024-11-01', bedrag: 1.70 },
 
-    { id: 2, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
+        { id: 2, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
 
-    { id: 3, type: 'inkomend', datum: '2024-11-05', bedrag: 2000.00 },
+        { id: 3, type: 'inkomend', datum: '2024-11-05', bedrag: 2000.00 },
 
-    { id: 4, type: 'uitgaand', datum: '2024-11-10', bedrag: -30.00 },
+        { id: 4, type: 'uitgaand', datum: '2024-11-10', bedrag: -30.00 },
 
-    { id: 5, type: 'inkomend', datum: '2024-11-01', bedrag: 10.00 },
+        { id: 5, type: 'inkomend', datum: '2024-11-01', bedrag: 10.00 },
 
-    { id: 6, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
+        { id: 6, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
 
-    { id: 7, type: 'inkomend', datum: '2024-11-05', bedrag: 20.00 },
+        { id: 7, type: 'inkomend', datum: '2024-11-05', bedrag: 20.00 },
 
-    { id: 8, type: 'uitgaand', datum: '2024-11-10', bedrag: -130.00 }
+        { id: 8, type: 'uitgaand', datum: '2024-11-10', bedrag: -130.00 }
 
-];
-
-transactieGeschiedenis.innerText = transactions[];
-
-
-}
-
-
-
-
-
-
-
-
-
+    ];
 
 }
 
