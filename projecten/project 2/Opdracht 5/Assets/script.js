@@ -1,4 +1,4 @@
-window.onload = function(){
+
     var currentPage = window.location.pathname;
     // laden van index.html, zodat de uitvoer correct is
    /* OPDRACHT 1*/
@@ -30,7 +30,7 @@ btn.onclick = function(){
       /* OPDRACHT 2*/
 // ophalen locatie en dan pas functie uitvoeren
     // ophalen en nieuwe rekening toevoegen (opdracht 3) met een simpele onClick:
-    if (currentPage.includes("./HTML/overzicht.html") || currentPage.includes("./HTML/rekening_mario.html"))  {
+    if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mario.html"))  {
 var rekeningToevoegenbtn = document.getElementById("rekeningToevoegen");
 rekeningToevoegenbtn.onclick = function(){
 var rekeningNaam = prompt("Voer de naam in van je nieuwe rekening");
@@ -68,7 +68,7 @@ if (rekeningNaam){
 
 }
   /* OPDRACHT 3*/
-  if (currentPage.includes("./HTML/overzicht.html") || currentPage.includes("./HTML/rekening_mario.html")) {
+  if (currentPage.includes("overschrijvingen.html")) {
 var overschrijving = document.getElementById("overschrijving");
 overschrijving.onclick = function() {
     // Hoeveel geld zal er versuurt worden?
@@ -94,6 +94,7 @@ overschrijving.onclick = function() {
 }
   }
   
+  
 
   /* OPDRACHT 5*/
 if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mario.html")){
@@ -109,21 +110,63 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
 
         { id: 5, type: 'inkomend', datum: '2024-11-01', bedrag: 10.00 },
 
-        { id: 6, type: 'uitgaand', datum: '2024-11-03', bedrag: -5.00 },
+        { id: 6, type: 'inkomend', datum: '2024-11-03', bedrag: -5.00 },
 
         { id: 7, type: 'inkomend', datum: '2024-11-05', bedrag: 20.00 },
 
         { id: 8, type: 'uitgaand', datum: '2025-11-10', bedrag: -130.00 }
 
     ];
+// tonen 
+    const transactielijst = document.getElementById("transactiesUL");
 
-const transactielijst = document.getElementById("transactiesUL");
+    transactions.forEach(transaction =>{
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `${transaction.type} - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
+     transactielijst.appendChild(listItem);
+    })
 
-transactions.forEach(transaction =>{
-const listItem = document.createElement("li");
-                listItem.innerHTML = `${transaction.type} - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
-                transactielijst.appendChild(listItem);
-});
-        }
-    
+    var filter = document.getElementById("Filter");
+
+filter.onclick = function (){
+    var selectedDatum = document.getElementById("datum-select").value;
+    var selectedType = document.getElementById("sort-type").value;
+// nu je de value's hebt opgehaald gaan we er natuurlijk wat mee doen
+    var filteredTransactions = transactions.filter(transaction => {
+        var matchDatum = !selectedDatum || transaction.datum === selectedDatum;
+        var matchType = selectedType === "alle" || transaction.type === selectedType;
+        return matchDatum && matchType;
+})
+// lijst legen, zodat de gesorteerde lijst er in kan
+transactielijst.innerHTML = '';
+
+
+// Toon de gesorteerde lijst
+filteredTransactions.forEach(transaction => {
+    var listItem = document.createElement("li");
+    listItem.innerHTML = `${transaction.type} - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
+transactielijst.appendChild(listItem);
+})
+
+
+// als er geen transacties zijn wordt er een melding weergegeven
+
+    if (filteredTransactions.length === 0 ){
+        var listItem = document.createElement("li");
+        listItem.innerHTML = "Geen transacties gevonden";
+        transactielijst.appendChild(listItem);
+    }
+
 }
+ }
+    
+        
+
+
+
+
+
+
+        
+    
+
