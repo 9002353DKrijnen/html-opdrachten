@@ -32,12 +32,19 @@
                 <br><br><br>
                 <button id="overschijfKnop"><a href="../HTML/overschrijvingen.html">overschijven</a></button>
             </div>
-            <div class="info-box">
+            <div class="info-box" id="info-box-2">
                 <h2> Huidig saldo</h2>
                 <p>€ 5.879,94</p>
                 <br><br><br>
                     <h2> Recente overschrijvingen</h2>
                     <p id="recenteOverschrijvingen"></p>
+                    <select  id="sort-type">
+                    <option value="alle">Type: alle</option>
+                    <option value="inkomend">Type: inkomend</option>
+                    <option value="uitgaand">Type: uitgaand</option>
+                </select>
+               <input type="date" id="datum-select> 
+                    <ul id="transactiesUL"></ul>
             </div>
             <div class="info-box">
                 <h2>Spaarrekening</h2>
