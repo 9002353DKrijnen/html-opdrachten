@@ -69,6 +69,33 @@ $postcode = $cijfers . $letter1 . $letter2;
 // Nu de postcode tonen 
 
 echo "Uw postcodekanjer is: " . $postcode;
+echo "<br>";
+/*
+Opdracht 6.4: maak een functie waarmee de oppervlakte en de omtrek van een cirkel berekend kan worden. 
+Pi = 3,14. Omtrek 2 x PI x straal en oppervlakte is PI x straal in het kwadraat.
+*/
 
+// pi is standaardwaarde dus die geven we een variabele
+$pie = "3.14159";
+//  functie openen en een naam geven met variabelen die we later gaan gebruiken
+function berekenOmtrek($pie, $diameter){
+    // variabele aanroepen met een variabele die variabel is, in dit geval $diameter
+$omtrek = $pie * $diameter;
+// afronden op 2 decimalen
+$omtrek = round($omtrek,2);
+// afronding function
+return $omtrek;
+}
+// echo, waar $pie al een standaardwaarde heeft en $diameter niet, en hier 10 is.(5 straal)
+echo "De omtrek van een cirkel met straal 5 is" . " " .berekenOmtrek($pie, 10);
+// hetzelfde maar nu met Oppervlakte
+function berekenOppervlakte($pie, $straal){
+ $oppervlakte = $pie * $straal** 2;
+ $oppervlakte = round($oppervlakte,2);
+return $oppervlakte;
+}
+// output met ruimte
+echo "<br>";
+echo "De oppervlakte van een cirkel met straal van 5 is" . " ".  berekenOppervlakte($pie,5);
 
-
+?>
