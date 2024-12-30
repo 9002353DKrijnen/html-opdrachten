@@ -36,7 +36,7 @@ if(isset($_POST['send'])){
 }
 ?>
 
-
+//Html met form 
 <!DOCTYPE html>
 <html lang="en">
 <head>
