@@ -76,7 +76,6 @@ case '/';
     break;
     default: echo "Ongeldige methode.";
     $calculatedNumber = null;
-
          }
 echo "<br>";
 echo "Uw berekend getal met de getallen $number1 en $number2 met de methode $method leiden tot het getal:" . $calculatedNumber;
