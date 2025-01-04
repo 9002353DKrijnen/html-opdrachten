@@ -37,9 +37,14 @@ if (isset($_POST['send'])) {
         // stop de functie:
         return;
     } else {
-        // opgave priceInput en discountInput
-        $priceInput = $_POST['priceInput'];
-        $discountInput = $_POST['discountInput'];
+        // Verkrijg de invoer en converteer komma's naar punten
+        $priceInput = str_replace(',', '.', $_POST['priceInput']);
+        $discountInput = str_replace(',', '.', $_POST['discountInput']);
+
+        // Zorg ervoor dat de waarden numeriek zijn
+        $priceInput = floatval($priceInput);
+        $discountInput = floatval($discountInput);
+        
         // hier de fout ingegaan, ik moet beter opletten met de (), ik miste er een net na de *, 
         // variabele opgeven waarbij de korting afgetrokken wordt van de prijsopgave, en de korting in 1.xx wordt berekend, (8% word * 1.08)
         $calculatedDiscount = $priceInput - ($priceInput * ($discountInput / 100));
