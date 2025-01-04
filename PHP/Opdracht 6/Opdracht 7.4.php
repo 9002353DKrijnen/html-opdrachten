@@ -29,13 +29,19 @@
 </html>
 
 <?php
+// controleren of de post met name send is verzonden
 if (isset($_POST['send'])) {
-    if ($_POST['discountInput'] == '' || $_POST['priceInput'] == '')   {
+    // empty() werkt niet want  een leeg veld zal altijd als 0 worden gestuurd dus dan maar met een vergelijking: 
+    if ($_POST['discountInput'] == '' || $_POST['priceInput'] == '') {
         echo "Een input mis, dus u zult uw invoer moeten aanpassen.";
+        // stop de functie:
         return;
     } else {
+        // opgave priceInput en discountInput
         $priceInput = $_POST['priceInput'];
         $discountInput = $_POST['discountInput'];
+        // hier de fout ingegaan, ik moet beter opletten met de (), ik miste er een net na de *, 
+        // variabele opgeven waarbij de korting afgetrokken wordt van de prijsopgave, en de korting in 1.xx wordt berekend, (8% word * 1.08)
         $calculatedDiscount = $priceInput - ($priceInput * ($discountInput / 100));
         echo "Uw invoer is bij korting $discountInput en bij prijs $priceInput. Uw prijs met korting is:" . number_format($calculatedDiscount, 2);
     }
