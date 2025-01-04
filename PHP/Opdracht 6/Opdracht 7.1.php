@@ -14,47 +14,54 @@ $taxInput = "";
 $moneyInput = "";
 $total = "";
 
-if(isset($_POST['send'])){
+if (isset($_POST['send'])) {
     // Controleer of de invoervelden niet leeg zijn
-    if(empty($_POST['btw']) || empty($_POST['toCalculateMoney'])){
+    if (empty($_POST['btw']) || empty($_POST['toCalculateMoney'])) {
         echo "invoer is leeg";
-    } else{
-    $taxInput = $_POST['btw'];
-    $moneyInput = filter_input(INPUT_POST, 'toCalculateMoney',  FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    // Komma's omzetten naar punten: 
-    $moneyInput = str_replace(',','.',$moneyInput);
-    $total = $moneyInput + ($moneyInput  * $taxInput /100);
+    } else {
+        $taxInput = $_POST['btw'];
+        $moneyInput = filter_input(INPUT_POST, 'toCalculateMoney',  FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        // Komma's omzetten naar punten: 
+        $moneyInput = str_replace(',', '.', $moneyInput);
+        $total = $moneyInput + ($moneyInput  * $taxInput / 100);
 
-// resultaten tonen
-    echo "Ingevoerd bedrag is:" . "€ ". $moneyInput . " " . "<br>" . "met als ingevoerd btw aantal" . " "  .  $taxInput . "%";
-    echo "<br>";
-    echo "Bedrag exclusief btw" . " " . "€" .$moneyInput;
-    echo "<br>";
-    echo "totaal incusief btw" . " " . "€" .  number_format($total, 2);
-    echo "<br>";
+        // resultaten tonen
+        echo "Ingevoerd bedrag is:" . "€ " . $moneyInput . " " . "<br>" . "met als ingevoerd btw aantal" . " "  .  $taxInput . "%";
+        echo "<br>";
+        echo "Bedrag exclusief btw" . " " . "€" . $moneyInput;
+        echo "<br>";
+        echo "totaal incusief btw" . " " . "€" .  number_format($total, 2);
+        echo "<br>";
     }
 }
 ?>
 
-//Html met form 
+//Html met form
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opdrachtjes</title>
 </head>
+
 <body>
     <form method="post" action="">
         <label for="moneyInput">Bedrag exclusief BTW</label>
         <input type="text" name="toCalculateMoney">
         <br>
-        <input type="radio" value="9" name="btw"<?php if($taxInput == "9") {echo "checked";}?>>9% BTW
+        <input type="radio" value="9" name="btw" <?php if ($taxInput == "9") {
+                                                        echo "checked";
+                                                    } ?>>9% BTW
         <br>
-        <input type="radio" value="21"name="btw" <?php if($taxInput == "21") {echo "checked";}?>>21% BTW
+        <input type="radio" value="21" name="btw" <?php if ($taxInput == "21") {
+                                                        echo "checked";
+                                                    } ?>>21% BTW
 
         <br>
         <input type="submit" name="send" value="Send">
-        </form>
+    </form>
 </body>
+
 </html>
