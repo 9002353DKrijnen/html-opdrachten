@@ -48,7 +48,7 @@ if (isset($_POST['send'])) {
         // hier de fout ingegaan, ik moet beter opletten met de (), ik miste er een net na de *, 
         // variabele opgeven waarbij de korting afgetrokken wordt van de prijsopgave, en de korting in 1.xx wordt berekend, (8% word * 1.08)
         $calculatedDiscount = $priceInput - ($priceInput * ($discountInput / 100));
-        echo "Uw invoer is bij korting $discountInput en bij prijs $priceInput. Uw prijs met korting is:" . number_format($calculatedDiscount, 2);
+        echo "Uw invoer is bij korting  $discountInput  % en bij prijs €: $priceInput . Uw prijs met korting is:€" . number_format($calculatedDiscount, 2);
     }
 }
 
