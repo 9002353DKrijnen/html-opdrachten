@@ -1,0 +1,148 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+ html {
+    font-family: Arial, sans-serif;
+    min-height: 100%;
+}
+body {
+
+    display: flex;
+    overflow-y: auto;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: blue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    margin-bottom: 20px;
+    display: block;
+    margin-top: 40px;
+    color: #fbff00;
+}
+
+.sidebar p{
+margin-top: 600px;
+color: #bbff00;
+}
+
+.main{
+    background-color: #0E8BF2; ;
+    width: 100%;
+}
+
+.top-section {
+    background-color: #5EB6FF;
+    padding: 60px;
+    margin: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-box {
+    background-color: #5EB6FF;
+    flex: 0,8;
+    margin: 0 10px;
+    margin-top:  20px;
+    padding: 10px;
+    height: 550px;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.bottom-section {
+    background-color: #5EB6FF;
+    padding: 125px;
+    margin-left: 100px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 35px;
+    width: 90%;
+    height: 5%;
+}
+
+.login-field{
+    background-color: #5EB6FF;
+    margin-top: 12%;
+    margin-left: 25%;
+    padding: 10px;
+    height: 500px;
+    width: 1000px;
+    text-align: center;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.login-field input{
+    border: solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    background: url(../img/images.jpg);
+    color: aliceblue;
+}
+.login-field input::placeholder{
+  color:  white;
+}
+.login-field button{
+    border: solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    background: url(../img/images.jpg);
+}
+.login-field button:hover
+{
+    cursor: pointer;
+}
+#rekeningToevoegen{
+border: solid 3px #0E8BF2;
+border-radius: 10px;
+padding: 20px;
+background-color: #4ba2e9;
+cursor: pointer;
+color: lightblue;
+}
+
+#rekeningToevoegen:hover{
+    border-color: bisque;
+    color: #fbff00;
+    padding: 22px;
+
+}
+#overschijfKnop{
+    border: solid 3px #0E8BF2;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #4ba2e9;
+    cursor: pointer;
+    color: lightblue;
+}
+#overschijfKnop:hover{
+    border-color: bisque;
+    color: #fbff00;
+    padding: 22px;
+}
