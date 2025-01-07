@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="../Assets/style.css">
+</head>
+
+<body>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Rekeningen</a></li>
+            <li><a href="#">Overschrijvingen</a></li>
+            <li><a href="./beleggingen.html">Beleggen</a></li>
+
+        </ul>
+        <p>Home</p>
+
+    </nav>
+    <main class="main">
+        <section class="top-section">
+            <h1>Hallo, Welkom bij sectie beleggen,</h1>
+            <p>Hier kunt u beleggen, houd er rekening mee dat er risico's verbonden zijn met beleggen.</p>
+        </section>
+        <section class="info-box-investment">
+            <p>Beschikbaar saldo</p>
+            <p>Kies een categorie:</p>
+            <select name="category-investment" id="ategory-investment">
+                <option value="shares">Aandelen</option>
+                <option value="crypto">Crypto</option>
+                <option value="property">Vastgoed</option>
+                <option value="foundations">Fondsen</option>
+            </select>
+            <p>Kies een product:</p>
+            <select name="category-product" id="category-product">
+                <option value="ing">ING</option>
+                <option value="rabo">Rabo</option>
+                <option value="apple">Apple</option>
+                <option value="samsung">samsung</option>
+            </select>
+            <p id="currentPrice"></p>
+            <input type="text" name="amount" id="amountInput">
+            <button id="buy">kopen</button>
+            <button id="sell">verkopen</button>
+            <p id="outputInvestment"></p>
+        </section>
+    </main>
+    <script src="../Assets/script.js"></script>
+</body>
+
+</html>

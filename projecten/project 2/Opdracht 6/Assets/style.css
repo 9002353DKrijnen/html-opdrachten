@@ -1,14 +1,15 @@
-*
-{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 
 }
- html {
+
+html {
     font-family: Arial, sans-serif;
     min-height: 100%;
 }
+
 body {
 
     display: flex;
@@ -37,13 +38,14 @@ body {
     color: #fbff00;
 }
 
-.sidebar p{
-margin-top: 600px;
-color: #bbff00;
+.sidebar p {
+    margin-top: 600px;
+    color: #bbff00;
 }
 
-.main{
-    background-color: #0E8BF2; ;
+.main {
+    background-color: #0E8BF2;
+    ;
     width: 100%;
 }
 
@@ -62,9 +64,9 @@ color: #bbff00;
 
 .info-box {
     background-color: #5EB6FF;
-    flex: 0,8;
+    flex: 0, 8;
     margin: 0 10px;
-    margin-top:  20px;
+    margin-top: 20px;
     padding: 10px;
     height: 550px;
     width: 300px;
@@ -83,7 +85,30 @@ color: #bbff00;
     height: 5%;
 }
 
-.login-field{
+.info-box-investment {
+    background-color: #5EB6FF;
+    margin: 40px;
+    margin-top: 20px;
+    padding: 30px;
+    height: 550px;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-box-investment button {
+    margin-top: 20px;
+    border: solid 3px #0E8BF2;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #4ba2e9;
+    cursor: pointer;
+    color: lightblue;
+}
+
+.login-field {
     background-color: #5EB6FF;
     margin-top: 12%;
     margin-left: 25%;
@@ -98,42 +123,30 @@ color: #bbff00;
     flex-direction: column;
 }
 
-.login-field input{
+.login-field input {
     border: solid blue;
     border-radius: 10px;
     padding: 10px;
     background: url(../img/images.jpg);
     color: aliceblue;
 }
-.login-field input::placeholder{
-  color:  white;
+
+.login-field input::placeholder {
+    color: white;
 }
-.login-field button{
+
+.login-field button {
     border: solid blue;
     border-radius: 10px;
     padding: 10px;
     background: url(../img/images.jpg);
 }
-.login-field button:hover
-{
+
+.login-field button:hover {
     cursor: pointer;
 }
-#rekeningToevoegen{
-border: solid 3px #0E8BF2;
-border-radius: 10px;
-padding: 20px;
-background-color: #4ba2e9;
-cursor: pointer;
-color: lightblue;
-}
 
-#rekeningToevoegen:hover{
-    border-color: bisque;
-    color: #fbff00;
-    padding: 22px;
-
-}
-#overschijfKnop{
+#rekeningToevoegen {
     border: solid 3px #0E8BF2;
     border-radius: 10px;
     padding: 20px;
@@ -141,7 +154,24 @@ color: lightblue;
     cursor: pointer;
     color: lightblue;
 }
-#overschijfKnop:hover{
+
+#rekeningToevoegen:hover {
+    border-color: bisque;
+    color: #fbff00;
+    padding: 22px;
+
+}
+
+#overschijfKnop {
+    border: solid 3px #0E8BF2;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #4ba2e9;
+    cursor: pointer;
+    color: lightblue;
+}
+
+#overschijfKnop:hover {
     border-color: bisque;
     color: #fbff00;
     padding: 22px;

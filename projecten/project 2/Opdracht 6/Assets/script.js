@@ -57,7 +57,7 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
     }
 }
 
-/* OPDRACHT 3 */
+/* OPDRACHT 3 + 4 */
 if (currentPage.includes("overschrijvingen.html")) {
     var overschrijving = document.getElementById("overschrijving");
 
@@ -138,3 +138,11 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
         }
     }
 }
+/* 
+Opdracht 6: Product: Functionaliteit voor het kopen en verkopen van aandelen of crypto.
+Taken:
+- Ontwerp een interface waarmee gebruikers beleggingen kunnen doen.
+- Zorg voor een dynamische weergave van (fictieve) prijsveranderingen.
+- Voeg waarschuwingen of validaties toe, bijvoorbeeld bij onvoldoende saldo.
+*/
+
