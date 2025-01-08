@@ -124,9 +124,12 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
         transactielijst.innerHTML = '';
 
         // Toon de gesorteerde lijst
+
+
         filteredTransactions.forEach(transaction => {
             var listItem = document.createElement("li");
-            listItem.innerHTML = `${transaction.type} - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
+            listItem.innerHTML = `${transaction.type
+                } - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
             transactielijst.appendChild(listItem);
         });
 
@@ -141,12 +144,12 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
 /* 
 Opdracht 6: Product: Functionaliteit voor het kopen en verkopen van aandelen of crypto.
 Taken:
-- Ontwerp een interface waarmee gebruikers beleggingen kunnen doen.
+- Ontwerp een interface waarmee                 gebruikers beleggingen kunnen doen.
 - Zorg voor een dynamische weergave van (fictieve) prijsveranderingen.
 - Voeg waarschuwingen of validaties toe, bijvoorbeeld bij onvoldoende saldo.
 */
 // check of de huidige pagina de beleggingspagina is
-if (currentPage.includes("belggingen.html")) {
+if (currentPage.includes("beleggingen.html")) {
     // dropdownmenu interactief maken, we hebben in de html de "value", zodat we niet 5-6 dropdown
     //menu's hoeven te verwerken doen we dat interactief via Javascript met een array:
     let productOptions = {
@@ -174,16 +177,21 @@ if (currentPage.includes("belggingen.html")) {
 
     }
     // lijsten importeren
-    let investmentOption = document.getElementById("investment").value;
+    let investmentDropdown = document.getElementById("investment");
     let categoryInvestment = document.getElementById("category-product");
-    
-    function updateProductOptions(investmentOption) {
+
+    function updateProductOptions() {
         // lijst leeg maken
+        
         //open functie
-        if (investmentOption === "") {
+        let investmentOption = investmentDropdown.value;
+        if (investmentOption == "") {
             alert("Geen investeeroptie opgegeven");
-        } else if (productOptions[investmentOption]) {
+            return;
+        } if (productOptions[investmentOption]) {
+            categoryInvestment.innerHTML = "";
             productOptions[investmentOption].forEach(option => {
+                // geselecteerde waarde instellen
                 let newOption = document.createElement("option");
                 //value instellen, waar newOption de zojuist gecreërde variable is.
                 newOption.value = option.value;
@@ -191,7 +199,7 @@ if (currentPage.includes("belggingen.html")) {
                 newOption.textContent = option.text;
                 // catogorie toepassen met apppenchild
                 categoryInvestment.appendChild(newOption);
-            })
+            });
 
 
         }
@@ -199,7 +207,7 @@ if (currentPage.includes("belggingen.html")) {
             alert("Geen cat gekozen");
         }
     }
-    document.getElementById("investment").addEventListener(updateProductOptions);
+    document.getElementById("investment").addEventListener("change", updateProductOptions);
     console.log(updateProductOptions);
 }
 
