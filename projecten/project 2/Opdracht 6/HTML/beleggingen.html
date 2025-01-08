@@ -29,18 +29,14 @@
         <section class="info-box-investment">
             <p>Beschikbaar saldo</p>
             <p>Kies een categorie:</p>
-            <select name="category-investment" id="ategory-investment">
-                <option value="shares">Aandelen</option>
+            <select name="category-investment" id="investment" onchange="updateProductOptions()">
+                <option value="shares" selected>Aandelen</option>
                 <option value="crypto">Crypto</option>
                 <option value="property">Vastgoed</option>
                 <option value="foundations">Fondsen</option>
             </select>
             <p>Kies een product:</p>
             <select name="category-product" id="category-product">
-                <option value="ing">ING</option>
-                <option value="rabo">Rabo</option>
-                <option value="apple">Apple</option>
-                <option value="samsung">samsung</option>
             </select>
             <p id="currentPrice"></p>
             <input type="text" name="amount" id="amountInput">

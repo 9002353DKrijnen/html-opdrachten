@@ -145,4 +145,61 @@ Taken:
 - Zorg voor een dynamische weergave van (fictieve) prijsveranderingen.
 - Voeg waarschuwingen of validaties toe, bijvoorbeeld bij onvoldoende saldo.
 */
+// check of de huidige pagina de beleggingspagina is
+if (currentPage.includes("belggingen.html")) {
+    // dropdownmenu interactief maken, we hebben in de html de "value", zodat we niet 5-6 dropdown
+    //menu's hoeven te verwerken doen we dat interactief via Javascript met een array:
+    let productOptions = {
+        shares: [
+            { value: "ing", text: "ING" },
+            { value: "rabo", text: "Rabo" },
+            { value: "apple", text: "Apple" },
+            { value: "samsung", text: "Samsung" },
+        ],
+        crypto: [
+            { value: "bitcoin", text: "Bitcoin" },
+            { value: "litecoin", text: "Litecoin" },
+            { value: "monero", text: "Monero" },
+            { value: "ethereum", text: "Ethereum" },
+        ],
+        property: [
+            { value: "goldman", text: "Goldman-sachs" },
+            { value: "home", text: "Huis" },
+            { value: "garden", text: "Tuin" },
+        ],
+        foundations: [
+            { value: "green-tech", text: "GroeneTech" },
+            { value: "panda", text: "WWF" },
+        ],
+
+    }
+    // lijsten importeren
+    let investmentOption = document.getElementById("investment").value;
+    let categoryInvestment = document.getElementById("category-product");
+    
+    function updateProductOptions(investmentOption) {
+        // lijst leeg maken
+        //open functie
+        if (investmentOption === "") {
+            alert("Geen investeeroptie opgegeven");
+        } else if (productOptions[investmentOption]) {
+            productOptions[investmentOption].forEach(option => {
+                let newOption = document.createElement("option");
+                //value instellen, waar newOption de zojuist gecreërde variable is.
+                newOption.value = option.value;
+                // textContext  
+                newOption.textContent = option.text;
+                // catogorie toepassen met apppenchild
+                categoryInvestment.appendChild(newOption);
+            })
+
+
+        }
+        else {
+            alert("Geen cat gekozen");
+        }
+    }
+    document.getElementById("investment").addEventListener(updateProductOptions);
+    console.log(updateProductOptions);
+}
 
