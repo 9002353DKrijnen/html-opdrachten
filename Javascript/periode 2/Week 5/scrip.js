@@ -27,6 +27,8 @@ window.onload = function () {
                         alert(`${averageReactionTime} is de gemiddelde duur, uw reactietijd is ${reactionTime}`);
 
                     }
+                    document.body.onclick = null;
+                    document.body.style.backgroundColor = "white";
                 }
             }
         }, randomDelay);
