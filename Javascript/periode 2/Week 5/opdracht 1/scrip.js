@@ -1,6 +1,7 @@
 window.onload = function () {
     let timerButton = document.getElementById("goTime");
     timerButton.onclick = function () {
+        timerButton.onclick = null;
         timerButton.innerHTML = "";
         document.body.style.backgroundColor = "red";
         let randomDelay = Math.floor(Math.random() * 10 + 1) * 1000; // het is in milliseconden deze waarden roepen we zo op omdat setTimeout in milliseconden werkt
@@ -36,3 +37,6 @@ window.onload = function () {
 
     }
 }
+
+
+
