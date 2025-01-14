@@ -222,20 +222,25 @@ if (currentPage.includes("beleggingen.html")) {
                 let value = Math.floor(Math.random() * 1000);
                 let presentValue = document.getElementById("currentPrice");
                 presentValue.innerHTML = `Huidige prijs van ${selectedCrypto} is €  ${value}`;
-                buyButton.onclick = function(){
+                buyButton.onclick = function () {
                     let amount = document.getElementById("amountInput").value * value;
                     aboutToBuy = selectedCrypto;
-                    if(availableBalanceValue <= amount){
+                    if (availableBalanceValue <= amount) {
                         alert("U heeft niet genoeg")
-                        return;
-                     } else{
-                            alert(`Uw gekochte is ${aboutToBuy} met de prijs ${amount} met de waarde van ${value}` );
-                            let purchasedAmount = availableBalanceValue - amount;
-                            alert (`U heeft nog ${purchasedAmount} over`);
+                        purchasedSucces = false;
+                    } else {
+                        alert(`Uw gekochte is ${aboutToBuy} met de prijs ${amount} met de waarde van ${value}`);
+                        let purchasedAmount = availableBalanceValue - amount;
+                        alert(`U heeft nog ${purchasedAmount} over`);
+                        purchasedSucces = true;
+                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                    }
+                    if (purchasedSucces === true) {
+                        alert('ok');
+                    } else {
+                        alert("nope")
+                    }
 
-                        }
-                    return;
-            
                 }
 
             }
