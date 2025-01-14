@@ -227,11 +227,14 @@ if (currentPage.includes("beleggingen.html")) {
                     aboutToBuy = selectedCrypto;
                     if(availableBalanceValue <= amount){
                         alert("U heeft niet genoeg")
+                        return;
                      } else{
                             alert(`Uw gekochte is ${aboutToBuy} met de prijs ${amount} met de waarde van ${value}` );
-                        }
+                            let purchasedAmount = availableBalanceValue - amount;
+                            alert (`U heeft nog ${purchasedAmount} over`);
 
-                    
+                        }
+                    return;
             
                 }
 
