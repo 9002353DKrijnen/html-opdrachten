@@ -182,8 +182,9 @@ if (currentPage.includes("beleggingen.html")) {
 
     function updateProductOptions() {
         // lijst leeg maken
-        
+
         //open functie
+
         let investmentOption = investmentDropdown.value;
         if (investmentOption == "") {
             alert("Geen investeeroptie opgegeven");
@@ -206,8 +207,48 @@ if (currentPage.includes("beleggingen.html")) {
         else {
             alert("Geen cat gekozen");
         }
+
     }
     document.getElementById("investment").addEventListener("change", updateProductOptions);
-    console.log(updateProductOptions);
+    categoryInvestment.addEventListener("change", cryptoOptions)
+    function cryptoOptions() {
+        if (investmentDropdown.value === "crypto") {
+            let selectedCrypto = categoryInvestment.value;
+            let availableBalanceValue = randomBalance;
+            let sellButton = document.getElementById("sell");
+            // actie uitvoeren als crypto is geselecteerd: 
+            if (selectedCrypto === "bitcoin" || selectedCrypto === "litecoin" || selectedCrypto === "monero" || selectedCrypto === "ethereum") {
+                alert(`${selectedCrypto} is gekozen, prijs aan 't updaten....`);
+                let value = Math.floor(Math.random() * 1000);
+                let presentValue = document.getElementById("currentPrice");
+                presentValue.innerHTML = `Huidige prijs van ${selectedCrypto} is €  ${value}`;
+                buyButton.onclick = function(){
+                    let amount = document.getElementById("amountInput").value * value;
+                    aboutToBuy = selectedCrypto;
+                    if(availableBalanceValue <= amount){
+                        alert("U heeft niet genoeg")
+                     } else{
+                            alert(`Uw gekochte is ${aboutToBuy} met de prijs ${amount} met de waarde van ${value}` );
+                        }
+
+                    
+            
+                }
+
+            }
+
+
+        }
+    }
+    let infoboxInvesment = document.querySelector(".info-box-investment");
+    let availableBalance = document.createElement("p");
+    let randomBalance = Math.floor(Math.random() * 5000 + 1000);
+    availableBalance.textContent = `Beschikbaar balans is ${randomBalance}`;
+    infoboxInvesment.appendChild(availableBalance);
+    // waarde declareren
+    let buyButton = document.getElementById("buy");
+
+
+
 }
 

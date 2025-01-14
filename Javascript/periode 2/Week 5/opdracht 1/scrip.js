@@ -18,6 +18,7 @@ window.onload = function () {
                 if (document.body.style.backgroundColor === "green") {
                     let reactionTime = Date.now() - startTime;
                     timerButton.innerHTML = `Reactietijd is ${reactionTime} in milliseconden`;
+                    timerButton.innerHTML =     "reactietijd is" + reactionTime + "in milliseconden" ;
                     let averageReactionTime = 200;
 
                     if (reactionTime <= averageReactionTime) {
