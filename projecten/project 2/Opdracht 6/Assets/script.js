@@ -142,7 +142,7 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
     }
 }
 /* 
-Opdracht 6: Product: Functionaliteit voor het kopen en verkopen van aandelen of crypto.
+Opdracht 6 en 7 : Product: Functionaliteit voor het kopen en verkopen van aandelen of crypto.
 Taken:
 - Ontwerp een interface waarmee                 gebruikers beleggingen kunnen doen.
 - Zorg voor een dynamische weergave van (fictieve) prijsveranderingen.
@@ -214,7 +214,6 @@ if (currentPage.includes("beleggingen.html")) {
     function cryptoOptions() {
         if (investmentDropdown.value === "crypto") {
             let selectedCrypto = categoryInvestment.value;
-            let availableBalanceValue = randomBalance;
             let sellButton = document.getElementById("sell");
             // actie uitvoeren als crypto is geselecteerd: 
             if (selectedCrypto === "bitcoin" || selectedCrypto === "litecoin" || selectedCrypto === "monero" || selectedCrypto === "ethereum") {
@@ -223,15 +222,25 @@ if (currentPage.includes("beleggingen.html")) {
                 let presentValue = document.getElementById("currentPrice");
                 presentValue.innerHTML = `Huidige prijs van ${selectedCrypto} is €  ${value}`;
                 buyButton.onclick = function () {
-                    let amount = document.getElementById("amountInput").value * value;
+                    let amount = document.getElementById("amountInput").value;
+                    let amountPost = document.getElementById("amountInput").value * value;
+                    let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedCrypto;
-                    if (availableBalanceValue <= amount) {
-                        alert("U heeft niet genoeg")
+                    if (amount === "0" || amount === "") {
+                        alert(`${amount} is nul en dat kan niet.`)
                         purchasedSucces = false;
-                    } else {
-                        alert(`Uw gekochte is ${aboutToBuy} met de prijs ${amount} met de waarde van ${value}`);
-                        let purchasedAmount = availableBalanceValue - amount;
-                        alert(`U heeft nog ${purchasedAmount} over`);
+                        return;
+                    }
+
+                    if (randomBalance  <= amountPost) {
+                        outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
+                        purchasedSucces = false;
+                    }
+                    else {
+                        randomBalance -= amountPost
+                        outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
+                        let purchasedAmount = randomBalance  - amountPost;
+                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
                         purchasedSucces = true;
                         // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
                     }
