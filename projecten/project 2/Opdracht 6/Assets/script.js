@@ -226,7 +226,7 @@ if (currentPage.includes("beleggingen.html")) {
                     let amountPost = document.getElementById("amountInput").value * value;
                     let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedCrypto;
-                    if (amount === "0" || amount === "") {
+                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
                         outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
                         purchasedSucces = false;
                         return;
@@ -238,18 +238,52 @@ if (currentPage.includes("beleggingen.html")) {
                     }
                     else {
                         randomBalance -= amountPost
-                        outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
+                        outputInvestment.innerHTML = `Je hebt ${aboutToBuy} gekocht met de prijs ${amountPost} met de waarde van ${value}`;
                         let purchasedAmount = randomBalance - amountPost;
                         availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
                         purchasedSucces = true;
                         // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
                     }
                     if (purchasedSucces === true) {
-                        alert('ok');
+                        let currentOSA = document.getElementById("OSA");
+                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                        alert('Uw actie was succesvol');
+                        amountCurrentOSA += parseInt(amount);
+                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
                     } else {
-                        alert("nope")
+                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
                     }
 
+                }
+                sellButton.onclick = function () {
+                    let amount = document.getElementById("amountInput").value;
+                    let amountPost = document.getElementById("amountInput").value * value;
+                    let outputInvestment = document.getElementById("outputInvestment");
+                    aboutToSell = selectedCrypto;
+                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                        soldSucces = false;
+                        return;
+                    }
+
+
+                    if (amountCurrentOSA >= "1") {
+                        outputInvestment.innerHTML = `Je hebt ${aboutToSell} verkocht met de prijs ${amountPost} met de waarde van ${value}`;
+                        let purchasedAmount = randomBalance += parseInt(amountPost);
+                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
+                        soldSucces = true;
+                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                    }
+                    if (soldSucces === true && amountCurrentOSA >= "1") {
+
+                        let currentOSA = document.getElementById("OSA");
+                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                        alert('Uw actie was succesvol');
+                        amountCurrentOSA -= parseInt(amount);
+                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
+                    } else {
+                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
+                    }
                 }
 
             }
@@ -270,8 +304,8 @@ if (currentPage.includes("beleggingen.html")) {
                     let amountPost = document.getElementById("amountInput").value * value;
                     let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedShares;
-                    if (amount === "0" || amount === "") {
-                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet, of u gebruikt letters.`;
                         purchasedSucces = false;
                         return;
                     }
@@ -289,9 +323,13 @@ if (currentPage.includes("beleggingen.html")) {
                         // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
                     }
                     if (purchasedSucces === true) {
-                        alert('ok');
+                        let currentOSA = document.getElementById("OSA");
+                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                        alert('Uw actie was succesvol');
+                        amountCurrentOSA += parseInt(amount);
+                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
                     } else {
-                        alert("nope")
+                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
                     }
 
                 }
@@ -314,7 +352,7 @@ if (currentPage.includes("beleggingen.html")) {
                     let amountPost = document.getElementById("amountInput").value * value;
                     let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedProperty;
-                    if (amount === "0" || amount === "") {
+                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
                         outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
                         purchasedSucces = false;
                         return;
@@ -325,17 +363,21 @@ if (currentPage.includes("beleggingen.html")) {
                         purchasedSucces = false;
                     }
                     else {
-                        randomBalance -= amountPost
+
                         outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
-                        let purchasedAmount = randomBalance - amountPost;
+                        let purchasedAmount = randomBalance -= amountPost;
                         availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
                         purchasedSucces = true;
                         // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
                     }
                     if (purchasedSucces === true) {
-                        alert('ok');
+                        let currentOSA = document.getElementById("OSA");
+                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                        alert('Uw actie was succesvol');
+                        amountCurrentOSA += parseInt(amount);
+                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
                     } else {
-                        alert("nope")
+                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
                     }
 
                 }
@@ -358,28 +400,32 @@ if (currentPage.includes("beleggingen.html")) {
                     let amountPost = document.getElementById("amountInput").value * value;
                     let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedFoundations;
-                    if (amount === "0" || amount === "") {
+                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
                         outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
                         purchasedSucces = false;
                         return;
                     }
 
-                    if (randomBalance  <= amountPost) {
+                    if (randomBalance <= amountPost) {
                         outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
                         purchasedSucces = false;
                     }
                     else {
                         randomBalance -= amountPost
                         outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
-                        let purchasedAmount = randomBalance  - amountPost;
+                        let purchasedAmount = randomBalance - amountPost;
                         availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
                         purchasedSucces = true;
                         // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
                     }
                     if (purchasedSucces === true) {
-                        alert('ok');
+                        let currentOSA = document.getElementById("OSA");
+                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                        alert('Uw actie was succesvol');
+                        amountCurrentOSA += parseInt(amount);
+                        currentOSA.innerHTML = `U bezit ${amountCurrentOSA} van ${selectedFoundations}`;
                     } else {
-                        alert("nope")
+                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
                     }
 
                 }
@@ -396,6 +442,7 @@ if (currentPage.includes("beleggingen.html")) {
     infoboxInvesment.appendChild(availableBalance);
     // waarde declareren
     let buyButton = document.getElementById("buy");
+    let amountCurrentOSA = 0;
 
 
 
