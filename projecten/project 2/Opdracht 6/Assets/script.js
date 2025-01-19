@@ -210,8 +210,8 @@ if (currentPage.includes("beleggingen.html")) {
 
     }
     document.getElementById("investment").addEventListener("change", updateProductOptions);
-    categoryInvestment.addEventListener("change", cryptoOptions)
-    function cryptoOptions() {
+    categoryInvestment.addEventListener("change", Options)
+    function Options() {
         if (investmentDropdown.value === "crypto") {
             let selectedCrypto = categoryInvestment.value;
             let sellButton = document.getElementById("sell");
@@ -227,7 +227,139 @@ if (currentPage.includes("beleggingen.html")) {
                     let outputInvestment = document.getElementById("outputInvestment");
                     aboutToBuy = selectedCrypto;
                     if (amount === "0" || amount === "") {
-                        alert(`${amount} is nul en dat kan niet.`)
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                        purchasedSucces = false;
+                        return;
+                    }
+
+                    if (randomBalance <= amountPost) {
+                        outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
+                        purchasedSucces = false;
+                    }
+                    else {
+                        randomBalance -= amountPost
+                        outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
+                        let purchasedAmount = randomBalance - amountPost;
+                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
+                        purchasedSucces = true;
+                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                    }
+                    if (purchasedSucces === true) {
+                        alert('ok');
+                    } else {
+                        alert("nope")
+                    }
+
+                }
+
+            }
+
+
+        }
+        if (investmentDropdown.value === "shares") {
+            let selectedShares = categoryInvestment.value;
+            let sellButton = document.getElementById("sell");
+            // actie uitvoeren als crypto is geselecteerd: 
+            if (selectedShares === "ing" || selectedShares === "rabo" || selectedShares === "apple" || selectedShares === "samsung") {
+                alert(`${selectedShares} is gekozen, prijs aan 't updaten....`);
+                let value = Math.floor(Math.random() * 1000);
+                let presentValue = document.getElementById("currentPrice");
+                presentValue.innerHTML = `Huidige prijs van ${selectedShares} is €  ${value}`;
+                buyButton.onclick = function () {
+                    let amount = document.getElementById("amountInput").value;
+                    let amountPost = document.getElementById("amountInput").value * value;
+                    let outputInvestment = document.getElementById("outputInvestment");
+                    aboutToBuy = selectedShares;
+                    if (amount === "0" || amount === "") {
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                        purchasedSucces = false;
+                        return;
+                    }
+
+                    if (randomBalance <= amountPost) {
+                        outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
+                        purchasedSucces = false;
+                    }
+                    else {
+                        randomBalance -= amountPost
+                        outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
+                        let purchasedAmount = randomBalance - amountPost;
+                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
+                        purchasedSucces = true;
+                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                    }
+                    if (purchasedSucces === true) {
+                        alert('ok');
+                    } else {
+                        alert("nope")
+                    }
+
+                }
+
+            }
+
+
+        }
+        if (investmentDropdown.value === "property") {
+            let selectedProperty = categoryInvestment.value;
+            let sellButton = document.getElementById("sell");
+            // actie uitvoeren als crypto is geselecteerd: 
+            if (selectedProperty === "goldman" || selectedProperty === "home" || selectedProperty === "garden") {
+                alert(`${selectedProperty} is gekozen, prijs aan 't updaten....`);
+                let value = Math.floor(Math.random() * 1000);
+                let presentValue = document.getElementById("currentPrice");
+                presentValue.innerHTML = `Huidige prijs van ${selectedProperty} is €  ${value}`;
+                buyButton.onclick = function () {
+                    let amount = document.getElementById("amountInput").value;
+                    let amountPost = document.getElementById("amountInput").value * value;
+                    let outputInvestment = document.getElementById("outputInvestment");
+                    aboutToBuy = selectedProperty;
+                    if (amount === "0" || amount === "") {
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                        purchasedSucces = false;
+                        return;
+                    }
+
+                    if (randomBalance <= amountPost) {
+                        outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
+                        purchasedSucces = false;
+                    }
+                    else {
+                        randomBalance -= amountPost
+                        outputInvestment.innerHTML = `Uw gekochte is ${aboutToBuy} met de prijs ${amountPost} met de waarde van ${value}`;
+                        let purchasedAmount = randomBalance - amountPost;
+                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
+                        purchasedSucces = true;
+                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                    }
+                    if (purchasedSucces === true) {
+                        alert('ok');
+                    } else {
+                        alert("nope")
+                    }
+
+                }
+
+            }
+
+
+        }
+        if (investmentDropdown.value === "foundations") {
+            let selectedFoundations = categoryInvestment.value;
+            let sellButton = document.getElementById("sell");
+            // actie uitvoeren als crypto is geselecteerd: 
+            if (selectedFoundations === "green-tech" || selectedFoundations === "panda") {
+                alert(`${selectedFoundations} is gekozen, prijs aan 't updaten....`);
+                let value = Math.floor(Math.random() * 1000);
+                let presentValue = document.getElementById("currentPrice");
+                presentValue.innerHTML = `Huidige prijs van ${selectedFoundations} is €  ${value}`;
+                buyButton.onclick = function () {
+                    let amount = document.getElementById("amountInput").value;
+                    let amountPost = document.getElementById("amountInput").value * value;
+                    let outputInvestment = document.getElementById("outputInvestment");
+                    aboutToBuy = selectedFoundations;
+                    if (amount === "0" || amount === "") {
+                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
                         purchasedSucces = false;
                         return;
                     }
