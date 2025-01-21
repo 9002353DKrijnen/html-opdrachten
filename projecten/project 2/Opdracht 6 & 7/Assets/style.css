@@ -45,7 +45,6 @@ body {
 
 .main {
     background-color: #0E8BF2;
-    ;
     width: 100%;
 }
 
@@ -175,4 +174,14 @@ body {
     border-color: bisque;
     color: #fbff00;
     padding: 22px;
+}
+#info-box-crypto{
+    background-color: #5EB6FF;
+    padding: 125px;
+    margin-left: 100px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 35px;
+    width: 90%;
+    height: 5%;
 }

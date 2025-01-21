@@ -235,6 +235,7 @@ if (currentPage.includes("beleggingen.html")) {
                     if (randomBalance <= amountPost) {
                         outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
                         purchasedSucces = false;
+                        return;
                     }
                     else {
                         randomBalance -= amountPost
@@ -534,6 +535,44 @@ if (currentPage.includes("beleggingen.html")) {
     let buyButton = document.getElementById("buy");
     let amountCurrentOSA = 0;
 
+
+investmentDropdown.addEventListener("change", function() {
+    if (investmentDropdown.value === "crypto") {
+        addNew(); 
+    } else {
+        removeSection();
+    }
+});
+
+function addNew() {
+    let newSection = document.getElementById("info-box-crypto");
+
+    if (!newSection) {
+        let main = document.querySelector(".main");
+        newSection = document.createElement("section");
+        newSection.id = "info-box-crypto";
+        main.appendChild(newSection);
+    }
+
+    newSection.innerHTML = `
+        <h2>Crypto-informatie</h2>
+        <p>Dit is extra informatie over crypto.</p>
+        <ul>
+            <li>Voordeel: Decentraal</li>
+            <li>Waarde: <strong>Onvoorspelbaar!</strong></li>
+            <li>Gebruik: Speculatie, betalingen</li>
+        </ul>
+        <button onclick="alert('Koop crypto!')">Koop crypto</button>
+    `;
+}
+
+// Functie om de sectie te verwijderen als de gebruiker een andere optie kiest
+function removeSection() {
+    let newSection = document.getElementById("info-box-crypto");
+    if (newSection) {
+        newSection.remove(); 
+    }
+}
 
 
 }
