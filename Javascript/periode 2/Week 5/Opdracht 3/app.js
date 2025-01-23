@@ -11,8 +11,8 @@ window.addEventListener("load", function () {
     // canvas de hoogte en lengte geven van de browser
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-    canvas.addEventListener("mousedown", endPosition);
-    canvas.addEventListener("mouseup", startPosition);
+    canvas.addEventListener("mousedown", startPosition);
+    canvas.addEventListener("mouseup", endPosition);
 
 
 
@@ -36,7 +36,7 @@ window.addEventListener("load", function () {
 
 
     function draw(e) {
-        if (!painting) {
+        if (painting) {
             ctx.linWidth = 10;
             ctx.lineCap = "round";
             ctx.lineTo(e.clientX, e.clientY);
