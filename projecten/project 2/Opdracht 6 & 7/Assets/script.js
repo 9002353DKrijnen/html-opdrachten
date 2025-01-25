@@ -249,13 +249,13 @@ if (currentPage.includes("beleggingen.html")) {
         <h2>Crypto-informatie</h2>
         <p>Dit is informatie over </p>
         <ul>
-             <li id="bitcoinPrice">Huidige prijs van bitcoin is € 791</li>
-            <li id="litecoinPrice">Huidige prijs van litecoin is € 495</li>
-            <li id="moneroPrice">Huidige prijs van monero is € 860</li>
-            <li id="ethereumPrice">Huidige prijs van ethereum is € 126</li>
+             <li id="bitcoinPrice">Huidige prijs van bitcoin wacht...</li>
+            <li id="litecoinPrice">Huidige prijs van litecoin is wacht...</li>
+            <li id="moneroPrice">Huidige prijs van monero is wacht...</li>
+            <li id="ethereumPrice">Huidige prijs van ethereum is wacht...</li>
         </ul>
-        <button onclick="alert('Koop crypto!')">Koop crypto</button>
-    `;
+        <button onclick="buyCrypto()" id="buy">Koop crypto</button>
+        <button onclick="sellCrypto()" id="sell">Verkoop crypto</button>`;
     }
 
     // Functie om de sectie te verwijderen als de gebruiker een andere optie kiest
@@ -265,115 +265,120 @@ if (currentPage.includes("beleggingen.html")) {
             newSection.remove();
         }
     }
-    let cryptoPrices = {
-        bitcoin: 0,
-        litecoin: 0,
-        monero: 0,
-        ethereum: 0
-    }
-
-
-    function updateCryptoPrices(cryptoID, interval) {
-        setInterval(function () {
-            // nieuwe prijs genereren zodat alle munten hun eigen waarde hebben.
-            cryptoPrices[cryptoID] = Math.floor(Math.random() * 5000 + 1000);
-
-            // html element bijwerken
-            let priceElement = document.getElementById(`${cryptoID}Price`);
-            if (priceElement) {
-                priceElement.innerHTML = `Huidige prijs van ${cryptoID} is € ${cryptoPrices[cryptoID]}`;
-            }
-
-
-        }, interval);
-    }
-    updateCryptoPrices('bitcoin', 8000);
-    updateCryptoPrices('litecoin', 10000);
-    updateCryptoPrices('monero', 5000);
-    updateCryptoPrices('ethereum', 10000);
-
 
     function Options() {
+        let cryptoPrices = {
+            bitcoin: updateCryptoPrices('bitcoin', 5000),
+            litecoin: updateCryptoPrices('litecoin', 10000),
+            monero: updateCryptoPrices('monero' , 15000),
+            ethereum: updateCryptoPrices('ethereum', 20000),
+        }
+
+
+        function updateCryptoPrices(cryptoID, interval) {
+            setInterval(function () {
+                // nieuwe prijs genereren zodat alle munten hun eigen waarde hebben.
+               cryptoPrices[cryptoID] = Math.floor(Math.random() * 5000 + 1000); 
+
+                // html element bijwerken
+                let priceElement = document.getElementById(`${cryptoID}Price`);
+                if (priceElement) {
+                    priceElement.innerHTML = `Huidige prijs van ${cryptoID} is € ${cryptoPrices[cryptoID]}`;
+                }
+
+                if (callback) {
+                    callback(cryptoPrices[cryptoID]); 
+                }
+            }, interval);
+        }
+    
+
+
         if (investmentDropdown.value === "crypto" || investmentDropdown.value === "property" || investmentDropdown.value === "foundations" || investmentDropdown.value === "shares") {
             let selectedProduct = categoryInvestment.value;
             let sellButton = document.getElementById("sell");
             let buyButton = document.getElementById("buy");
-            if (selectedProduct) {
-                let value = Math.floor(Math.random() * 5000 + 1000);
-                let presentValue = document.getElementById("currentPrice");
-                presentValue.innerHTML = `Huidige prijs van ${selectedProduct} is €  ${value}`;
-                sellButton.addEventListener("click", sellOption);
-                buyButton.addEventListener("click", buyOption);
-                function buyOption() {
-                    let purchasedSucces = false;
-                    let amount = document.getElementById("amountInput").value;
-                    let amountPost = document.getElementById("amountInput").value * value;
-                    let outputInvestment = document.getElementById("outputInvestment");
-                    aboutToBuy = selectedProduct;
-        
-                    
-
-                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
-                        outputInvestment.textContent = `${amount} € is nul of de waarde daarvan is 0 en dat kan niet.`;
-                        purchasedSucces = false;
-                        return;
-                    }
-
-                    if (randomBalance <= amountPost) {
-                        outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
-                        purchasedSucces = false;
-                        return;
-                    } else {
-                        randomBalance -= amountPost;
-                        outputInvestment.innerHTML = `Je hebt ${aboutToBuy} gekocht met de prijs € ${amountPost} met de waarde van € ${value}`;
-                        let purchasedAmount = randomBalance - amountPost;
-                        availableBalance.textContent = `U heeft nog € ${purchasedAmount} over.`;
-                        amountCurrentOSA += parseInt(amount);
-                        purchasedSucces = true;
-                    }
-
-                    if (purchasedSucces === true) {
-                        let currentOSA = document.getElementById("OSA");
-                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
-                        alert('Uw actie was succesvol');
-                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
-                    } else {
-                        alert("Uw actie was niet succesvol, probeer het opnieuw.");
-                    }
-                }
-
-                function sellOption() {
-                    let amount = document.getElementById("amountInput").value;
-                    let amountPost = document.getElementById("amountInput").value * value;
-                    let outputInvestment = document.getElementById("outputInvestment");
-                    aboutToSell = selectedProduct;
-                    if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
-                        outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
-                        soldSucces = false;
-                        return;
-                    }
-
-
-                    if (amountCurrentOSA >= "1") {
-                        outputInvestment.innerHTML = `Je hebt ${aboutToSell} verkocht met de prijs € ${amountPost} met de waarde van € ${value}`;
-                        let purchasedAmount = randomBalance += parseInt(amountPost);
-                        availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
-                        soldSucces = true;
-                        // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
-                    }
-                    if (soldSucces === true && amountCurrentOSA >= "1") {
-
-                        let currentOSA = document.getElementById("OSA");
-                        currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
-                        alert('Uw actie was succesvol');
-                        amountCurrentOSA -= parseInt(amount);
-                        currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
-                    } else {
-                        alert("Uw actie was niet succesvol, probeer het opnieuw.")
-                    }
-                }
-
+            let value;
+            if  (investmentDropdown.value === "crypto") {
+                let selectedProduct = categoryInvestment.value;
+                value = `${cryptoPrices[selectedProduct]}`;
+            } else {
+                value = Math.floor(Math.random() * 5000 + 1000);
             }
+            let presentValue = document.getElementById("currentPrice");
+            presentValue.innerHTML = `Huidige prijs van ${selectedProduct} is €  ${value}`;
+            sellButton.addEventListener("click", sellOption);
+            buyButton.addEventListener("click", buyOption);
+            function buyOption() {
+                let purchasedSucces = false;
+                let amount = document.getElementById("amountInput").value;
+                let amountPost = document.getElementById("amountInput").value * value;
+                let outputInvestment = document.getElementById("outputInvestment");
+                aboutToBuy = selectedProduct;
+
+
+
+                if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
+                    outputInvestment.textContent = `${amount} € is nul of de waarde daarvan is 0 en dat kan niet.`;
+                    purchasedSucces = false;
+                    return;
+                }
+
+                if (randomBalance <= amountPost) {
+                    outputInvestment.innerHTML = `U heeft niet genoeg balans om ${aboutToBuy} te kopen.`;
+                    purchasedSucces = false;
+                    return;
+                } else {
+                    randomBalance -= amountPost;
+                    outputInvestment.innerHTML = `Je hebt ${aboutToBuy} gekocht met de prijs € ${amountPost} met de waarde van € ${value}`;
+                    let purchasedAmount = randomBalance - amountPost;
+                    availableBalance.textContent = `U heeft nog € ${purchasedAmount} over.`;
+                    amountCurrentOSA += parseInt(amount);
+                    purchasedSucces = true;
+                }
+
+                if (purchasedSucces === true) {
+                    let currentOSA = document.getElementById("OSA");
+                    currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                    alert('Uw actie was succesvol');
+                    currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
+                } else {
+                    alert("Uw actie was niet succesvol, probeer het opnieuw.");
+                }
+            }
+
+            function sellOption() {
+                let amount = document.getElementById("amountInput").value;
+                let amountPost = document.getElementById("amountInput").value * value;
+                let outputInvestment = document.getElementById("outputInvestment");
+                aboutToSell = selectedProduct;
+                if (amount === "0" || amount === "" || /[^0-9]/.test(amount)) {
+                    outputInvestment.textContent = `${amount} is nul en dat kan niet.`;
+                    soldSucces = false;
+                    return;
+                }
+
+
+                if (amountCurrentOSA >= "1") {
+                    outputInvestment.innerHTML = `Je hebt ${aboutToSell} verkocht met de prijs € ${amountPost} met de waarde van € ${value}`;
+                    let purchasedAmount = randomBalance += parseInt(amountPost);
+                    availableBalance.textContent = `U heeft nog ${purchasedAmount} over.`;
+                    soldSucces = true;
+                    // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+                }
+                if (soldSucces === true && amountCurrentOSA >= "1") {
+
+                    let currentOSA = document.getElementById("OSA");
+                    currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+                    alert('Uw actie was succesvol');
+                    amountCurrentOSA -= parseInt(amount);
+                    currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
+                } else {
+                    alert("Uw actie was niet succesvol, probeer het opnieuw.")
+                }
+            }
+
+
 
         }
     }
