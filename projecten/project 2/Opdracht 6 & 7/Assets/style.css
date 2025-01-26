@@ -175,16 +175,56 @@ body {
     color: #fbff00;
     padding: 22px;
 }
+#category-product{
+    border: solid 3px #0E8BF2;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #4ba2e9;
+    cursor: pointer;
+    color: lightblue;
+}
+
+#catogory-product li:hover{
+    border-color: bisque;
+    color: #fbff00;
+    padding: 22px;
+}
+#investment{    
+    border: solid 3px #0E8BF2;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #4ba2e9;
+    cursor: pointer;
+    color: lightblue;
+}
 #info-box-crypto{
     background-color: #5EB6FF;
     padding: 125px;
     margin-left: 100px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 35px;
     width: 90%;
-    height: 5%;
+    height: 30%;
+
 }
-#animation{
-    font: 1em sans-serif;
+#info-box-crypto ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+#info-box-crypto li {
+    background-color: #0099ff;
+    border-radius: 5px; 
+    font-size: 16px;
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s; 
+    margin: 10px;
+    padding: 10px;
+  
+}
+
+#info-box-crypto li:hover {
+    background-color: #0059ff; 
 }
