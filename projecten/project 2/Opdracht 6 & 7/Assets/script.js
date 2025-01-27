@@ -13,13 +13,13 @@ if (currentPage.includes("index.html")) {
 
         if (username === "admin" && password === "admin") {
             window.location.href = "./HTML/overzicht.html";
-            return true;
+            return;
         } else if (username === "Mario" && password === "Mario2") {
             window.location.href = "./HTML/rekening_mario.html";
-            return true;
+            return;
         } else {
             alert("Onjuiste gebruikersnaam of wachtwoord");
-            return false;
+            return;
         }
     }
 }
@@ -128,8 +128,7 @@ if (currentPage.includes("overzicht.html") || currentPage.includes("rekening_mar
 
         filteredTransactions.forEach(transaction => {
             var listItem = document.createElement("li");
-            listItem.innerHTML = `${transaction.type
-                } - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
+            listItem.innerHTML = `${transaction.type} - ${transaction.datum} - ${transaction.bedrag.toFixed(2)}`;
             transactielijst.appendChild(listItem);
         });
 
@@ -239,7 +238,7 @@ if (currentPage.includes("beleggingen.html")) {
             <li id="ethereumPrice">Huidige prijs van ethereum is ${cryptoPrices.ethereum}</li>
         </ul>
        `
-       ;
+            ;
     }
 
     // Functie om de sectie te verwijderen als de gebruiker een andere optie kiest
@@ -278,9 +277,9 @@ if (currentPage.includes("beleggingen.html")) {
                 // vergelijking voor dalen/stijgen prijs, zodra prijs stijgt wordt het groen, rood als het daalt. 
                 if (newPrice > previousPrices[cryptoID]) {
                     priceElement.style.color = "green";
-                } else  {
+                } else {
                     priceElement.style.color = "red";
-                } 
+                }
 
                 priceElement.innerHTML = priceText;
 
@@ -333,9 +332,8 @@ if (currentPage.includes("beleggingen.html")) {
             purchasedSucces = false;
             return;
         } else {
-            randomBalance -= amountPost;
             outputInvestment.innerHTML = `Je hebt ${aboutToBuy} gekocht met de prijs € ${amountPost} met de waarde van € ${value}`;
-            let purchasedAmount = randomBalance - amountPost;
+            let purchasedAmount = randomBalance -= amountPost;
             availableBalance.textContent = `U heeft nog € ${purchasedAmount} over.`;
             amountCurrentOSA += parseInt(amount);
             purchasedSucces = true;
@@ -343,7 +341,7 @@ if (currentPage.includes("beleggingen.html")) {
 
         if (purchasedSucces === true) {
             let currentOSA = document.getElementById("OSA");
-            currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
+
             alert('Uw actie was succesvol');
             currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
         } else {
@@ -371,9 +369,7 @@ if (currentPage.includes("beleggingen.html")) {
             // bron https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
         }
         if (soldSucces === true && amountCurrentOSA >= "1") {
-
             let currentOSA = document.getElementById("OSA");
-            currentOSA.innerHTML = `In bezit : ${amountCurrentOSA}`;
             alert('Uw actie was succesvol');
             amountCurrentOSA -= parseInt(amount);
             currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
