@@ -38,10 +38,15 @@ Opdracht 9.1: Voer alle stappen uit die beschreven staan in 9.3.
 */
 // Opdracht SELECT
 try {
+    // met pdo maak je verbinding met de database
     $db = new PDO('mysql:host=localhost;dbname=fietsenmaker', 'root', '');
+    // volgens de opdracht alles selecteren van de fietsen.
     $query = $db->prepare("SELECT * FROM fietsen");
+    //uitvoeren
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // als tabel presenteren.
     echo "<table>";
     foreach ($result as $data) {
     echo "<tr>";
@@ -51,6 +56,7 @@ try {
     echo "</tr>";
     }
     echo "</table>";
+    // error verwerking
 } catch (PDOException $error) {
     die("Error: " . $error->getMessage());
 }
