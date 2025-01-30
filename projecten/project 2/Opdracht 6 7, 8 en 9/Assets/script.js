@@ -341,7 +341,6 @@ if (currentPage.includes("beleggingen.html")) {
 
         if (purchasedSucces === true) {
             let currentOSA = document.getElementById("OSA");
-
             alert('Uw actie was succesvol');
             currentOSA.innerHTML = `Uw huidig bezit is ${amountCurrentOSA} `;
         } else {
