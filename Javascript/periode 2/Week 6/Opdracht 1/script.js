@@ -46,7 +46,7 @@ function updateWeather(data) {
    <p>Temperatuur: ${data.main.temp} °C</p>
    <p>Wind: ${data.wind.speed} m/s </p>
    <p> Luchtvochtigheid : ${data.main.humidity} % </p>
-   <p> Zonsondergang: ${sunriseTime}</p>
+   <p> Zonsopkomst: ${sunriseTime}</p>
    <p> Zonsondergang: ${sunsetTime}</p>
    `;
 }
