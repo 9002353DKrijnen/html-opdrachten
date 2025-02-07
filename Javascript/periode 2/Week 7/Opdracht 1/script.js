@@ -16,7 +16,7 @@ resetButton.addEventListener("click", () => {
         return;
     }
 });
-// variabelen voor de speler en compute
+// variabelen voor de speler 
 let currentPlayer = "X";
 let board = ["", "", "", "", "", "", "", "", ""];
 let selectedCell = "0";
@@ -59,6 +59,10 @@ function checkWin() {
         else if (!board.includes("")) {
             status.innerHTML = "Gelijkspel";
             disableBoard();
+            setInterval(() => {
+                window.location.reload();
+            }, 10000);
+          
             return;
         }
     }
