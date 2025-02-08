@@ -34,6 +34,7 @@ let winPatterns = [
 gameButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         if (board[index] === "") {
+            statusBoard();
             if (turn0) {
                 board[index] = "X";
             }
@@ -47,6 +48,7 @@ gameButtons.forEach((button, index) => {
         }
     });
 });
+// for-loop, deze checkt of de speler gewonnen heeft of niet, en zorgt ervoor dat de knoppen worden deactiverd zodat de speler niet meer kan spelen
 
 function checkWin() {
     for (let i = 0; i < winPatterns.length; i++) {
@@ -59,19 +61,35 @@ function checkWin() {
         else if (!board.includes("")) {
             status.innerHTML = "Gelijkspel";
             disableBoard();
-            setInterval(() => {
-                window.location.reload();
-            }, 10000);
-          
             return;
         }
     }
 }
 
+function disableBoard() {
+    console.log(gameButtons);
+    gameButtons.forEach((button) => {
+        button.style.pointerEvents = "none";
+    setInterval(function (){
+             window.location.reload();
+        }, 6000);
+     let main = document.querySelector(".main");
+        let newInfo = document.createElement("p");
+        newInfo.innerHTML = "Spel wordt opnieuw geladen";
+        main.appendChild(newInfo);
+    });
+}
 
+function statusBoard()  {
 
-
-
+    if (turn0) {
+        status.innerHTML = "Speler O is aan de beurt";
+    }
+    else {
+        status.innerHTML = "Speler X is aan de beurt";
+    }
+}
+// .disabled werkt alleen met knoppen, maar .style.pointerEvents werkt met divs dus ipv .disabled = true; heb ik .style.pointerEvents = "none"; gebruikt. 
 
 /*
 https://dev.to/sfundomhlungu/javascript-tic-tac-toe-beginner-level-t24-46ef
