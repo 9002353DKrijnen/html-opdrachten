@@ -65,22 +65,27 @@ function checkWin() {
         }
     }
 }
-
+/*
+Optioneel, deze zorgt ervoor dat de knoppen worden deactiverd zodat de speler niet meer kan spelen, best vervelend als je door klikt terwijl de andere heeft gewonnen,
+om het naar een gelijkspel te veranderen. 
+*/
 function disableBoard() {
     console.log(gameButtons);
     gameButtons.forEach((button) => {
         button.style.pointerEvents = "none";
-    setInterval(function (){
-             window.location.reload();
+        setInterval(function () {
+            window.location.reload();
         }, 6000);
-     let main = document.querySelector(".main");
-        let newInfo = document.createElement("p");
-        newInfo.innerHTML = "Spel wordt opnieuw geladen";
-        main.appendChild(newInfo);
+
     });
+    let main = document.querySelector(".main");
+    let newInfo = document.createElement("p");
+    newInfo.id = "info";
+    newInfo.innerHTML = "Spel wordt opnieuw geladen";
+    main.appendChild(newInfo);
 }
 
-function statusBoard()  {
+function statusBoard() {
 
     if (turn0) {
         status.innerHTML = "Speler O is aan de beurt";

@@ -5,10 +5,12 @@ container-div hier komen de knoppen voor de gebruiker om op te kiezen, boter kaa
 */
 
 body{
+    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+/* container en div, dit is standaard (algemene element binnen body), met grid*/
 .container{
     height: 600px;
     width: 600px;
@@ -26,6 +28,7 @@ body{
     border: 1px solid black;
     cursor: pointer;
 }
+
 .reset{
     cursor: pointer;
     margin: 10px;
@@ -34,6 +37,38 @@ body{
     border: 1px solid black;
     border-radius: 20px;
 }
+/* Bij hoveren kleur verandering */
 .reset:hover{
     background-color: white;
+}
+/* animatie definitie */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(102, 255, 0, 0.8);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 255, 0, 1);
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(102, 255, 0, 0.8);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+}
+
+#info {
+    z-index: 1;
+    height: auto;
+    width: auto;
+    background-color: rgb(102, 255, 0);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    
+/* Animatie voor de info p, maakt het wat levendiger.*/
+    animation: glow 1.5s infinite alternate ease-in-out;
 }
