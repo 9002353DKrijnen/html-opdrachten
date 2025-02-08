@@ -72,3 +72,5 @@ body{
 /* Animatie voor de info p, maakt het wat levendiger.*/
     animation: glow 1.5s infinite alternate ease-in-out;
 }
+/* focus voor de knop als die geselecteerd is met arrowkeys */
+

@@ -1,16 +1,29 @@
+/* Opdracht lighthouse
+auteur: damien 9002353
+ */
+
 // elementen importeren
+window.onload = function()  {
+    let main = document.querySelector(".main");
+    let infobox = document.createElement("p");
+    infobox.id = "infobox";
+    infobox.innerHTML = "Je kan de arrow keys + enter gebruiken voor het spel, of je muis.";
+    main.appendChild(infobox);
+}
 let game = document.querySelector(".container");
 let status = document.querySelector(".status");
 let resetButton = document.querySelector(".reset");
 let gameButtons = document.querySelectorAll(".button");
+// X begint
 let turn0 = true;
-// als er per ongeluk op de reset knop wordt geklikt, wordt er eerst bevestigd of de daadwerkelijk speler opnieuw wilt spelen
+let currentIndex = 0;
+gameButtons[currentIndex].focus();
+// als er per ongeluk op de reset knop wordt geklikt, wordt er eerst bevestigd of de  speler  daadwerkelijk opnieuw wilt spelen
 resetButton.addEventListener("click", () => {
     if (confirm("Wilt u opnieuw spelen?")) {
         window.location.reload();
         return;
     }
-
     else {
         alert("Geannuleerd");
         return;
@@ -30,6 +43,8 @@ let winPatterns = [
     [0, 4, 8],
     [2, 4, 6],
 ];
+
+
 // foreach, deze zorgt ervoor dat de knoppen worden geactiveerd zodat de speler kan spelen
 gameButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
@@ -47,6 +62,30 @@ gameButtons.forEach((button, index) => {
             return;
         }
     });
+});
+
+// arrowkey navigatie:
+document.addEventListener("keydown", (event) => {
+    if(event.key === "ArrowUp") {
+        currentIndex = (currentIndex - 3 + gameButtons.length) % gameButtons.length;
+        gameButtons[currentIndex].focus();
+    }
+    else if(event.key === "ArrowDown") {
+        currentIndex = (currentIndex + 3) % gameButtons.length;
+        gameButtons[currentIndex].focus();
+    }
+    else if(event.key === "ArrowLeft") {
+        currentIndex = (currentIndex - 1 + gameButtons.length) % gameButtons.length;
+        gameButtons[currentIndex].focus();
+    }
+    else if(event.key === "ArrowRight") {
+        currentIndex = (currentIndex + 1) % gameButtons.length;
+        gameButtons[currentIndex].focus();
+    }
+    else if (event.key === "Enter") {
+        gameButtons[currentIndex].click();
+    }
+    gameButtons[currentIndex].focus();
 });
 // for-loop, deze checkt of de speler gewonnen heeft of niet, en zorgt ervoor dat de knoppen worden deactiverd zodat de speler niet meer kan spelen
 
