@@ -16,7 +16,14 @@ function CrudBieren()
     PrintCrudBier($result);
 }
 
-
+function insertBier($post){
+    // var_dump($post);
+    // exit;
+    // verbind database
+    try {
+        $conn = ConnectDb();
+        $query = $conn->prepare("INSERT INTO bier (biercode, naam, prijs, stijl, alcohol, brouwerij) VALUES (:biercode, :naam, :prijs, :stijl, :alcohol, :brouwerij)");
+}
 
 
 function GetData($tabel)
