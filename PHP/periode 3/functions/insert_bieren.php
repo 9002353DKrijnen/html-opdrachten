@@ -1,3 +1,18 @@
+<?php
+/* Damien 
+Opdracht functies 
+ */
+require_once("functions.php");
+// test of submit is geklikt
+// kij of er een naam is ingevuld
+if (isset($_POST['submit']) && isset($_POST['naam'])) {
+    // echo de naam als feedback
+    echo '<script> alert("Biernaam ' . $_POST['naam'] . ' is toegevoegd.") </script>';
+// run de functie
+insertBier($_POST);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +25,15 @@
 <body>
     <form method="post">
         <label for="naam">Naam:</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="naam" name="naam">
         <label for="prijs">Prijs:</label>
-        <input type="text" id="price" name="price">
-        <label for="style">stijl:</label>
-        <input type="text" id="style" name="style">
-        <label for="alcohol">Brouwerij:</label>
+        <input type="text" id="prijs" name="prijs">
+        <label for="soort">soort:</label>
+        <input type="text" id="soort" name="soort">
+        <label for="stijl">stijl</label>
+        <input type="text" id="stijl" name="stijl">
+        <label for="alcohol">alcohol:</label>
         <input type="text" id="alcohol" name="alcohol">
-        <input type="dropdown" id="brouwerij" name="brouwerij">
         <input type="submit" value="Submit" name="submit">
     </form>
     <a href="./inedex.php">Home</a>
@@ -38,18 +54,6 @@
         }
     </style>
 
-    <?php
-
-    require_once("functions.php");
-    // test of submit is geklikt
-
-if (isset($_POST['submit']) && isset($_POST['name'])) {
-    echo '<script> alert("Biernaam ' . $_POST['name'] . ' is toegevoegd.") </script>';
-  echo "Miauw";
-    insertBier($_POST);
-}
-
-    ?>
 </body>
 
 </html>

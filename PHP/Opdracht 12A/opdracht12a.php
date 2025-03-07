@@ -4,5 +4,5 @@ include "functions.php";
 
 
 // print overzicht
-CrudLeerlingen();
+CrudLeerlingen($result);
 ?>

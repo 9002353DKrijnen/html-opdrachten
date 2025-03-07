@@ -15,16 +15,52 @@ function CrudBieren()
 
     PrintCrudBier($result);
 }
-
-function insertBier($post){
+function insertBier($post)
+{
     // var_dump($post);
     // exit;
     // verbind database
     try {
+
+        // altijd verbinden met de database
         $conn = ConnectDb();
-        $query = $conn->prepare("INSERT INTO bier (biercode, naam, prijs, stijl, alcohol, brouwerij) VALUES (:biercode, :naam, :prijs, :stijl, :alcohol, :brouwerij)");
+
+
+        $query = $conn->prepare("
+        INSERT INTO bier (naam, soort, stijl, alcohol)
+        VALUES (:naam, :soort, :stijl, :alcohol );");
+
+        $query->execute([
+            'naam' => $post['naam'],
+            'soort' => $post['soort'],
+            'stijl' => $post['stijl'],
+            'alcohol' => $post['alcohol'],
+        ]);
+
+        echo "Bier toegevoegd";
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
 }
 
+function deleteBier($post)
+{
+    if (isset($_POST['biercode'])) {
+            $conn = ConnectDb();
+            try {
+                // Verwijder eerst de bijbehorende records in de schenkt-tabel en daarna het bier
+                $query = $conn->prepare("DELETE FROM schenkt WHERE biercode = :biercode; 
+                /* Ook verwijden we de bijbehorende records in de schenkt-tabel, anders krijgen we een fout */
+                DELETE FROM bier WHERE biercode = :biercode;");
+                $query->execute(['biercode' => $post['biercode']]);
+            
+                echo "Bier en gerelateerde schenkt records verwijderd";
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+        }
+    
+}
 
 function GetData($tabel)
 {
@@ -77,13 +113,13 @@ function PrintCrudBier($result)
         }
         // twee extra kollommen
         $table .= "<td>
-        <form action='update_bier.php' method='post'>
-            <input type='hidden' name='biercode' value='$row[biercode]'>
-            <input type='submit' value='Wijzigen'>
+        <form action='insert_bieren.php' method='post'>
+        <input type='hidden' name='biercode' value='$row[biercode]'>
+            <input type='submit' value='Invoeren'>
          </form>
         </td>";
         $table .= "<td>
-        <form action='delete_bier.php' method='post'>
+        <form action='delete_bieren.php' method='post'>
             <input type='hidden' name='biercode' value='$row[biercode]'>
             <input type='submit' value='Verwijderen'>
          </form>
