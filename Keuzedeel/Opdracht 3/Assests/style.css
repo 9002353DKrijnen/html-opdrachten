@@ -12,6 +12,7 @@ html {
     margin-top: 10px;
     min-height: 100vh;
     overflow-x: auto;
+    display: flex;
 }
 
 header {
@@ -29,6 +30,8 @@ section {
     grid-template-rows: auto auto auto;
     gap: 20px;
     align-items: start;
+    justify-items: center;
+    margin-left: 50px;
 }
 
 .card1 {
@@ -95,4 +98,18 @@ section {
 .card3 p {
     align-items: center;
     background-color: #2d8ebb;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    top: 10px;
+    width: 105%;
+    height: 500px;
+    background-color: #2d8ebb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
