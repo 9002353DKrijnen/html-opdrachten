@@ -296,62 +296,91 @@ footer button {
     }
 
     footer {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            ". . . . . ."
+            ". . text text . ."
+            ". name name message message ."
+            ". email email message message ."
+            ". . . . . ."
+            ". . . . button button";
         margin-top: 20px;
-        margin-left: 10px;
-        width: 1155px;
+        margin-left: 50px;
+        margin-bottom: 20px;
+        width: 94%;
         height: 500px;
         background-color: #2d8ebb;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        flex-direction: column;
     }
-
+    
+    .name {
+        grid-area: name;
+    }
+    
+    .email {
+        grid-area: email;
+    }
+    
+    .message {
+        grid-area: message;
+    }
+    
+    .text {
+        grid-area: text;
+    }
+    
+    .button {
+        grid-area: button;
+    }
+    
     footer p,
     footer h1 {
         color: black;
         align-items: center;
         background-color: #2d8ebb;
     }
-
+    
     footer button {
         background-color: #D9D9D9;
         align-items: left;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         margin-top: 10px;
-        width: 500px;
+        width: 300px;
         align-self: flex-end;
-
+    
     }
-
+    
     .name,
     .email {
-        display: flex;
         background-color: #D9D9D9;
         margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         padding: 30px;
-        width: 500px;
+        width: 300px;
         height: 20px;
         align-self: baseline;
-
-
+    
+    
     }
-
+    
     .message {
         background-color: #D9D9D9;
-        margin-bottom: 70px;
+        margin-bottom: 15px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         padding: 50px;
-        width: 50%;
+        width: 300px;
+        height: 135px;
         align-self: flex-end;
-        margin-left: 20px;
-        margin-bottom: 50px;
-
+        justify-content: flex-start;
+        align-items: flex-start;
+    
     }
 
 }
