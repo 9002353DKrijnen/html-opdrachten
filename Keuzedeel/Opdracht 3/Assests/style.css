@@ -103,17 +103,32 @@ section {
 }
 
 footer {
-    display: flex;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . . . . ."
+      ". . text text . ."
+      ". name name message message ."
+      ". email email message message ."
+      ". . . . . ."
+      ". . . . button button"; 
+    gap: 0px 0px;
     margin-top: 20px;
     margin-left: 10px;
-    width: 110%;
+    width: 98%;
     height: 500px;
     background-color: #2d8ebb;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    flex-direction: column;
 }
+.name { grid-area: name; }
+.email { grid-area: email; }
+.message { grid-area: message; }
+.text { grid-area: text; }
+.button { grid-area: button; }
 
 footer p,
 footer h1 {
@@ -133,9 +148,8 @@ footer button {
 
 }
 
-#name,
-#email {
-    display: flex;
+.name,
+.email {
     background-color: #D9D9D9;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -148,20 +162,22 @@ footer button {
 
 }
 
-#message {
+.message {
     background-color: #D9D9D9;
-    margin-bottom: 70px;
+    margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 50px;
-    width: 50%;
+    width: 500px;
+    height: 135px;
     align-self: flex-end;
-    margin-left: 20px;
-    margin-bottom: 50px;
+    justify-content: flex-start;
+    align-items: flex-start;
 
 }
+
 @media screen and (min-width: 600px) and (max-width: 1200px) {
-    
+
     * {
         margin: 0;
         padding: 0;
@@ -171,13 +187,13 @@ footer button {
         font-weight: 400;
         font-style: normal;
     }
-    
+
     html {
         min-height: 100vh;
         overflow-x: auto;
         display: flex;
     }
-    
+
     header {
         display: flex;
         justify-content: center;
@@ -186,7 +202,7 @@ footer button {
         top: 10px;
         width: 600px;
     }
-    
+
     section {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -195,7 +211,7 @@ footer button {
         justify-items: center;
         margin-left: 10px;
     }
-    
+
     .card1 {
         grid-column: 1 / 2;
         grid-row: 2;
@@ -206,18 +222,18 @@ footer button {
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .card1 h1 {
         color: #09b9ff;
         align-items: left;
         background-color: #2d8ebb;
     }
-    
+
     .card1 p {
         align-items: center;
         background-color: #2d8ebb;
     }
-    
+
     .card2 {
         grid-column: 2 / 3;
         grid-row: 3;
@@ -228,18 +244,18 @@ footer button {
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .card2 h1 {
         color: #09b9ff;
         align-items: left;
         background-color: #2d8ebb;
     }
-    
+
     .card2 p {
         align-items: center;
         background-color: #2d8ebb;
     }
-    
+
     .card3 {
         grid-column: 1 / 2;
         grid-row: 4;
@@ -250,18 +266,18 @@ footer button {
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .card3 h1 {
         color: #09b9ff;
         align-items: left;
         background-color: #2d8ebb;
     }
-    
+
     .card3 p {
         align-items: center;
         background-color: #2d8ebb;
     }
-    
+
     footer {
         display: flex;
         margin-top: 20px;
@@ -274,14 +290,14 @@ footer button {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         flex-direction: column;
     }
-    
+
     footer p,
     footer h1 {
         color: black;
         align-items: center;
         background-color: #2d8ebb;
     }
-    
+
     footer button {
         background-color: #D9D9D9;
         align-items: left;
@@ -290,11 +306,11 @@ footer button {
         margin-top: 10px;
         width: 500px;
         align-self: flex-end;
-    
+
     }
-    
-    #name,
-    #email {
+
+    .name,
+    .email {
         display: flex;
         background-color: #D9D9D9;
         margin-bottom: 10px;
@@ -304,11 +320,11 @@ footer button {
         width: 500px;
         height: 20px;
         align-self: baseline;
-    
-    
+
+
     }
-    
-    #message {
+
+    .message {
         background-color: #D9D9D9;
         margin-bottom: 70px;
         border-radius: 10px;
@@ -318,10 +334,9 @@ footer button {
         align-self: flex-end;
         margin-left: 20px;
         margin-bottom: 50px;
-    
+
     }
-    
+
 }
-@media screen and (max-width: 600px) {
-    
-}
+
+@media screen and (max-width: 600px) {}
