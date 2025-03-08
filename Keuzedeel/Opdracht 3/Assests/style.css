@@ -15,12 +15,17 @@ html {
 }
 
 header {
-    display: relative;
+    display: flex;
     justify-content: center;
     align-self: center;
     margin-left: 200px;
     top: 10px;
-    width: auto;
+    width: 77%;
+    transform: scale(1.5);
+}
+
+header img {
+    re
 }
 
 section {
