@@ -19,14 +19,12 @@ header {
     justify-content: center;
     align-self: center;
     margin-left: 200px;
-    top: 10px;
+    margin-top: 10px;
     width: 77%;
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
-header img {
-    re
-}
+
 
 section {
     display: grid;
