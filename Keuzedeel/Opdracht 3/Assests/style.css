@@ -396,9 +396,7 @@ footer button {
         font-style: normal;
     }
 
-    html {
-        min-height: 100vh;
-    }
+
 
     header {
         display: flex;
@@ -478,7 +476,7 @@ footer button {
     }
 
     .card3 {
-        width: 700px;
+        width: 900px;
         height: 180px;
         background-color: #2A8FAB;
         border-radius: 60px;
@@ -494,6 +492,7 @@ footer button {
         justify-content: center;
         align-items: center;
         background-color: #2A8FAB;
+        transform: translateX(-20px) translateY(-220px	);
 
     }
     
