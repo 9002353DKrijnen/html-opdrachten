@@ -440,7 +440,7 @@ footer button {
     .card1 {
         width: 345px;
         height: 180px;
-        background-color: #2d8ebb;
+        background-color: #2A8FAB;
         border-radius: 70px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         margin-right: 20px;
@@ -462,7 +462,7 @@ footer button {
         
         width: 345px;
         height: 180px;
-        background-color: #2d8ebb;
+        background-color: #2A8FAB;
         border-radius: 70px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transform: translateY(10px);
@@ -480,7 +480,7 @@ footer button {
     .card3 {
         width: 700px;
         height: 180px;
-        background-color: #2d8ebb;
+        background-color: #2A8FAB;
         border-radius: 60px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transform: translateX(-80px); 
@@ -489,76 +489,34 @@ footer button {
    
 
     footer {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas:
-            ". . . . . ."
-            ". . text text . ."
-            ". name name message message ."
-            ". email email message message ."
-            ". . . . . ."
-            ". . . . button button";
-        margin-top: 20px;
-        margin-left: 50px;
-        margin-bottom: 20px;
-        width: 94%;
-        height: 500px;
-        background-color: #2d8ebb;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .name {
-        grid-area: name;
-    }
-    
-    .email {
-        grid-area: email;
-    }
-    
-    .message {
-        grid-area: message;
-    }
-    
-    .text {
-        grid-area: text;
-    }
-    
-    .button {
-        grid-area: button;
-    }
-    
-    footer p,
-    footer h1 {
-        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        background-color: #2d8ebb;
+        background-color: #2A8FAB;
+
     }
     
     footer button {
         background-color: #D9D9D9;
-        align-items: left;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         margin-top: 10px;
         width: 300px;
-        align-self: flex-end;
+        align-self: center;
+
     
     }
     
     .name,
     .email {
         background-color: #D9D9D9;
-        margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        padding: 30px;
         width: 300px;
         height: 20px;
-        align-self: baseline;
-    
+        align-self: center;
+
     
     }
     
@@ -570,9 +528,8 @@ footer button {
         padding: 50px;
         width: 300px;
         height: 135px;
-        align-self: flex-end;
-        justify-content: flex-start;
-        align-items: flex-start;
+        align-self: center;
+   
     
     }
 }
