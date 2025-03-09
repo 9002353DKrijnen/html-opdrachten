@@ -1,41 +1,49 @@
 <?php
-function CrudLeerlingen() {
+include_once "connect.php";
+ConnectDB();
+function CrudLeerlingen()
+{
     // menu items
     $txt = " <h1> Crud Leerlingen</h1>
     <nav>
         <a href= 'insert_leerling.php'> Toevoegen nieuw leerling</a>
     </nav>";
     echo $txt;
-    $result = GetData("leerlingencijfers");
-    printCrudLeerlingen($result);
-}
-function ConnectDb(){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "cijfers";
 
-    try {
-        /* Database verbinden middel van PDO */
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        echo "Connected successfully";
-        return $conn;
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+    // Haal gegevens op. 
+    $tables = ["leerlingencijfers", "docenten", "vakken"];
+    $result = GetData($tables);
+
+
+
+    // voor elke tabel gegevens ophalen met een foreach
+
+
+    foreach($result as $table => $data){
+        echo "<h2>Tabel:" . $table . "</h2>";
+        printCrudLeerlingen($data);
     }
 }
-function printCrudLeerlingen($result) {
+// Warning: Undefined variable $result pdracht12a.php on line 7
+function printCrudLeerlingen($result)
+{
+    if(empty($result)){
+        echo "Geen gegevens gevonden.";
+        return;
+    }
+    // design tabel
     $table = "<table border = 1px>";
     $headers = array_keys($result[0]);
     $table .= "<tr>";
-    foreach($headers as $header){
-        $table .= "<th bgcolor=gray>" . $header . "</th>";  
-    
+
+
+
+    // foreach voor elke kolom - print header
+    foreach ($headers as $header) {
+        $table .= "<th bgcolor=gray>" . $header . "</th>";
     }
 
-
+// de rijen
     foreach ($result as $row) {
         $table .= "<tr>";
         // print elke kolom
@@ -47,11 +55,15 @@ function printCrudLeerlingen($result) {
     $table .= "</table>";
     echo $table;
 }
-function GetData($tabel){
+function GetData($tables)
+{
     $conn = ConnectDb();
-    $query = $conn->prepare("SELECT * FROM $tabel");
-    $query->execute();
-    $result = $query->fetchAll();
-    return $result;
+    $results = [];
+    foreach ($tables as $table) {
+        $query = $conn->prepare("SELECT * FROM $table");
+        $query->execute();
+        $results[$table] = $query->fetchAll();
+    }
+
+    return $results;
 }
-?>
