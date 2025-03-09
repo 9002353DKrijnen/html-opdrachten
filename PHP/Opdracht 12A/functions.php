@@ -1,6 +1,12 @@
 <?php
 include_once "connect.php";
-ConnectDB();
+function printSearchForm()
+{
+    echo "<form action='search.php' method='POST'>
+    <input type='text' name='search' placeholder='Zoeken'>
+    <input type='submit' value='Zoeken' name = 'submit'>
+</form>";
+}
 function CrudLeerlingen()
 {
     // menu items
