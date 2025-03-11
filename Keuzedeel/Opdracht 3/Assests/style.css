@@ -128,6 +128,9 @@ footer {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+footer > p, input, button{
+    display: flex;
+}
 
 .name {
     grid-area: name;
@@ -162,7 +165,7 @@ footer button {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-top: 10px;
-    width: 500px;
+    width: 70%;
     align-self: flex-end;
 
 }
@@ -174,7 +177,7 @@ footer button {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 30px;
-    width: 500px;
+    width: 75%;
     height: 20px;
     align-self: baseline;
 
@@ -187,7 +190,7 @@ footer button {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 50px;
-    width: 500px;
+    width: 75%;
     height: 135px;
     align-self: flex-end;
     justify-content: flex-start;
