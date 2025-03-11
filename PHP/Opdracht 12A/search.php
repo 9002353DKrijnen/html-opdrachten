@@ -7,53 +7,50 @@ include_once "functions.php";
 
 
 // check of zoekterm is ingevuld
-if (null !== isset($_POST["search"])) {
+if (!isset($_POST["search"]) || $_POST["search"] === "") {
     echo "Geen zoekterm ingevuld.";
     exit;
 } else {
+    // variabele geven aan de zoekterm zodat deze later gebruikt kan worden
 
 
-    if (isset($_POST["search"])) {
-        // variabele geven aan de zoekterm zodat deze later gebruikt kan worden
+    $searchTerm = $_POST["search"];
 
 
-        $searchTerm = $_POST["search"];
-
-
-        // uiteraard verbinden met de database
-        $conn = ConnectDb();
+    // uiteraard verbinden met de database
+    $conn = ConnectDb();
 
 
 
-        // query uitvoeren met de zoekterm
-        $query = $conn->prepare("SELECT * FROM leerlingencijfers WHERE leerling LIKE :searchTerm");
+    // query uitvoeren met de zoekterm
+    $query = $conn->prepare("SELECT * FROM leerlingencijfers WHERE leerling LIKE :searchTerm");
 
 
-        // query uitvoeren
+    // query uitvoeren
 
 
-        $query->execute(array(":searchTerm" => "%$searchTerm%"));
-        // Haal de zoekresultaten op
-        $results = $query->fetchAll();
+    $query->execute(array(":searchTerm" => "%$searchTerm%"));
+    // Haal de zoekresultaten op
+    $results = $query->fetchAll();
 
 
-        // resultaten printen, als die bestaan
-        if (count($results) > 0) {
-            echo "<table border = 1px>
+    // resultaten printen, als die bestaan
+    if (count($results) > 0) {
+        echo "<table border = 1px>
         <tr>
             <th>Naam</th>
             <th>cijfer</th>
         </tr>";
-            // foreach voor elke rij
-            foreach ($results as $row) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row["leerling"]) . "</td>";
-                echo "<td>" . htmlspecialchars($row["cijfer"]) . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "Geen gegevens gevonden.";
+        // foreach voor elke rij
+        foreach ($results as $row) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row["leerling"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["cijfer"]) . "</td>";
+            echo "</tr>";
         }
+        echo "</table>";
+    } else {
+        echo "Geen gegevens gevonden.";
     }
 }
+?>

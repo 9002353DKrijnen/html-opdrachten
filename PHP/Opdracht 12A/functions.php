@@ -7,6 +7,9 @@ function printSearchForm()
     <input type='submit' value='Zoeken' name = 'submit'>
 </form>";
 }
+
+
+
 function CrudLeerlingen()
 {
     // menu items
@@ -25,7 +28,7 @@ function CrudLeerlingen()
     // voor elke tabel gegevens ophalen met een foreach
 
 
-    foreach($result as $table => $data){
+    foreach ($result as $table => $data) {
         echo "<h2>Tabel:" . $table . "</h2>";
         printCrudLeerlingen($data);
     }
@@ -33,23 +36,29 @@ function CrudLeerlingen()
 // Warning: Undefined variable $result pdracht12a.php on line 7
 function printCrudLeerlingen($result)
 {
-    if(empty($result)){
+    if (empty($result)) {
         echo "Geen gegevens gevonden.";
         return;
     }
     // design tabel
-    $table = "<table border = 1px>";
+    $table = "<table id = 'leerlingenTable' border = 1px>";
     $headers = array_keys($result[0]);
     $table .= "<tr>";
 
 
 
+
     // foreach voor elke kolom - print header
     foreach ($headers as $header) {
-        $table .= "<th bgcolor=gray>" . $header . "</th>";
+        if ($header == "leerling") {
+
+            $table .= "<th bgcolor='gray' onclick='sortTableByName()' id='leerling'> " . $header . "</th>";
+        } else {
+            $table .= "<th bgcolor=gray>" . $header . "</th>";
+        }
     }
 
-// de rijen
+    // de rijen
     foreach ($result as $row) {
         $table .= "<tr>";
         // print elke kolom
@@ -59,6 +68,22 @@ function printCrudLeerlingen($result)
         $table .= "</tr>";
     }
     $table .= "</table>";
+    // javascript voor sorteren.
+    $table .= "
+        <script>
+       
+        function sortTableByName() {
+        let leerling = document.getElementById('leerlingenTable');
+        let rows = Array.from(table.rows).slice(1);
+        rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));          
+        rows.ForEach(row => table.tBodies[0].appendChild(row));
+        }
+
+        </script>
+    
+    
+    
+    ";
     echo $table;
 }
 function GetData($tables)

@@ -25,6 +25,7 @@ body {
 }
 
 section {
+    display: flex;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
@@ -194,7 +195,7 @@ footer button {
 
 }
 
-@media screen and (min-width: 800px) and (max-width: 1200px) {
+@media screen and (min-width: 500px) and (max-width: 1300px) {
 
     * {
         margin: 0;
@@ -230,6 +231,9 @@ footer button {
         align-items: start;
         justify-content: left;
         transform: translateX(-75px);
+    }
+    section > article{
+        display: flex;
     }
 
     .card1 {
@@ -386,7 +390,7 @@ footer button {
 
 }
 
-@media screen and (max-width: 1000px) and (orientation: landscape) {
+@media screen and (min-width: 500px) and (max-width: 1000px) {
     * {
         margin: 0;
         padding: 0;
