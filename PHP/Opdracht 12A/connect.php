@@ -1,5 +1,6 @@
 <?php
 function ConnectDb(){
+    /* gegevens van de database */
     $servername = "localhost";
     $username = "root";
     $password = "";

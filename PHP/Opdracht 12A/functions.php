@@ -70,16 +70,40 @@ function printCrudLeerlingen($result)
     $table .= "</table>";
     // javascript voor sorteren.
     $table .= "
-        <script>
-       
-        function sortTableByName() {
-        let leerling = document.getElementById('leerlingenTable');
-        let rows = Array.from(table.rows).slice(1);
-        rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));          
-        rows.ForEach(row => table.tBodies[0].appendChild(row));
-        }
+<script>
+  // als sortOrder 0 = beginpositie(ongesorteerd) 1 = A-Z 2 = Z-A
+  let sortOrder = 0;
 
-        </script>
+  // domloaded toevoegen, zodat de originele lijst wordt opgeslagen
+  document.addEventListener('DOMContentLoaded', () => {
+    let rows = document.querySelectorAll('#LeerlingenTable tbody tr');
+    rows.forEach((row, index) => row.dataset.index = index);
+  });
+// function (vereiste JS) opdracht
+  function sortTableByName() {
+  // declaraties leerlingen en rows - header
+    let leerling = document.getElementById('leerlingenTable');
+    let rows = Array.from(leerling.rows).slice(1);
+// standaard wordt naar a-z
+    if (sortOrder === 0) {
+      rows.sort((a, b) => a.cells[1].innerText.localeCompare(b.cells[1].innerText));          
+      sortOrder = 1;
+    }
+    //   a-z wordt z-a
+    else if (sortOrder === 1) {
+      // a-z sorteren
+      rows.sort((a, b) => b.cells[1].innerText.localeCompare(a.cells[1].innerText));
+      sortOrder = 2;
+      // z-a wordt weer standaard
+    } else if (sortOrder === 2) {
+      rows.sort((a, b) => a.dataset.index - b.dataset.index);
+      sortOrder = 0;
+    }
+// de toepassing
+    rows.forEach(row => leerling.tBodies[0].appendChild(row));
+  }
+</script>
+
     
     
     
