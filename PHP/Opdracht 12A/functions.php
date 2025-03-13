@@ -112,36 +112,34 @@ function printCrudLeerlingen($result)
     echo $table;
 }
 
-function insertLeerling(){ 
-    if(isset($_POST['id']) && isset($_POST['leerling']) && isset($_POST['cijfer']) ){
-        try {
+function insertLeerling()
+{
+    if (isset($_POST['submit'])) {
+        if ($_POST['id'] != '' && $_POST['leerling'] != '' && $_POST['cijfer'] != '') {
+            try {
 
-            // altijd verbinden met de database
-            $conn = ConnectDb();
-    
-    
-            $query = $conn->prepare("
+                // altijd verbinden met de database
+                $conn = ConnectDb();
+
+
+                $query = $conn->prepare("
             INSERT INTO leerlingencijfers (id, leerling, cijfer)
             VALUES (:id, :leerling, :cijfer);");
-    
-            $query->execute([
-                'id' => $_POST['id'],
-                'leerling' => $_POST['leerling'],
-                'cijfer' => $_POST['cijfer']
-            ]);
-    
-            echo "leerling en cijfer toegevoegd";
-        } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        } 
-            
-        
-    } else {
-        echo "Vul alle velden in";
+
+                $query->execute([
+                    'id' => $_POST['id'],
+                    'leerling' => $_POST['leerling'],
+                    'cijfer' => $_POST['cijfer']
+                ]);
+
+                echo "leerling en cijfer toegevoegd";
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+        } else {
+            echo "Vul alle velden in";
+        }
     }
-
-    
-
 }
 
 function GetData($tables)
