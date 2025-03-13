@@ -113,11 +113,10 @@ function PrintCrudBier($result)
         }
         // twee extra kollommen
         $table .= "<td>
-        <form action='insert_bieren.php' method='post'>
-        <input type='hidden' name='biercode' value='$row[biercode]'>
-            <input type='submit' value='Invoeren'>
-         </form>
-        </td>";
+             <form method='post' action='update_bier.php?biercode=$row[biercode]' >      
+                    <button name='wzg'>Wijzigen</button>    
+            </form>
+         </td>";
         $table .= "<td>
         <form action='delete_bieren.php' method='post'>
             <input type='hidden' name='biercode' value='$row[biercode]'>
