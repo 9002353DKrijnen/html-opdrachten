@@ -16,6 +16,7 @@ function CrudLeerlingen()
     $txt = " <h1> Crud Leerlingen</h1>
     <nav>
         <a href= 'insert_leerling.php'> Toevoegen nieuw leerling</a>
+        <a href= 'exterminate_user.php'> Verwijder leerling(en) </a>
     </nav>";
     echo $txt;
 
@@ -110,6 +111,39 @@ function printCrudLeerlingen($result)
     ";
     echo $table;
 }
+
+function insertLeerling(){ 
+    if(isset($_POST['id']) && isset($_POST['leerling']) && isset($_POST['cijfer']) ){
+        try {
+
+            // altijd verbinden met de database
+            $conn = ConnectDb();
+    
+    
+            $query = $conn->prepare("
+            INSERT INTO leerlingencijfers (id, leerling, cijfer)
+            VALUES (:id, :leerling, :cijfer);");
+    
+            $query->execute([
+                'id' => $_POST['id'],
+                'leerling' => $_POST['leerling'],
+                'cijfer' => $_POST['cijfer']
+            ]);
+    
+            echo "leerling en cijfer toegevoegd";
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        } 
+            
+        
+    } else {
+        echo "Vul alle velden in";
+    }
+
+    
+
+}
+
 function GetData($tables)
 {
     $conn = ConnectDb();
