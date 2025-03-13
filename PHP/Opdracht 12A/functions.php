@@ -66,6 +66,13 @@ function printCrudLeerlingen($result)
         foreach ($row as $cell) {
             $table .= "<td>" . $cell . "</td>";
         }
+        $table .= "<td>
+        <form action='exterminate_user.php' method='post'>
+                <input type= 'hidden' name='id' value='$row[id]'>
+                <input type='submit' value='Verwijderen'>
+            </form>
+        </td>";
+
         $table .= "</tr>";
     }
     $table .= "</table>";
@@ -141,7 +148,19 @@ function insertLeerling()
         }
     }
 }
-
+function deleteLeerlingen()
+{
+    if (isset($_POST['id'])) {
+        $conn = ConnectDb();
+        try {
+            $query = $conn->prepare("DELETE FROM leerlingencijfers WHERE id = :id;");
+            $query->execute(['id' => $_POST['id']]);
+            echo "Leerling verwijderd";
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+}
 function GetData($tables)
 {
     $conn = ConnectDb();
