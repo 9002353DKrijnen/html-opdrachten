@@ -16,7 +16,6 @@ function CrudLeerlingen()
     $txt = " <h1> Crud Leerlingen</h1>
     <nav>
         <a href= 'insert_leerling.php'> Toevoegen nieuw leerling</a>
-        <a href= 'exterminate_user.php'> Verwijder leerling(en) </a>
     </nav>";
     echo $txt;
 
@@ -66,12 +65,15 @@ function printCrudLeerlingen($result)
         foreach ($row as $cell) {
             $table .= "<td>" . $cell . "</td>";
         }
-        $table .= "<td>
-        <form action='exterminate_user.php' method='post'>
-                <input type= 'hidden' name='id' value='$row[id]'>
-                <input type='submit' value='Verwijderen'>
-            </form>
-        </td>";
+        if(in_array("leerling", $headers)){
+            $table .= "<td>
+            <form action='exterminate_user.php' method='post'>
+                    <input type= 'hidden' name='id' value='$row[id]'>
+                    <input type='submit' value='Verwijderen'>
+                </form>
+            </td>";
+        }
+   
 
         $table .= "</tr>";
     }
