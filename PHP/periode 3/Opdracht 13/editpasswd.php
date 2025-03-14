@@ -39,11 +39,19 @@ try {
                         <option value="<?= htmlspecialchars($user['username']); ?>"><?= htmlspecialchars($user['username']); ?></option>
                     <?php endforeach; ?>
                     ?>
-
                 </select>
             </div>
-            <div>
 
+
+            <div>
+                <label for="newPasswd"> Nieuw wachtwoord:</label>
+                <input type="text" name="newPasswd" id="newPasswd" required>
+            </div>
+
+            <div>
+                <input type="submit" value="editPasswd">
+            </div>
+        </form>
 
 </body>
 
