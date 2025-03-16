@@ -31,12 +31,12 @@ if (isset($_POST['login'])) {
             // haal de gebruiker uit de database
             $result = $query->fetch();
             // controleer wachtwoord
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($password, $result['password'])) {
                 // sla gebruiker op in sessie
-                $_SESSION['user'] = $user;
+                $_SESSION['user'] = $result;
 
                 // stuur gebruiker naar de homepagina
-                header("Location: index.php");
+                header("Location: Willkommen.php");
                 exit;
             } else {
                 echo "<p>Verkeerde gebruikersnaam of wachtwoord</p>";

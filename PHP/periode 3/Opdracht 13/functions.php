@@ -5,7 +5,7 @@ function registerForm(){
     <form action='register.php' method='post'>
         <input type='text' name='username' placeholder='Gebruikersnaam'>
         <input type='password' name='password' placeholder='Wachtwoord'>
-        <input type='submit' value='Registreren'>
+        <input type='submit' value='Registreren' name='register'>
     </form>";
     echo $formUserReg;
 }

@@ -11,7 +11,7 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 
     // Haal gebruiker uit de database
-    $query = $conn->prepare("SELECT username FROM users");
+    $query = $conn->query("SELECT username FROM users");
 
     // voer query uit
     $users = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -30,7 +30,7 @@ try {
 </head>
 
 <body>
-    <
+    
         <h2>Gebruikers wachtwoorden wijzigen</h2>
         <form action="processpwd.php" method="post">
             <div>
