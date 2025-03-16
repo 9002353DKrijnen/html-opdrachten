@@ -32,7 +32,7 @@ try {
 <body>
     <
         <h2>Gebruikers wachtwoorden wijzigen</h2>
-        <form action="editpasswd.php" method="post">
+        <form action="processpwd.php" method="post">
             <div>
                 <select name="user" id="user" required>
                     <?php foreach ($users as $user): ?>
