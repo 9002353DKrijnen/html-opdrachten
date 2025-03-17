@@ -1,14 +1,14 @@
+$background-color: #5EBBE6;
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #5EBBE6;
+    background-color: $background-color;
     font-family: "Inspiration", cursive;
     font-weight: 400;
     font-style: normal;
 }
-
-
 
 header {
     display: flex;
