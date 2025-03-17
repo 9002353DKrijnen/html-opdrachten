@@ -1,14 +1,17 @@
 $background-color: #5EBBE6;
 $pcolor: #09b9ff;
+$font-style: normal;
+$align-center: center;
+$font-family: "Inspiration", cursive;
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: $background-color;
-    font-family: "Inspiration", cursive;
+    font-family: $font-family;
     font-weight: 400;
-    font-style: normal;
+    font-style: $font-style;
 }
 
 header {
@@ -26,7 +29,6 @@ body {
 }
 
 section {
-    display: flex;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
@@ -52,7 +54,7 @@ section {
         background-color: #2d8ebb;
         }
         p{
-        align-items: center;
+        align-items: $align-center;
         background-color: #2d8ebb;
         }
     }
