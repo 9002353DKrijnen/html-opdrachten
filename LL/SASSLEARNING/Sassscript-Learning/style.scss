@@ -1,0 +1,22 @@
+@use "sass:map";
+
+$buttons: (
+    "primary": (
+        "color": #fff,
+        "background-color": #000,
+    ),
+    "secondary": (
+        "color": #000,
+        "background-color": #fff,
+    ),
+);
+
+@mixin button($name) {
+    color: map.get($buttons, $name, "color");
+    background-color: map.get($buttons, $name, "background-color");
+}
+
+@include btn("");
+@each $key, $value in $buttons {
+    @include btn($key, $value);
+}
