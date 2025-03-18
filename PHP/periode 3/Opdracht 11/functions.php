@@ -2,18 +2,28 @@
 <?php
 
 /*  Auteur Damien 9002353
-Functions.php voor inerrt_bieren.php */
-function CrudBieren()
+Functions.php */
+function Crudbicycles()
 {
     // Menu-item  insert
-    $txt = " <h1> Crud BIER</h1>
+    $txt = "
+    <h1> Crud BIER</h1>
     <nav>
         <a href= 'insert_bieren.php'> Toevoegen nieuw biertje</a>
-    </nav>";
-    echo $txt;
-    $result = GetData("bier");
+    </nav>
+            <img src='./img/mooiefiets.webp' alt='mooie_fiets'>
 
-    PrintCrudBier($result);
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        img {
+        transform: scale(0.25);
+    }";
+    echo $txt;
+
 }
 function insertBier($post)
 {
