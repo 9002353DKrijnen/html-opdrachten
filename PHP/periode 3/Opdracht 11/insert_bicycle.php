@@ -9,7 +9,7 @@ if (isset($_POST['submit']) && isset($_POST['naam'])) {
     // echo de naam als feedback
     echo '<script> alert("Biernaam ' . $_POST['naam'] . ' is toegevoegd.") </script>';
 // run de functie
-insertBier($_POST);
+insertBicycle($_POST);
 }
 
 ?>
