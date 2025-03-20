@@ -53,20 +53,22 @@ function createPost()
 
     echo $form;
 }
-
+// insert post functie met validaties
 function insertPost()
 {
     if (isset($_POST['submit'])) {
 
-
-        if (!isset($_POST['naam']) || !isset($_POST['bericht'])) {
-            die("Formulier niet verzonden");
+        // validatie, geen lege velden of onvolledige formulier
+        if (!isset($_POST['naam']) || !isset($_POST['bericht'] ) || strlen($_POST['naam']) == 0 || strlen($_POST['bericht']) == 0) {
+            die("Formulier niet verzonden of onvolledig U heeft: <br> Naam: " . $_POST['naam'] . "<br> Bericht: " . $_POST['bericht']);
         }
+
+        // dbSelect zorgt dat we de juiste database kunnen gebruiken
         $DT = date('Y-m-d H:i:s');
         $conn = dbSelect('gastenboek');
         $sqlQuery = $conn->prepare(
             "INSERT INTO gastenboek (naam, bericht, datumtijd) 
-   VALUES (:naam, :bericht, :datumtijd)"
+            VALUES (:naam, :bericht, :datumtijd)"
         );
         $sqlQuery->bindParam(':naam', $_POST['naam']);
         $sqlQuery->bindParam(':bericht', $_POST['bericht']);
@@ -74,7 +76,7 @@ function insertPost()
 
         $sqlQuery->execute();
         header("Location: winniedepooh.php");
-   }
+    }
 }
 
 function printPosts()
