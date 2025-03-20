@@ -20,5 +20,5 @@ Upload hier de code en een korte videopresentatie */
 require 'functions.php';
 require 'profile.php';
 createPost();
-insertPost()
+insertPost();
 ?>
