@@ -10,6 +10,7 @@ $database =  [
         'dbname' => 'gastenboek',
         'tables' => ['bericht', 'datumtijd', 'id', 'naam']
     ]
+    
 ];
 // inloggegevens voor localhost
 $username = "root";

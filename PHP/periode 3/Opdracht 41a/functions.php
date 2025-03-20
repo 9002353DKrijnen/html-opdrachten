@@ -1,8 +1,7 @@
 <?php
 function dbSelect($dbname = 'default')
 {
-    // $database globaal maken
-    global $database, $username, $password, $host, $options;
+    require 'profile.php';
     // Kijken of database bestaat, met errorverwerking wanneer dat niet het geval is 
 
     if (!isset($database[$dbname])) {
@@ -17,10 +16,40 @@ function dbSelect($dbname = 'default')
     // Maak verbinding met database
     try {
         $conn = new PDO($dsn, $username, $password, $options);
-        echo "succesvol verbonden met $dbname";
         return $conn;
     } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
     }
+}
+// create post functie
+function createPost(){
+    $form = '    
+    <form method="post" id="form">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam">
+        
+        <label for="bericht">Bericht:</label>
+        <textarea type="textarea" id="bericht" name="bericht"> </textarea>
+
+        <input type="submit" value="Verzenden" name="submit">
+    </form>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #form {
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+        }
+    </style>';
+
+    echo $form;
 }
 ?>
