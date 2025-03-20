@@ -12,6 +12,7 @@
     if(isset($_GET['id'])){  
         // Haal alle info van de betreffende id $_GET['id']
         $id = $_GET['id'];
+        // $row = Get($_GET['id']);
         $row = Get($id);
     
 ?>
@@ -20,6 +21,7 @@
     <body>
         <form method="post">
         <br>
+        <!-- Adaptief tonen van fiets -->
         <?= "<h1>Update Onze prachtige: " . $row['merk'] . "   ". $row['type'] . "</h1>"; ?>
 
         <input type="hidden" name="id" value="<?=  $row['id'];?>"><br>
@@ -37,6 +39,7 @@
 
 <?php
     } else {
+        // errorverwerking
         "Geen id opgegeven";
     }
 ?>

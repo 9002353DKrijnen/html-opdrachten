@@ -134,12 +134,12 @@ function PrintCrud($result)
     $headers = array_keys($result[0]);
     $table .= "<tr>";
     foreach ($headers as $header) {
-        $table .= "<th bgcolor=lightblue>" . $header . "</th>";
+        $table .= "<th bgcolor=lightgreen>" . $header . "</th>";
      
     }
     // na de foreacht worden de extra kollommen toegevoegd, zodat we boven de kolommen verwijderen en wijzigen headers krijgen
-    $table .=  "<th bgcolor='lightblue'> Wijzigen </th>";
-    $table .=  "<th bgcolor='lightblue'> Verwijderen </th>";
+    $table .=  "<th bgcolor='lightgreen'> Wijzigen </th>";
+    $table .=  "<th bgcolor='lightgreen'> Verwijderen </th>";
 
 
     foreach ($result as $row) {
@@ -149,12 +149,12 @@ function PrintCrud($result)
 
 
         foreach ($row as $cell) {
-            $table .= "<td bgcolor=lightblue>" . $cell . "</td>";
+            $table .= "<td bgcolor=lightgreen>" . $cell . "</td>";
         }
 
 
         // twee extra kollommen
-        $table .= "<td bgcolor='lightblue'>
+        $table .= "<td bgcolor='lightgreen'>
              <form method='post' action='update_bicycle.php?id=$row[id]' >      
                     <button name='wzg'>Wijzigen</button>    
             </form>
@@ -162,7 +162,7 @@ function PrintCrud($result)
 
 
 
-        $table .= "<td bgcolor='lightblue'>
+        $table .= "<td bgcolor='lightgreen'>
         <form action='delete_bicycle.php' method='post'>
             <input type='hidden' name='id' value='$row[id]'>
             <input type='submit' value='Verwijderen'>
