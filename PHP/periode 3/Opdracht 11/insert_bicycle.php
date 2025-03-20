@@ -1,9 +1,8 @@
 <?php
-/* Damien 
-Opdracht functies 
- */
+
+// Opdracht functies  - Damien
+ 
 require_once("functions.php");
-// test of submit is geklikt
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@ require_once("functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bieren.html</title>
+    <title>fiets.html</title>
 </head>
 
 <body>
@@ -48,8 +47,8 @@ require_once("functions.php");
 
 <?php
 
-
-// kijk of er een naam is ingevuld
+/*  test of er op submit is gedrukt
+kijk of er een naam is ingevuld*/
 if (isset($_POST['submit']) && isset($_POST['merk'])) {
     // echo de naam als feedback
 
