@@ -21,4 +21,5 @@ require 'functions.php';
 require 'profile.php';
 $pdo = dbSelect();
 createPost();
+insertPost()
 ?>

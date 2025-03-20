@@ -22,7 +22,8 @@ function dbSelect($dbname = 'default')
     }
 }
 // create post functie
-function createPost(){
+function createPost()
+{
     $form = '    
     <form method="post" id="form">
         <label for="naam">Naam:</label>
@@ -52,4 +53,26 @@ function createPost(){
 
     echo $form;
 }
-?>
+
+function insertPost()
+{
+    if (isset($_POST['submit'])) {
+
+
+        if (!isset($_POST['naam']) || !isset($_POST['bericht'])) {
+            die("Formulier niet verzonden");
+        }
+        $DT = date('Y-m-d H:i:s');
+        $conn = dbSelect('gastenboek');
+        $sqlQuery = $conn->prepare(
+            "INSERT INTO gastenboek (naam, bericht, datumtijd) 
+   VALUES (:naam, :bericht, :datumtijd)"
+        );
+        $sqlQuery->bindParam(':naam', $_POST['naam']);
+        $sqlQuery->bindParam(':bericht', $_POST['bericht']);
+        $sqlQuery->bindParam(':datumtijd', $DT);
+
+        $sqlQuery->execute();
+
+   }
+}
