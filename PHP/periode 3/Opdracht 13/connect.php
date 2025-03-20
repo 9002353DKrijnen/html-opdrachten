@@ -1,4 +1,4 @@
-<?php
+$<?php
 // database conncectie maken
 // Met dit bestand kan ik de database connecie maken
 // Dit bestand wordt gebruikt door alle andere php bestanden

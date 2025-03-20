@@ -17,4 +17,7 @@ Test alles goed door.
 Gebruik het boek en de eerder gemaakte opdrachten ter referentie.
 
 Upload hier de code en een korte videopresentatie */
+require 'functions.php';
+require 'profile.php';
+$pdo = dbSelect('3dsplus');
 ?>
