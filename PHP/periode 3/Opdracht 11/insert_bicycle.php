@@ -4,14 +4,6 @@ Opdracht functies
  */
 require_once("functions.php");
 // test of submit is geklikt
-// kij of er een naam is ingevuld
-if (isset($_POST['submit']) && isset($_POST['naam'])) {
-    // echo de naam als feedback
-    echo '<script> alert("Biernaam ' . $_POST['naam'] . ' is toegevoegd.") </script>';
-// run de functie
-insertBicycle($_POST);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,20 +15,16 @@ insertBicycle($_POST);
 </head>
 
 <body>
-    <form method="post">
-        <label for="naam">Naam:</label>
-        <input type="text" id="naam" name="naam">
+    <form method="post" action="insert_bicycle.php">
+        <label for="merk">Merk:</label>
+        <input type="text" id="merk" name="merk">
         <label for="prijs">Prijs:</label>
         <input type="text" id="prijs" name="prijs">
-        <label for="soort">soort:</label>
-        <input type="text" id="soort" name="soort">
-        <label for="stijl">stijl</label>
-        <input type="text" id="stijl" name="stijl">
-        <label for="alcohol">alcohol:</label>
-        <input type="text" id="alcohol" name="alcohol">
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type">
         <input type="submit" value="Submit" name="submit">
     </form>
-    <a href="./inedex.php">Home</a>
+    <a href="./indexfiets.php">Home</a>
     <style>
         body {
             background-color: lightblue;
@@ -57,3 +45,18 @@ insertBicycle($_POST);
 </body>
 
 </html>
+
+<?php
+
+
+// kijk of er een naam is ingevuld
+if (isset($_POST['submit']) && isset($_POST['merk'])) {
+    // echo de naam als feedback
+
+
+    echo '<script> alert("fiets ' . $_POST['merk'] . ' is toegevoegd.") </script>';
+    // run de functie
+    insert($_POST);
+}
+
+?>

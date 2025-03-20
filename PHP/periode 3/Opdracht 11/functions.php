@@ -2,7 +2,9 @@
 <?php
 
 /*  Auteur Damien 9002353
-Functions.php */
+Functions.php 
+hier komen de functies Crud voor het aanmaken van de h1, de nav en de section
+*/
 function crud()
 {
     // Menu-item  insert
@@ -37,12 +39,16 @@ function crud()
         object-fit: cover;
         }
     </style>";
-    // aanroep
+
+
+    // aanroep - hiermee wordt $txt geprint
     echo $txt;
+
+
     // haal alle fietsen op
     $result = GetData("fietsen");
 
-    
+
     // Print crud van de fietsen (result)
     PrintCrud($result);
 }
@@ -54,33 +60,32 @@ function insert($post)
         // altijd verbinden met de database
         $conn = ConnectDb();
 
-
         $query = $conn->prepare("
-        INSERT INTO fietsen (naam, soort, stijl, alcohol)
-        VALUES (:naam, :soort, :stijl, :alcohol );");
+        INSERT INTO fietsen (merk, prijs, type)
+        VALUES (:merk, :prijs, :type);");
 
         $query->execute([
-            'naam' => $post['naam'],
-            'soort' => $post['soort'],
-            'stijl' => $post['stijl'],
-            'alcohol' => $post['alcohol'],
+            'merk' => $post['merk'],
+            'prijs' => $post['prijs'],
+            'type' => $post['type'],
         ]);
 
-        echo "bicycle toegevoegd";
+        echo "Fiets toegevoegd";
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
 }
-
+// functie delete 
 function delete($post)
 {
+
+    // controle of id bestaat
     if (isset($_POST['id'])) {
         $conn = ConnectDb();
         try {
-            // Verwijder eerst de bijbehorende records in de schenkt-tabel en daarna het bicycle
-            $query = $conn->prepare("DELETE FROM schenkt WHERE id = :id; 
-                /* Ook verwijden we de bijbehorende records in de schenkt-tabel, anders krijgen we een fout */
-                DELETE FROM bicycle WHERE id = :id;");
+            // check of id overeenkomt met opgegeven te verwijderen id
+            $query = $conn->prepare("DELETE FROM fietsen WHERE id = :id");
+            
             $query->execute(['id' => $post['id']]);
 
             echo "Fiets verwijderd";
@@ -144,12 +149,12 @@ function PrintCrud($result)
 
 
         foreach ($row as $cell) {
-            $table .= "<td>" . $cell . "</td>";
+            $table .= "<td bgcolor=lightblue>" . $cell . "</td>";
         }
 
 
         // twee extra kollommen
-        $table .= "<td>
+        $table .= "<td bgcolor='lightblue'>
              <form method='post' action='update_bicycle.php?id=$row[id]' >      
                     <button name='wzg'>Wijzigen</button>    
             </form>
@@ -157,8 +162,8 @@ function PrintCrud($result)
 
 
 
-        $table .= "<td>
-        <form action='delete_bicycleen.php' method='post'>
+        $table .= "<td bgcolor='lightblue'>
+        <form action='delete_bicycle.php' method='post'>
             <input type='hidden' name='id' value='$row[id]'>
             <input type='submit' value='Verwijderen'>
          </form>
@@ -182,21 +187,20 @@ function Get($id)
     // voer query uit
     $query->execute(['id' => $id]);
     // result met alle gegevens van de bicycle
-    $result = $query->fetch();
+    $id = $query->fetch();
     // result
-    return $result;
+    return $id;
 }
 
 function Update($post)
 {
     $conn = ConnectDb();
-    $query = $conn->prepare("UPDATE bicycle SET naam = :naam, soort = :soort, stijl = :stijl, alcohol = :alcohol WHERE id = :id");
+    $query = $conn->prepare("UPDATE fietsen SET merk = :merk, `type` = :type, prijs = :prijs WHERE id = :id");
     $query->execute([
-        'naam' => $post['naam'],
-        'soort' => $post['soort'],
-        'stijl' => $post['stijl'],
-        'alcohol' => $post['alcohol'],
-        'bicyclecode' => $post['bicyclecode'],
+        'merk' => $post['merk'],
+        'prijs' => $post['prijs'],
+        'type' => $post['type'],
+        'id' => $post['id'],
     ]);
 
     echo "Fiets soort gewijzigd";
