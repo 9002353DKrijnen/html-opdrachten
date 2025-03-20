@@ -73,6 +73,54 @@ function insertPost()
         $sqlQuery->bindParam(':datumtijd', $DT);
 
         $sqlQuery->execute();
-
+        header("Location: winniedepooh.php");
    }
 }
+
+function printPosts()
+{
+    $conn = dbSelect('gastenboek');
+    $sqlQuery = $conn->prepare("SELECT * FROM gastenboek");
+    $sqlQuery->execute();
+    $posts = $sqlQuery->fetchAll();
+    foreach ($posts as $post) {
+        echo "<div>";
+        echo "<h3>" . $post['naam'] . "</h3>";
+        echo "<p>" . $post['bericht'] . "</p>";
+        echo "<p>" . $post['datumtijd'] . "</p>";
+        echo " <form action='michaeljackson.php' method='get'>
+            <input type='hidden' name='id' value='$post[id]'>
+            <input type='submit' value='Verwijderen'>
+         </form>";
+        echo "</div>";
+        $style = '
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            div {
+                margin: 40px auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 25%;
+            }
+        </style>';
+        echo $style;
+    }
+}
+function deletePost()
+{
+    if (isset($_GET['id'])) {
+        $conn = dbSelect('gastenboek');
+        $sqlQuery = $conn->prepare("DELETE FROM gastenboek WHERE id = :id");
+        $sqlQuery->bindParam(':id', $_GET['id']);
+        $sqlQuery->execute();
+        header("Location: winniedepooh.php");
+    }
+}
+?>
