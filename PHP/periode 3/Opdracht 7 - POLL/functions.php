@@ -33,7 +33,7 @@ function printPolls()
 
     foreach ($polls as $poll) {
         echo "<form method='post' action='process.php'>";
-        echo "<h3>" . $poll['vraag'] . "</h3>";
+        echo "<h3>" . htmlspecialchars($poll['vraag']) . "</h3>";
 
 
         // haal de opties voor de huidige poll op, vergelijk optie.poll met poll.id. 
@@ -43,12 +43,14 @@ function printPolls()
         $options = $sqlQueryOptions->fetchAll();
         // print de opties, met radio buttons
         foreach ($options as $option) {
-            echo "<input type='radio' name='optie' value='{$option['optie']}'> {$option['optie']}" . "<br>";
+            // print elke optie met htmlspecialchars zodat XSS-aanvallen niet kunnen gebeuren
+            echo "<input type='radio' name='optie' value='" . 
+            htmlspecialchars($option['optie']) . "'> "
+            . htmlspecialchars($option['optie']) . "<br>";
         }
         // buiten de foreach van de opties print de submit button met form afsluitng
         echo "<input type='submit' value='Verzenden' name='submit'>";
         echo "</form>";
-
     }
 }
 
@@ -113,7 +115,9 @@ function printPosts()
         echo "<form method='post' action='rem.php'>
         <input type='hidden' name='id' value='$post[id]'>
         <input type='submit' value='Verwijder'>
-        </form>";
+        </form>
+
+        ";
     }
 }
 
@@ -129,22 +133,46 @@ function deletePoll()
     $sqlQuery->execute();
 }
 
- function newPoll(){
-// verbinding maken
-$conn = determineDatabase('poll');
-$conn->beginTransaction();
-try{
-$sqlQuery = $conn->prepare("INSERT INTO poll (vraag) VALUES (:vraag)");
-// nieuwe poll maken
-$sqlQuery->bindParam(':vraag', $_POST['vraag']);
-$sqlQuery->execute();
+function newPoll($vraag, $opties)
+{
+    // verbinding maken
+    $conn = determineDatabase('poll');
 
 
+    // begin transactie
+    $conn->beginTransaction();
 
+    try {
+        $sqlQuery = $conn->prepare("INSERT INTO poll (vraag) VALUES (:vraag)");
+
+
+        // nieuwe poll maken
+        $sqlQuery->bindParam(':vraag', $vraag);
+        $sqlQuery->execute();
+
+        // bij de nieuwe vraag horen natuurlijk antwoorden  
+        // voeg de optie toe aan de optie-tabel en koppel die aan de nieuwe poll
+        $pollid = $conn->lastInsertId();
+        $sqlQuery = $conn->prepare("INSERT INTO optie (optie, poll) 
+        VALUES (:optie, :poll)");
+
+        // haal id op van zojuist nieuwe poll en koppel deze aan de optie
+        foreach($opties as $optie){
+            if(strlen($optie) > 0){
+            $sqlQuery->bindParam(':optie', $optie);
+            $sqlQuery->bindParam(':poll', $pollid);
+            $sqlQuery->execute();
+        }
+    }
+       
+
+        $conn->commit();
+    } catch (PDOException $e) {
+        // annuleer de transactie
+        // als er een fout is maak de wijzigingen ongedaan
+        $conn->rollBack();
+        die("Connection failed: " . $e->getMessage());
+    }
 }
-catch(PDOException $e){
-    // annuleer de transactie
-    $conn->rollBack();
-    die("Connection failed: " . $e->getMessage());
-}
- }
+
+
