@@ -44,9 +44,9 @@ function printPolls()
         // print de opties, met radio buttons
         foreach ($options as $option) {
             // print elke optie met htmlspecialchars zodat XSS-aanvallen niet kunnen gebeuren
-            echo "<input type='radio' name='optie' value='" . 
-            htmlspecialchars($option['optie']) . "'> "
-            . htmlspecialchars($option['optie']) . "<br>";
+            echo "<input type='radio' name='optie' value='" .
+                htmlspecialchars($option['optie']) . "'> "
+                . htmlspecialchars($option['optie']) . "<br>";
         }
         // buiten de foreach van de opties print de submit button met form afsluitng
         echo "<input type='submit' value='Verzenden' name='submit'>";
@@ -107,7 +107,15 @@ function printPosts()
         echo "</div>";
         echo "<form method='post' action='edit.php'>    
         <input type='hidden' name='id' value='$post[id]'>
-        <input type='submit' value='Bewerk'>
+        <input type='hidden' name='vraag' value='$post[vraag]'>
+        ";
+
+        foreach ($options as $option) {
+            echo "<input type='hidden' name='optie[]' value='" . $option['optie'] . "'>";
+        }
+
+
+        echo " <input type='submit' value='Bewerk'>
         </form>
         <br>";
 
@@ -157,14 +165,14 @@ function newPoll($vraag, $opties)
         VALUES (:optie, :poll)");
 
         // haal id op van zojuist nieuwe poll en koppel deze aan de optie
-        foreach($opties as $optie){
-            if(strlen($optie) > 0){
-            $sqlQuery->bindParam(':optie', $optie);
-            $sqlQuery->bindParam(':poll', $pollid);
-            $sqlQuery->execute();
+        foreach ($opties as $optie) {
+            if (strlen($optie) > 0) {
+                $sqlQuery->bindParam(':optie', $optie);
+                $sqlQuery->bindParam(':poll', $pollid);
+                $sqlQuery->execute();
+            }
         }
-    }
-       
+
 
         $conn->commit();
     } catch (PDOException $e) {
@@ -175,4 +183,24 @@ function newPoll($vraag, $opties)
     }
 }
 
+function updatePOLL()
+{
+    $vraag = $_POST['vraag'];
+    $id = $_POST['id'];
+    $opties = $_POST['optie'];
+    // maak verbinding 
+    $conn = determineDatabase('poll');
 
+    // begin upfsyr
+    $sqlQuery = $conn->prepare("UPDATE poll SET vraag = :vraag WHERE id = :id;");
+    $sqlQuery->bindParam(':vraag', $vraag);
+    $sqlQuery->bindParam(':id', $id);
+
+
+    foreach ($opties as $optie) {
+        $sqlQuery1 = $conn->prepare("UPDATE optie SET optie = :optie WHERE poll = :poll AND id = :id;");
+        $sqlQuery1->execute();
+    }
+    $sqlQuery->execute();
+    header("Location: index.php");
+}
