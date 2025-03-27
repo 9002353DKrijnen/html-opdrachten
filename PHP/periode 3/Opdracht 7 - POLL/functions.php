@@ -52,7 +52,8 @@ function printPolls()
 }
 
 // Is bekend dat dit verwarrend is, maar so be it
-function printPosts(){
+function printPosts()
+{
     // connectie met database maken
     $conn = determineDatabase('poll');
 
@@ -92,14 +93,13 @@ function printPosts(){
         $sqlQueryOptions->bindParam(':id', $post['id']);
         $sqlQueryOptions->execute();
         $options = $sqlQueryOptions->fetchAll();
-       
+
 
 
 
         foreach ($options as $option) {
             echo "<p>" . $option['optie'] . ": " . $option['stemmen'] . "</p>";
             echo "<br>";
-           
         }
         echo "</div>";
         echo "<form method='post' action='edit.php'>    
@@ -108,7 +108,7 @@ function printPosts(){
         </form>
         <br>";
 
-        
+
         echo "<form method='post' action='rem.php'>
         <input type='hidden' name='id' value='$post[id]'>
         <input type='submit' value='Verwijder'>
@@ -117,14 +117,16 @@ function printPosts(){
 }
 
 
-function deletePoll(){
-        $conn = determineDatabase('poll');
+function deletePoll()
+{
+    $conn = determineDatabase('poll');
 
-        // verwijder poll uit database 
-        $sqlQuery = $conn->prepare("DELETE FROM poll WHERE id = :id");
-        $sqlQuery->bindParam(':id', $_POST['id']);
-        $sqlQuery->execute();
-    }
+    // verwijder poll uit database  met de corrosponding (betreffende opties, hier is id NIET id maar opties.poll staat GELIJK aan poll.id)
+    $sqlQuery = $conn->prepare(" DELETE FROM optie WHERE poll = :id;
+    DELETE FROM poll WHERE id = :id");
+    $sqlQuery->bindParam(':id', $_POST['id']);
+    $sqlQuery->execute();
+}
 
 // function newPoll(){
 
