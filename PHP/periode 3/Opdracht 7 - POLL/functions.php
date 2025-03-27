@@ -46,8 +46,9 @@ function printPolls()
             echo "<input type='radio' name='optie' value='{$option['optie']}'> {$option['optie']}" . "<br>";
         }
         // buiten de foreach van de opties print de submit button met form afsluitng
-        echo "<input type='submit' value='Verzenden' name='submit'></input>";
+        echo "<input type='submit' value='Verzenden' name='submit'>";
         echo "</form>";
+
     }
 }
 
@@ -128,13 +129,22 @@ function deletePoll()
     $sqlQuery->execute();
 }
 
-// function newPoll(){
+ function newPoll(){
+// verbinding maken
+$conn = determineDatabase('poll');
+$conn->beginTransaction();
+try{
+$sqlQuery = $conn->prepare("INSERT INTO poll (vraag) VALUES (:vraag)");
+// nieuwe poll maken
+$sqlQuery->bindParam(':vraag', $_POST['vraag']);
+$sqlQuery->execute();
 
 
-//     $connQuestion = determineDatabase('poll');
-//     $sqlQuery = $connQuestion->prepare("INSERT INTO poll (vraag) 
-//     VALUES (:vraag)");
 
-
-
-// }
+}
+catch(PDOException $e){
+    // annuleer de transactie
+    $conn->rollBack();
+    die("Connection failed: " . $e->getMessage());
+}
+ }

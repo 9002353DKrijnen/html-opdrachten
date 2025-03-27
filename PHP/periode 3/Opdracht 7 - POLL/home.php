@@ -13,5 +13,7 @@ a {
     background-color: darkgrey;
     pointer: cursor;
 }
-</style>";
+</style>
+
+<p>Creëer hier een Poll <a href='new.php'>hier</a>";
 ?>
