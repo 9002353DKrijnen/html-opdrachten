@@ -19,12 +19,42 @@ function determineDatabase($dbname)
     }
 }
 
+function printPolls()
+{
+    $conn = determineDatabase('poll');
 
-function newPoll(){
+    // haal all polls op
+    $sqlQuery =  $conn->prepare("SELECT * FROM poll");
+    $sqlQuery->execute();
+    $polls = $sqlQuery->fetchAll();
+
+    // foreach met de polls
+
+    foreach ($polls as $poll) {
+        echo "<form method='post' action='process.php'>";
+        echo "<h3>" . $poll['vraag'] . "</h3>";
 
 
-    $conn = determineDatabase('polls');
-    $sqlQuery = $conn->prepare("INSERT INTO polls (title, question, option1, option2, option3, option4) 
-    VALUES (:title, :question, :option1, :option2, :option3, :option4)");
-    
+        // haal de opties voor de huidige poll op, vergelijk optie.poll met poll.id. 
+        $sqlQueryOptions =  $conn->prepare("SELECT optie.optie from optie WHERE poll = :id");
+        $sqlQueryOptions->bindParam(':id', $poll['id']);
+        $sqlQueryOptions->execute();
+        $options = $sqlQueryOptions->fetchAll();
+        // print de opties, met radio buttons
+        foreach ($options as $option) {
+      echo "<input type='radio' name='optie' value= '{$option['id']}'> {$option['optie']}<br>";        }
+        echo "<input type='submit' value='Verzenden' name='submit'></input>";
+        
+        echo "</form>";
+    }
 }
+// function newPoll(){
+
+
+//     $connQuestion = determineDatabase('poll');
+//     $sqlQuery = $connQuestion->prepare("INSERT INTO poll (vraag) 
+//     VALUES (:vraag)");
+
+
+
+// }
