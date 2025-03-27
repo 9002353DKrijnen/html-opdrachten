@@ -42,10 +42,61 @@ function printPolls()
         $options = $sqlQueryOptions->fetchAll();
         // print de opties, met radio buttons
         foreach ($options as $option) {
-      echo "<input type='radio' name='optie' value= '{$option['id']}'> {$option['optie']}<br>";        }
+            echo "<input type='radio' name='optie' value='{$option['optie']}'> {$option['optie']}" . "<br>";
+        }
+        // buiten de foreach van de opties print de submit button met form afsluitng
         echo "<input type='submit' value='Verzenden' name='submit'></input>";
-        
         echo "</form>";
+    }
+}
+
+// Is bekend dat dit verwarrend is, maar so be it
+function printPosts(){
+    // connectie met database maken
+    $conn = determineDatabase('poll');
+
+    // haal alle posts op
+    $sqlQuery =  $conn->prepare("SELECT * FROM poll");
+    $sqlQuery->execute();
+    $posts = $sqlQuery->fetchAll();
+    // foreach met de posts
+    foreach ($posts as $post) {
+        echo "<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div{
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+                
+        }
+        h3{
+            background-color: lightgrey;
+            padding: 10px;
+        }
+        p{
+            padding: 10px;
+        }
+        </style>";
+        echo "<div>";
+        echo " <h3>" . $post['vraag'] . "</h3>";
+
+        // alle antwoorden printen met aantal stemmen
+        $sqlQueryOptions =  $conn->prepare("SELECT optie.optie, optie.stemmen from optie
+     WHERE optie.poll = :id");
+        $sqlQueryOptions->bindParam(':id', $post['id']);
+        $sqlQueryOptions->execute();
+        $options = $sqlQueryOptions->fetchAll();
+        foreach ($options as $option) {
+            echo "<p>" . $option['optie'] . ": " . $option['stemmen'] . "</p>";
+            echo "<br>";
+           
+        }
+        echo "</div>";
     }
 }
 // function newPoll(){
