@@ -13,6 +13,7 @@ function determineDatabase($dbname)
 
     try {
         $conn = new PDO($dsn, $username, $password, $options);
+        echo "Connected successfully";
         return $conn;
     } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
@@ -91,14 +92,40 @@ function printPosts(){
         $sqlQueryOptions->bindParam(':id', $post['id']);
         $sqlQueryOptions->execute();
         $options = $sqlQueryOptions->fetchAll();
+       
+
+
+
         foreach ($options as $option) {
             echo "<p>" . $option['optie'] . ": " . $option['stemmen'] . "</p>";
             echo "<br>";
            
         }
         echo "</div>";
+        echo "<form method='post' action='edit.php'>    
+        <input type='hidden' name='id' value='$post[id]'>
+        <input type='submit' value='Bewerk'>
+        </form>
+        <br>";
+
+        
+        echo "<form method='post' action='rem.php'>
+        <input type='hidden' name='id' value='$post[id]'>
+        <input type='submit' value='Verwijder'>
+        </form>";
     }
 }
+
+
+function deletePoll(){
+        $conn = determineDatabase('poll');
+
+        // verwijder poll uit database 
+        $sqlQuery = $conn->prepare("DELETE FROM poll WHERE id = :id");
+        $sqlQuery->bindParam(':id', $_POST['id']);
+        $sqlQuery->execute();
+    }
+
 // function newPoll(){
 
 
