@@ -44,9 +44,7 @@ function printPolls()
         // print de opties, met radio buttons
         foreach ($options as $option) {
             // print elke optie met htmlspecialchars zodat XSS-aanvallen niet kunnen gebeuren
-            echo "<input type='radio' name='optie' value='" . htmlspecialchars($option['optie']) . "'>" . htmlspecialchars($option['optie'] ) . "<br>";
-            
-
+            echo "<input type='radio' name='optie' value='" . htmlspecialchars($option['optie']) . "'>" . htmlspecialchars($option['optie']) . "<br>";
         }
         // buiten de foreach van de opties print de submit button met form afsluitng
         echo "<input type='submit' value='Verzenden' name='submit'>";
@@ -131,7 +129,6 @@ function printPosts()
         </form>
        
         ";
-       
     }
 }
 
@@ -139,15 +136,14 @@ function printPosts()
 function deletePoll()
 {
     $conn = determineDatabase('poll');
+    $pollId = $_POST['poll_id'];
 
-//verwijder de opties en de vragen
+
+    //verwijder de opties en de vragen
     $sqlQuery = $conn->prepare("DELETE from optie where poll_id = :poll_id; 
     delete from poll where poll_id = :poll_id;");
-    $sqlQuery->bindParam(':poll_id', $_POST['poll_id']);
+    $sqlQuery->bindParam(':poll_id', $pollId);
     $sqlQuery->execute();
-
-    // na voltooiing forgein key aan
-    
 }
 
 function newPoll($vraag, $opties)
