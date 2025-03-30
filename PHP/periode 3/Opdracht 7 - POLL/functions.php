@@ -36,17 +36,17 @@ function printPolls()
         echo "<h3>" . htmlspecialchars($poll['vraag']) . "</h3>";
 
 
-        // haal de opties voor de huidige poll op, vergelijk optie.poll met poll.id. 
-        $sqlQueryOptions =  $conn->prepare("SELECT optie.optie from optie WHERE poll = :id");
-        $sqlQueryOptions->bindParam(':id', $poll['id']);
+        // haal de opties voor de huidige poll op, vergelijk optie.poll_id met poll.id. 
+        $sqlQueryOptions = $conn->prepare("SELECT optie FROM optie WHERE poll_id = :poll_id");
+        $sqlQueryOptions->bindParam(':poll_id', $poll['poll_id']);
         $sqlQueryOptions->execute();
         $options = $sqlQueryOptions->fetchAll();
         // print de opties, met radio buttons
         foreach ($options as $option) {
             // print elke optie met htmlspecialchars zodat XSS-aanvallen niet kunnen gebeuren
-            echo "<input type='radio' name='optie' value='" .
-                htmlspecialchars($option['optie']) . "'> "
-                . htmlspecialchars($option['optie']) . "<br>";
+            echo "<input type='radio' name='optie' value='" . htmlspecialchars($option['optie']) . "'>" . htmlspecialchars($option['optie'] ) . "<br>";
+            
+
         }
         // buiten de foreach van de opties print de submit button met form afsluitng
         echo "<input type='submit' value='Verzenden' name='submit'>";
@@ -91,10 +91,13 @@ function printPosts()
         echo " <h3>" . $post['vraag'] . "</h3>";
 
         // alle antwoorden printen met aantal stemmen
-        $sqlQueryOptions =  $conn->prepare("SELECT optie.optie, optie.stemmen from optie
-     WHERE optie.poll = :id");
-        $sqlQueryOptions->bindParam(':id', $post['id']);
+        $sqlQueryOptions =  $conn->prepare("SELECT optie, stemmen from optie where poll_id = :poll_id;");
+
+
+        $sqlQueryOptions->bindParam(':poll_id', $post['poll_id']);
         $sqlQueryOptions->execute();
+
+
         $options = $sqlQueryOptions->fetchAll();
 
 
@@ -106,7 +109,7 @@ function printPosts()
         }
         echo "</div>";
         echo "<form method='post' action='edit.php'>    
-        <input type='hidden' name='id' value='$post[id]'>
+        <input type='hidden' name='id' value='$post[poll_id]'>
         <input type='hidden' name='vraag' value='$post[vraag]'>
         ";
 
@@ -121,11 +124,12 @@ function printPosts()
 
 
         echo "<form method='post' action='rem.php'>
-        <input type='hidden' name='id' value='$post[id]'>
+        <input type='hidden' name='poll_id' value= '" . $post['poll_id'] . "'>
         <input type='submit' value='Verwijder'>
         </form>
-
+       
         ";
+       
     }
 }
 
@@ -134,11 +138,14 @@ function deletePoll()
 {
     $conn = determineDatabase('poll');
 
-    // verwijder poll uit database  met de corrosponding (betreffende opties, hier is id NIET id maar opties.poll staat GELIJK aan poll.id)
-    $sqlQuery = $conn->prepare(" DELETE FROM optie WHERE poll = :id;
-    DELETE FROM poll WHERE id = :id");
-    $sqlQuery->bindParam(':id', $_POST['id']);
+//verwijder de opties en de vragen
+    $sqlQuery = $conn->prepare("DELETE from optie where poll_id = :poll_id; 
+    delete from poll where poll_id = :poll_id;");
+    $sqlQuery->bindParam(':poll_id', $_POST['poll_id']);
     $sqlQuery->execute();
+
+    // na voltooiing forgein key aan
+    
 }
 
 function newPoll($vraag, $opties)
@@ -161,14 +168,14 @@ function newPoll($vraag, $opties)
         // bij de nieuwe vraag horen natuurlijk antwoorden  
         // voeg de optie toe aan de optie-tabel en koppel die aan de nieuwe poll
         $pollid = $conn->lastInsertId();
-        $sqlQuery = $conn->prepare("INSERT INTO optie (optie, poll) 
-        VALUES (:optie, :poll)");
+        $sqlQuery = $conn->prepare("INSERT INTO optie (optie, poll_id) 
+        VALUES (:optie, :poll_id);");
 
         // haal id op van zojuist nieuwe poll en koppel deze aan de optie
         foreach ($opties as $optie) {
             if (strlen($optie) > 0) {
                 $sqlQuery->bindParam(':optie', $optie);
-                $sqlQuery->bindParam(':poll', $pollid);
+                $sqlQuery->bindParam(':poll_id', $pollid);
                 $sqlQuery->execute();
             }
         }
@@ -198,7 +205,10 @@ function updatePOLL()
 
 
     foreach ($opties as $optie) {
-        $sqlQuery1 = $conn->prepare("UPDATE optie SET optie = :optie WHERE poll = :poll AND id = :id;");
+        $sqlQuery1 = $conn->prepare("UPDATE optie SET optie = :optie WHERE id = :id inner join poll on optie.poll = poll.id;");
+        $sqlQuery1->bindParam(':optie', $optie);
+        $sqlQuery1->bindParam(':id', $id);
+        $sqlQuery1->bindParam(':poll', $id);
         $sqlQuery1->execute();
     }
     $sqlQuery->execute();

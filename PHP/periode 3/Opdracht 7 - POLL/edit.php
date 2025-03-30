@@ -2,7 +2,6 @@
 include 'functions.php';
 // verbinding maken
 $conn = determineDatabase('poll');
-var_dump($_POST['optie']);
 ?>
 
 <form action="" method="post">
