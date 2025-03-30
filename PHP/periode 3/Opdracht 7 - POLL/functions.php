@@ -91,7 +91,7 @@ function printPosts()
         echo " <h3>" . $post['vraag'] . "</h3>";
 
         // alle antwoorden printen met aantal stemmen
-        $sqlQueryOptions =  $conn->prepare("SELECT optie, stemmen from optie where poll_id = :poll_id;");
+        $sqlQueryOptions =  $conn->prepare("SELECT optie, stemmen, id from optie where poll_id = :poll_id;");
 
 
         $sqlQueryOptions->bindParam(':poll_id', $post['poll_id']);
@@ -104,17 +104,19 @@ function printPosts()
 
 
         foreach ($options as $option) {
-            echo "<p>" . $option['optie'] . ": " . $option['stemmen'] . "</p>";
+            echo "<p>" . $option['optie'] . ": " . $option['stemmen']  .  "</p>";
             echo "<br>";
         }
         echo "</div>";
         echo "<form method='post' action='edit.php'>    
-        <input type='hidden' name='id' value='$post[poll_id]'>
+        <input type='hidden' name='poll_id' value='$post[poll_id]'>
         <input type='hidden' name='vraag' value='$post[vraag]'>
+        <input type='hidden' name='id' value='$option[id]'>
         ";
 
         foreach ($options as $option) {
             echo "<input type='hidden' name='optie[]' value='" . $option['optie'] . "'>";
+            echo "<input type='hidden' name='id[]' value='" . $option['id'] . "'>";
         }
 
 
@@ -193,22 +195,22 @@ function newPoll($vraag, $opties)
 function updatePOLL()
 {
     $vraag = $_POST['vraag'];
-    $id = $_POST['id'];
+    $poll_id = $_POST['poll_id'];
     $opties = $_POST['optie'];
+    $id = $_POST['id'];
     // maak verbinding 
     $conn = determineDatabase('poll');
 
     // begin upfsyr
-    $sqlQuery = $conn->prepare("UPDATE poll SET vraag = :vraag WHERE id = :id;");
+    $sqlQuery = $conn->prepare("UPDATE poll SET vraag = :vraag WHERE poll_id = :poll_id;");
     $sqlQuery->bindParam(':vraag', $vraag);
-    $sqlQuery->bindParam(':id', $id);
+    $sqlQuery->bindParam(':poll_id', $poll_id);
 
 
-    foreach ($opties as $optie) {
-        $sqlQuery1 = $conn->prepare("UPDATE optie SET optie = :optie WHERE id = :id inner join poll on optie.poll = poll.id;");
+    foreach ($opties as $key => $optie) {
+        $sqlQuery1 = $conn->prepare("UPDATE optie SET optie = :optie WHERE id = :id;");
         $sqlQuery1->bindParam(':optie', $optie);
-        $sqlQuery1->bindParam(':id', $id);
-        $sqlQuery1->bindParam(':poll', $id);
+        $sqlQuery1->bindParam(':id', $id[$key]);
         $sqlQuery1->execute();
     }
     $sqlQuery->execute();

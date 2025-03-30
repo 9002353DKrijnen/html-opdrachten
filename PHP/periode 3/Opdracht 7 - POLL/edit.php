@@ -5,15 +5,16 @@ $conn = determineDatabase('poll');
 ?>
 
 <form action="" method="post">
-    <input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
+    <input type="hidden" name="poll_id" value="<?php echo $_POST['poll_id'] ?>">
     <input type="text" name="vraag" value="<?php echo $_POST['vraag']; ?>">
-    <br>
+    
     <?php
-    foreach ($_POST['optie'] as $_POST['optie']) {
-        
-        echo "<input type='text' name='optie[]' value='" . $_POST['optie'] . "'>";
-        echo "<br>";
-    }
+   foreach ($_POST['optie'] as $key => $optie) {
+    echo "<input type='text' name='optie[]' value='" . htmlspecialchars($optie) . "'>";
+    echo "<input type='hidden' name='id[]' value='" . htmlspecialchars($_POST['id'][$key]) . "'>";
+    echo "<br>";
+}
+
     ?>
     <input type="submit" value="opslaan" name="submit">
 </form>
@@ -42,7 +43,7 @@ $conn = determineDatabase('poll');
 </style>
 
 <?php
-if (isset($_GET['submit'])) {
+if (isset($_POST['submit'])) {
 updatePOLL();
 
 header("Location: home.php");
