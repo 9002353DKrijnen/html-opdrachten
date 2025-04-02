@@ -4,12 +4,13 @@
 
 include_once "config.php";
 
- function connectDb(){
+function connectDb()
+{
     $servername = SERVERNAME;
     $username = USERNAME;
     $password = PASSWORD;
     $dbname = DATABASE;
-   
+
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
@@ -17,14 +18,13 @@ include_once "config.php";
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         //echo "Connected successfully";
         return $conn;
-    } 
-    catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
+}
 
- }
-
- function crudMain(){
+function crudMain()
+{
 
     // Menu-item   insert
     $txt = "
@@ -39,11 +39,11 @@ include_once "config.php";
 
     //print table
     printCrudTabel($result);
-    
- }
+}
 
- // selecteer de data uit de opgeven table
- function getData($table){
+// selecteer de data uit de opgeven table
+function getData($table)
+{
     // Connect database
     $conn = connectDb();
 
@@ -58,10 +58,11 @@ include_once "config.php";
     $result = $query->fetchAll();
 
     return $result;
- }
+}
 
- // selecteer de rij van de opgeven id uit de table fietsen
- function getRecord($id){
+// selecteer de rij van de opgeven id uit de table fietsen
+function getRecord($id)
+{
     // Connect database
     $conn = connectDb();
 
@@ -73,11 +74,12 @@ include_once "config.php";
     $result = $query->fetch();
 
     return $result;
- }
+}
 
 // Function 'printCrudTabel' print een HTML-table met data uit $result 
 // en een wzg- en -verwijder-knop.
-function printCrudTabel($result){
+function printCrudTabel($result)
+{
     // Zet de hele table in een variable en print hem 1 keer 
     $table = "<table>";
 
@@ -86,8 +88,8 @@ function printCrudTabel($result){
     // haal de kolommen uit de eerste rij [0] van het array $result mbv array_keys
     $headers = array_keys($result[0]);
     $table .= "<tr>";
-    foreach($headers as $header){
-        $table .= "<th>" . $header . "</th>";   
+    foreach ($headers as $header) {
+        $table .= "<th>" . $header . "</th>";
     }
     // Voeg actie kopregel toe
     $table .= "<th colspan=2>Actie</th>";
@@ -95,13 +97,13 @@ function printCrudTabel($result){
 
     // print elke rij
     foreach ($result as $row) {
-        
+
         $table .= "<tr>";
         // print elke kolom
         foreach ($row as $cell) {
-            $table .= "<td>" . $cell . "</td>";  
+            $table .= "<td>" . $cell . "</td>";
         }
-        
+
         // Wijzig knopje
         $table .= "<td>
             <form method='post' action='update.php?id=$row[id]' >       
@@ -116,20 +118,21 @@ function printCrudTabel($result){
 
         $table .= "</tr>";
     }
-    $table.= "</table>";
+    $table .= "</table>";
 
     echo $table;
 }
 
 
-function updateRecord($row){
+function updateRecord($row)
+{
 
     // Maak database connectie
     $conn = connectDb();
 
     // Maak een query 
     $sql = "UPDATE " . CRUD_TABLE .
-    " SET 
+        " SET 
         merk = :merk, 
         type = :type, 
         prijs = :prijs
@@ -140,41 +143,42 @@ function updateRecord($row){
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$row['merk'],
-        ':type'=>$row['type'],
-        ':prijs'=>$row['prijs'],
-        ':id'=>$row['id']
+        ':merk' => $row['merk'],
+        ':type' => $row['type'],
+        ':prijs' => $row['prijs'],
+        ':id' => $row['id']
     ]);
 
     // test of database actie is gelukt
-    $retVal = ($stmt->rowCount() == 1) ? true : false ;
+    $retVal = ($stmt->rowCount() == 1) ? true : false;
     return $retVal;
 }
 
 
-function dropdownCrud(){
+function dropdownCrud()
+{
 
     // Maak database connectie
     connectDb();
 
     // get data
-    $sqlQuery =getData(CRUD_TABLE);
+    $sqlQuery = getData(CRUD_TABLE);
 
+
+
+    $dropdownwithID = "
+        <select name='merk' id='merk'>";
+
+    foreach ($sqlQuery as $rij) {
    
-
-    $dropdownwithID = "<form method='post'>
-        <label for= 'fiets'>Fiets:</label>
-        <select name='fiets' id='fiets'>";
-
-        foreach($sqlQuery as $row){
-            $dropdownwithID .= "<option value='" . $row['merk'] . "'>" . htmlspecialchars($row['merk']) . "</option>";
-        }
-
- return $dropdownwithID;       
-
+        $dropdownwithID .= "<option value='" . $rij['merk'] . "'  >" . htmlspecialchars($rij['merk']) . "</option>";
+    }
+    $dropdownwithID .= "</select><br><br>";
+    return $dropdownwithID;
 }
 
-function insertRecord($post){
+function insertRecord($post)
+{
     // Maak database connectie
     $conn = connectDb();
 
@@ -188,38 +192,38 @@ function insertRecord($post){
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$_POST['merk'],
-        ':type'=>$_POST['type'],
-        ':prijs'=>$_POST['prijs']
+        ':merk' => $_POST['merk'],
+        ':type' => $_POST['type'],
+        ':prijs' => $_POST['prijs']
     ]);
 
-    
+
     // test of database actie is gelukt
-    $retVal = ($stmt->rowCount() == 1) ? true : false ;
-    return $retVal;  
+    $retVal = ($stmt->rowCount() == 1) ? true : false;
+    return $retVal;
 }
 
-function deleteRecord($id){
+function deleteRecord($id)
+{
 
     // Connect database
     $conn = connectDb();
-    
+
     // Maak een query 
     $sql = "
-    DELETE FROM " . CRUD_TABLE . 
-    " WHERE id = :id";
+    DELETE FROM " . CRUD_TABLE .
+        " WHERE id = :id";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
 
     // Uitvoeren
     $stmt->execute([
-    ':id'=>$_GET['id']
+        ':id' => $_GET['id']
     ]);
 
     // test of database actie is gelukt
-    $retVal = ($stmt->rowCount() == 1) ? true : false ;
+    $retVal = ($stmt->rowCount() == 1) ? true : false;
     return $retVal;
 }
-
 ?>

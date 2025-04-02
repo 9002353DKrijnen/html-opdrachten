@@ -35,14 +35,15 @@
   <h2>Wijzig Fiets</h2>
   <form method="post">
     
-    <input type="hidden" id="id" name="id" required value="<?php echo $row['id']; ?>"><br>
+    <input type="hidden" id="merk" name="id" required value="<?php echo $row['id']; ?>"><br>
+    <label for="merk">Merk:</label>
+      <?php echo dropdownCrud(); ?>
     <label for="type">Type:</label>
     <input type="text" id="type" name="type" required value="<?php echo $row['type']; ?>"><br>
 
     <label for="prijs">Prijs:</label>
     <input type="number" id="prijs" name="prijs" required value="<?php echo $row['prijs']; ?>"><br>
-     <?php echo dropdownCrud(); 
-     var_dump($row);?> >
+
     <input type="submit" name="btn_wzg" value="Wijzig">
   </form>
   <br><br>
