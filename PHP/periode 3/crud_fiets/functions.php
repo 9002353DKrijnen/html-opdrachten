@@ -75,13 +75,6 @@ include_once "config.php";
     return $result;
  }
 
- function getData(){
-    // maak verbinding met database
-    $conn = connectDb();
-
-
- }
-
 // Function 'printCrudTabel' print een HTML-table met data uit $result 
 // en een wzg- en -verwijder-knop.
 function printCrudTabel($result){
@@ -156,6 +149,29 @@ function updateRecord($row){
     // test of database actie is gelukt
     $retVal = ($stmt->rowCount() == 1) ? true : false ;
     return $retVal;
+}
+
+
+function dropdownCrud(){
+
+    // Maak database connectie
+    connectDb();
+
+    // get data
+    $sqlQuery =getData(CRUD_TABLE);
+
+   
+
+    $dropdownwithID = "<form method='post'>
+        <label for= 'fiets'>Fiets:</label>
+        <select name='fiets' id='fiets'>";
+
+        foreach($sqlQuery as $row){
+            $dropdownwithID .= "<option value='" . $row['merk'] . "'>" . htmlspecialchars($row['merk']) . "</option>";
+        }
+
+ return $dropdownwithID;       
+
 }
 
 function insertRecord($post){
