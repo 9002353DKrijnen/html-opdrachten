@@ -37,7 +37,7 @@
     
     <input type="hidden" id="merk" name="id" required value="<?php echo $row['id']; ?>"><br>
     <label for="merk">Merk:</label>
-      <?php echo dropdownCrud(); ?>
+      <?= dropdownCrud(); ?>
     <label for="type">Type:</label>
     <input type="text" id="type" name="type" required value="<?php echo $row['type']; ?>"><br>
 

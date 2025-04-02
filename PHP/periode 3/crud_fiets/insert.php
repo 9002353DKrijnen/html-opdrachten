@@ -28,7 +28,7 @@
 
         <label for="prijs">Prijs:</label>
         <input type="number" id="prijs" name="prijs" required><br>
-        <?php echo dropdownCrud(); ?>
+        <?= dropdownCrud(); ?>
         <input type="submit" name="btn_ins" value="Insert">
         </form>
         
