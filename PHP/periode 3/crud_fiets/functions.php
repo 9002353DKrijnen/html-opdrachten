@@ -68,12 +68,19 @@ include_once "config.php";
     // Select data uit de opgegeven table methode prepare
     $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE id = :id";
     $query = $conn->prepare($sql);
-    $query->execute([':id'=>$id]);
+    $query->bindParam(':id', $id);
+    $query->execute();
     $result = $query->fetch();
 
     return $result;
  }
 
+ function getData(){
+    // maak verbinding met database
+    $conn = connectDb();
+
+
+ }
 
 // Function 'printCrudTabel' print een HTML-table met data uit $result 
 // en een wzg- en -verwijder-knop.
