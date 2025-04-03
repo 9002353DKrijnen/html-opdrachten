@@ -164,11 +164,11 @@ function updateRecord($row)
 function dropdownCrud()
 {
 // maak verbinding
-connectDb();
+        connectDb();
     // get data
     $sqlQuery = getData(CRUD_TABLE);
     $dropdownwithID = "
-        <label for='brouwcode' bgcolor='red'>Brouwcode:</label>
+        <label for='brouwcode'>Brouwcode:</label>
         <select name='brouwcode' id='brouwcode'>";
         
 
