@@ -31,11 +31,14 @@
 
         <label for="stijl">stijl:</label>
         <input type="text" id="stijl" name="stijl" required><br">
+        <br><br>
 
         <label for="alcohol">alcohol:</label>
         <input type="text" id="alcohol" name="alcohol" required><br">
         <br>
+        <br>
         <?= dropdownCrud(); ?>
+        <br><br>
         <input type="submit" name="btn_ins" value="Insert">
         </form>
         

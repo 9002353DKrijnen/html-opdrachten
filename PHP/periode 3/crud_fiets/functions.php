@@ -167,9 +167,6 @@ function dropdownCrud()
 connectDb();
     // get data
     $sqlQuery = getData(CRUD_TABLE);
-
-
-
     $dropdownwithID = "
         <label for='brouwcode' bgcolor='red'>Brouwcode:</label>
         <select name='brouwcode' id='brouwcode'>";
