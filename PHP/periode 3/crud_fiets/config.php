@@ -2,11 +2,11 @@
 // auteur: Damien krijnen
 // functie: configuratiebestand
 
-define("DATABASE", "fietsenmaker");
+define("DATABASE", "bieren");
 define("SERVERNAME", "localhost");
 define("USERNAME", "root");
 define("PASSWORD", "");
 
-define("CRUD_TABLE", "fietsen");
+define("CRUD_TABLE", "bier");
 
 ?>

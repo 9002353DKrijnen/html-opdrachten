@@ -9,50 +9,52 @@
 
         // test of update gelukt is
         if(updateRecord($_POST) == true){
-            echo "<script>alert('Fiets is gewijzigd')</script>";
+            echo "<script>alert('Bier is gewijzigd')</script>";
         } else {
-            echo '<script>alert("Fiets is NIET gewijzigd")</script>';
+            echo '<script>alert("Bier is NIET gewijzigd")</script>';
         }
-    }
+   }  
 
     // Test of id is meegegeven in de URL
-    if(isset($_GET['id'])){  
+    if(isset($_GET['biercode'])) {
+      
         // Haal alle info van de betreffende id $_GET['id']
-        $id = $_GET['id'];
-        $row = getRecord($id);
+        $row = getRecord($_GET['biercode']);
     
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Wijzig Fiets</title>
-</head>
-<body>
-  <h2>Wijzig Fiets</h2>
-  <form method="post">
-    
-    <input type="hidden" id="merk" name="id" required value="<?php echo $row['id']; ?>"><br>
-    <label for="merk">Merk:</label>
-      <?= dropdownCrud(); ?>
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type" required value="<?php echo $row['type']; ?>"><br>
+<html>
+    <body>
+        <form method="post">
 
-    <label for="prijs">Prijs:</label>
-    <input type="number" id="prijs" name="prijs" required value="<?php echo $row['prijs']; ?>"><br>
+   
 
-    <input type="submit" name="btn_wzg" value="Wijzig">
-  </form>
-  <br><br>
-  <a href='index.php'>Home</a>
-</body>
+        <label for="naam">Naam:</label>
+        <input type="hidden" name="biercode" id="biercode"  value="<?= $row['biercode']; ?>">
+        
+        <input type="text" id="naam" name="naam" required value="<?= $row['naam']; ?>"><br>
+
+        <label for="soort">soort:</label>
+        <input type="text" id="soort" name="soort" required value="<?= $row['soort']; ?>"><br>
+
+        <label for="stijl">stijl:</label>
+        <input type="text" id="stijl" name="stijl" required value="<?= $row['stijl']; ?>"><br">
+
+        <label for="alcohol">alcohol:</label>
+        <input type="text" id="alcohol" name="alcohol" required value="<?= $row['alcohol']; ?>"><br"> <br>
+        <br>
+        <?= dropdownCrud(); ?>
+        <input type="submit" name="btn_wzg" value="Update">
+        </form>
+        
+        <br><br>
+        <a href='index.php'>Home</a>
+    </body>
 </html>
 
 <?php
     } else {
-        echo "Geen id opgegeven<br>";
+        echo "Geen biercode opgegeven<br>";
     }
+  
 ?>
