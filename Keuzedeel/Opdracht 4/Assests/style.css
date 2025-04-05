@@ -54,6 +54,17 @@ section {
   background-color: #2d8ebb;
 }
 
+.contactImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  gap: 10px;
+}
+.contactImg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 .card2 {
   grid-column: 2/3;
   grid-row: 3;
@@ -64,6 +75,11 @@ section {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .card2 h1 {
@@ -87,6 +103,12 @@ section {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-left: 150px;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card3 h1 {
@@ -258,6 +280,10 @@ footer button {
   .card2 p {
     align-items: center;
     background-color: #2d8ebb;
+  }
+  .contact {
+    flex-direction: row;
+    gap: 10px background-color #5EBBE6;
   }
   .card3 {
     grid-column: 1/2;
