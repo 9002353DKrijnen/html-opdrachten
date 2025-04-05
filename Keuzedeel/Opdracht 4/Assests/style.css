@@ -6,7 +6,7 @@
   font-family: "Inspiration", cursive;
   font-weight: 500;
   font-style: normal;
-  font-size: xx-large;
+  font-size: large;
 }
 
 header {
@@ -45,7 +45,7 @@ section {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .card1 h1 {
-  color: #09b9ff;
+  color: white;
   align-items: left;
   background-color: #2d8ebb;
 }
@@ -83,7 +83,7 @@ section {
 }
 
 .card2 h1 {
-  color: #09b9ff;
+  color: white;
   align-items: left;
   background-color: #2d8ebb;
 }
@@ -103,6 +103,8 @@ section {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-left: 150px;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact {
@@ -112,7 +114,7 @@ section {
 }
 
 .card3 h1 {
-  color: #09b9ff;
+  color: white;
   align-items: left;
   background-color: #2d8ebb;
 }
@@ -216,7 +218,7 @@ footer button {
     font-family: "Inspiration", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: large;
+    font-size: small;
   }
   html {
     min-height: 100vh;
@@ -255,7 +257,7 @@ footer button {
     flex-direction: column;
   }
   .card1 h1 {
-    color: #09b9ff;
+    color: white;
     align-items: left;
     background-color: #2d8ebb;
   }
@@ -273,7 +275,7 @@ footer button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   .card2 h1 {
-    color: #09b9ff;
+    color: white;
     align-items: left;
     background-color: #2d8ebb;
   }
@@ -295,7 +297,7 @@ footer button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   .card3 h1 {
-    color: #09b9ff;
+    color: white;
     align-items: left;
     background-color: #2d8ebb;
   }
@@ -422,7 +424,7 @@ footer button {
     transform: translateX(-50px);
   }
   .card1 h1 {
-    color: #09b9ff;
+    color: white;
     align-items: left;
   }
   .card1 p {
