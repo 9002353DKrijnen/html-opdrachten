@@ -20,4 +20,13 @@ align-items: center;}
 
 
 </style>";
+echo " <br><br><form action='' method='post'>
+        <input type='hidden' id='update' name='update'>
+        <input type='submit' value='update' name='submit'>
+    </form>";
+
+if (isset($_POST['submit'])) {
+  echo "<script>alert('Uw internetgedrag zal voor altijd worden gevolgd ');</script>";
+  updateUsage();
+}
 ?>
