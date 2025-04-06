@@ -125,3 +125,42 @@ function determineDatabase($dbname)
     }
 }
 
+// opdracht 4 luidt uitbrieding op het cijfer systeem
+// onderaan deze tabel moeten we een gemiddelde cijfer, hoogste en laagste cijfer laten zien.
+// Vanwege de vorige opdrachten die totaal niet gerelanteerd zijn aan deze,
+// kies ik ervoor om de tabel hier te printen en daarmee de opdracht aan te vullen met deze:
+
+function printPupills(){
+    $conn = determineDatabase('cijfers');
+    $sqlQuery = $conn->prepare("SELECT * FROM leerlingencijfers");
+    $sqlQuery->execute();
+    $result = $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table border='1'>";
+    echo "<th>Leerling</th>";
+    echo "<th>Cijfer</th>";
+   foreach ($result as $row) {
+        echo "<tr>";
+        echo "<td>" . $row['leerling'] . "</td>";
+        echo "<td>" . $row['cijfer'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    //gemiddelde cijfer laten zien
+
+    $sqlQuery = $conn->prepare("SELECT AVG(cijfer) as gemiddelde FROM leerlingencijfers");
+    $sqlQuery->execute();
+    $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+    echo "<br> Gemiddelde cijfer: " . $result['gemiddelde'];
+
+    // hoogste cijfer laten zien
+    $sqlQuery = $conn->prepare("SELECT MAX(cijfer) as hoogste FROM leerlingencijfers");
+    $sqlQuery->execute();
+    $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+    echo "<br> Hoogste cijfer: " . $result['hoogste'];
+
+    // laagste cijfer laten zien
+    $sqlQuery = $conn->prepare("SELECT MIN(cijfer) as laagste FROM leerlingencijfers");
+    $sqlQuery->execute();
+    $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+    echo "<br> Laagste cijfer: " . $result['laagste'];
+}

@@ -29,4 +29,6 @@ if (isset($_POST['submit'])) {
   echo "<script>alert('Uw internetgedrag zal voor altijd worden gevolgd ');</script>";
   updateUsage();
 }
+
+printPupills();
 ?>
