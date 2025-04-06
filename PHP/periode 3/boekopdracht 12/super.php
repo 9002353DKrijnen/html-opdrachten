@@ -4,7 +4,9 @@
 // bestandsnaam: super.php
 
 
-// opdracht 
+// opdracht willekeurige wachtwoord van 10 tekens:  
 
+include 'functions.php';
 
+echo "uw wachtwoord =" . generateRandomPassword(10);
 ?>
