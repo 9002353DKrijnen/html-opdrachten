@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 404 foutpagina -->
+    <section class="errorBox">
+        <p class="errorMessage">Error 404
+            <br>
+            U zult  over 8 seconden terug naar de homepage worden doorgestuurd.
+        </p>
+    </section>
+
+
+    <script>
+
+        // na 8 seconden teruggestuurd naar index.html
+        window.onload = function () {
+         let amountToWait = 8000
+            setInterval(function () {
+                window.location.href = "index.html";
+            }, 8000);
+            return 
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .errorBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            width: 900px;
+            border: solid 10px;
+            border-color: rgb(16, 255, 255);
+            box-shadow: cornflowerblue 0px 0px 50px;
+
+        }
+
+        .errorBox p {
+            white-space: wrap;
+            font-size: 50px;
+            color: white;
+        }
+    </style>
+</body>
+
+</html>

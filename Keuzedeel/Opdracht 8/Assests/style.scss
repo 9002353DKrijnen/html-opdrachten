@@ -1,0 +1,604 @@
+$background-color: #5EBBE6;
+$pcolor: white;
+$font-style: normal;
+$align-center: center;
+$font-style: normal;
+$font-family: "Inspiration", cursive;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $background-color;
+    font-family: $font-family;
+    font-weight: 500;
+    font-style: $font-style;
+    font-size: large;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 30px;
+    width: 100%;
+    transform: scale(1.4);
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    align-items: start;
+    justify-items: center;
+}
+
+.card1 {
+    grid-column: 1 / 2;
+    grid-row: 2;
+    width: 800px;
+    height: 200px;
+    background-color: #2d8ebb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 150px;
+    margin-top: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        h1{
+        color: $pcolor;
+        align-items: left;
+        background-color: #2d8ebb;
+        }
+        p{
+        align-items: $align-center;
+        background-color: #2d8ebb;
+        }
+    }
+
+.contactImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    gap: 10px;
+    &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+}
+
+.card2 {
+    grid-column: 2 / 3;
+    grid-row: 3;
+    width: 850px;
+    height: 200px;
+    margin-right: 40px;
+    background-color: #2d8ebb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.card2 h1 {
+    color: $pcolor;
+    align-items: left;
+    background-color: #2d8ebb;
+}
+
+.card2 p {
+    align-items: center;
+    background-color: #2d8ebb;
+}
+
+.card3 {
+    grid-column: 1 / 2;
+    grid-row: 4;
+    width: 800px;
+    height: 200px;
+    background-color: #2d8ebb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    text-wrap: wrap;
+
+}
+.card3 > p, h1 {
+    display: flex;
+
+}
+
+
+.contact{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.card3 h1 {
+    color: $pcolor;
+    align-items: left;
+    background-color: #2d8ebb;
+}
+
+.card3 p {
+    align-items: center;
+    background-color: #2d8ebb;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". . . . . ."
+        ". . text text . ."
+        ". name name message message ."
+        ". email email message message ."
+        ". . . . . ."
+        ". . . . button button";
+    gap: 0px 0px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 94%;
+    height: 500px;
+    background-color: #2d8ebb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+footer > p, input, button{
+    display: flex;
+}
+
+.name {
+    grid-area: name;
+}
+
+.email {
+    grid-area: email;
+}
+
+.message {
+    grid-area: message;
+}
+
+.text {
+    grid-area: text;
+}
+
+.button {
+    grid-area: button;
+}
+
+footer p,
+footer h1 {
+    color: black;
+    align-items: center;
+    background-color: #2d8ebb;
+}
+
+footer button {
+    background-color: #D9D9D9;
+    align-items: left;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    width: 70%;
+    align-self: flex-end;
+
+}
+
+.name,
+.email {
+    background-color: #D9D9D9;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 75%;
+    height: 20px;
+    align-self: baseline;
+
+
+}
+
+.message {
+    background-color: #D9D9D9;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    width: 75%;
+    height: 135px;
+    align-self: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+/* tablet */
+@media screen and (min-width: 800px) and (max-width: 1300px) {
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #5EBBE6;
+        font-family: "Inspiration", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: small;
+    }
+
+    html {
+        min-height: 100vh;
+    }
+
+    header {
+        display: flex;
+        top: 10px;
+        width: 100%;
+        padding: 20px;
+    }
+
+    header img {
+        width: auto;
+        height: auto;
+        transform: scale(0.8);
+    }
+
+    section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        align-items: start;
+        justify-content: left;
+        transform: translateX(-75px);
+    }
+    section > article{
+        display: flex;
+    }
+
+    .card1 {
+        grid-column: 1 / 2;
+        grid-row: 2;
+        width: 500px;
+        height: 225px;
+        background-color: #2d8ebb;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card1 h1 {
+        color: $pcolor;
+        align-items: left;
+        background-color: #2d8ebb;
+    }
+
+    .card1 p {
+        align-items: center;
+        background-color: #2d8ebb;
+    }
+
+    .card2 {
+        grid-column: 2 / 2;
+        grid-row: 3;
+        width: 500px;
+        height: 225px;
+        background-color: #2d8ebb;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card2 h1 {
+        color: $pcolor;
+        align-items: left;
+        background-color: #2d8ebb;
+    }
+
+    .card2 p {
+        align-items: center;
+        background-color: #2d8ebb;
+    }
+.contact{
+    flex-direction: row;
+    gap: 10px
+    background-color $background-color;
+}
+
+    .card3 {
+        grid-column: 1 / 2;
+        grid-row: 4;
+        width: 500px;
+        height: 225px;
+        background-color: #2d8ebb;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card3 h1 {
+        color: $pcolor;
+        align-items: left;
+        background-color: #2d8ebb;
+    }
+
+    .card3 p {
+        align-items: center;
+        background-color: #2d8ebb;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            ". . . . . ."
+            ". . text text . ."
+            ". name name message message ."
+            ". email email message message ."
+            ". . . . . ."
+            ". . . . button button";
+        margin-top: 20px;
+        margin-left: 50px;
+        margin-bottom: 20px;
+        width: 94%;
+        height: 500px;
+        background-color: #2d8ebb;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .name {
+        grid-area: name;
+    }
+
+    .email {
+        grid-area: email;
+    }
+
+    .message {
+        grid-area: message;
+    }
+
+    .text {
+        grid-area: text;
+    }
+
+    .button {
+        grid-area: button;
+    }
+
+    footer p,
+    footer h1 {
+        color: black;
+        align-items: center;
+        background-color: #2d8ebb;
+    }
+
+    footer button {
+        background-color: #D9D9D9;
+        align-items: left;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+        width: 300px;
+        align-self: flex-end;
+
+    }
+
+    .name,
+    .email {
+        background-color: #D9D9D9;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        width: 300px;
+        height: 20px;
+        align-self: baseline;
+
+
+    }
+
+    .message {
+        background-color: #D9D9D9;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 50px;
+        width: 300px;
+        height: 135px;
+        align-self: flex-end;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+    }
+
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #5EBBE6;
+        font-family: "Inspiration", cursive;
+        font-weight: 400;
+        font-size: small;
+    }
+
+
+    header {
+        display: flex;
+        top: 10px;
+        width: 100%;
+        z-index: 10;
+        position: relative;
+    }
+
+    header img {
+        width: auto;
+        height: auto;
+        transform: scale(0.55);
+        border-radius: 90px;
+
+    }
+
+    
+    section {
+        z-index: 0;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            ". . . . . . . . ."
+            ". . . . . . . . ."
+            ". card1 card1 . . . card2 card2 ."
+            ". card1 card1 . . . card2 card2 ."
+            ". . . . . . . . ."
+            ". card3 card3 card3 card3 card3 card3 card3 ."
+            ". card3 card3 card3 card3 card3 card3 card3 ."
+            ". . . . . . . . .";
+        transform: translateY(-150px);
+        align-items: start;
+    justify-items: center;
+    white-space: wrap;
+
+        
+    }
+
+    .card1 {
+        grid-area: card1;
+    }
+
+    .card3 {
+        grid-area: card3;
+    }
+
+    .card2 {
+        grid-area: card2;
+    }
+
+    .card1 {
+        width: 175%;
+        height: 75%;
+        border-radius: 70px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(20px);
+    }
+
+    .card1 h1 {
+        color: $pcolor;
+        align-items: left;
+      
+    }
+
+    .card1 p {
+        align-items: center;
+        font-size: smaller;
+
+      
+    }
+
+    .card2 {
+
+        width: 175%;
+        height: 75%;
+        border-radius: 70px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(30px);
+
+    }
+
+    .card2 h1 {
+        color: #09b9ff;
+        align-items: left;
+        white-space: wrap;
+    }
+
+    .card2 p {
+        align-items: center;
+        font-size: smaller;
+    }
+
+    .card3 {
+        border-radius: 60px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateX(-80px);
+        display: flex;
+        width: 90%;
+        position: relative;
+        p{
+        white-space: normal;
+        font-size: smaller;
+
+        }
+    }
+
+
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(-20px) translateY(-220px);
+        
+
+    }
+
+    footer button {
+        background-color: #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+        width: 300px;
+        align-self: center;
+
+
+    }
+
+    .name,
+    .email {
+        background-color: #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        height: 20px;
+        align-self: center;
+
+
+    }
+
+    .message {
+        background-color: #D9D9D9;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 50px;
+        width: 300px;
+        height: 135px;
+        align-self: center;
+
+
+    }
+
+}

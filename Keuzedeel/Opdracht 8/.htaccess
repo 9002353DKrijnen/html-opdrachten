@@ -1,0 +1,7 @@
+
+#ErrorDocument 404 foutpagina.html
+#werkt niet het heeft de volledige locatie nodig:
+ErrorDocument 404 /html-opdrachten/Keuzedeel/opdracht%206/foutpagina.html
+
+Options -Indexes
+
