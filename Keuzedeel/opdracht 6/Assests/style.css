@@ -112,15 +112,6 @@ section {
   display: flex;
 }
 
-@media screen and (max-width: 926px) {
-  #werkervaring {
-    display: flex;
-    width: 110%;
-  }
-  #werkervaring p {
-    white-space: normal;
-  }
-}
 .contact {
   display: flex;
   justify-content: center;
