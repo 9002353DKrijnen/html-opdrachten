@@ -230,7 +230,7 @@ footer button {
 
 }
 /* tablet */
-@media screen and (min-width: 500px) and (max-width: 1300px) {
+@media screen and (min-width: 800px) and (max-width: 1300px) {
 
     * {
         margin: 0;
@@ -432,7 +432,7 @@ footer button {
 
 }
 
-@media screen and (min-width: 500px) and (max-width: 1000px) {
+@media screen and (min-width: 800px) and (max-width: 1000px) {
     * {
         margin: 0;
         padding: 0;
@@ -440,20 +440,9 @@ footer button {
         background-color: #5EBBE6;
         font-family: "Inspiration", cursive;
         font-weight: 400;
-        font-style: normal;
+        font-size: small;
     }
 
-    #werkervaring{
-        // flexibele houding
-        display: flex;
-        width: 90%;
-        position: relative;
-        p{
-        // meelopen van de tekst
-        white-space: normal;
-        }
-     }
-   
 
     header {
         display: flex;
@@ -491,6 +480,8 @@ footer button {
         transform: translateY(-150px);
         align-items: start;
     justify-items: center;
+    white-space: wrap;
+
         
     }
 
@@ -508,7 +499,7 @@ footer button {
 
     .card1 {
         width: 175%;
-        height: 180px;
+        height: 75%;
         border-radius: 70px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transform: translateY(20px);
@@ -522,33 +513,44 @@ footer button {
 
     .card1 p {
         align-items: center;
+        font-size: smaller;
+
       
     }
 
     .card2 {
 
-        width: 345px;
-        height: 180px;
+        width: 175%;
+        height: 75%;
         border-radius: 70px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transform: translateY(30px);
+
     }
 
     .card2 h1 {
         color: #09b9ff;
         align-items: left;
+        white-space: wrap;
     }
 
     .card2 p {
         align-items: center;
+        font-size: smaller;
     }
 
     .card3 {
-        width: 900px;
-        height: 180px;
         border-radius: 60px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transform: translateX(-80px);
+        display: flex;
+        width: 90%;
+        position: relative;
+        p{
+        white-space: normal;
+        font-size: smaller;
+
+        }
     }
 
 
@@ -559,6 +561,7 @@ footer button {
         justify-content: center;
         align-items: center;
         transform: translateX(-20px) translateY(-220px);
+        
 
     }
 
