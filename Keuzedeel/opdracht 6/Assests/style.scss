@@ -439,3 +439,157 @@ footer button {
     }
 
 }
+
+@media screen and (min-width: 500px) and (max-width: 1000px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #5EBBE6;
+        font-family: "Inspiration", cursive;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+
+
+    header {
+        display: flex;
+        top: 10px;
+        width: 100%;
+        z-index: 10;
+        position: relative;
+    }
+
+    header img {
+        width: auto;
+        height: auto;
+        transform: scale(0.55);
+        border-radius: 90px;
+
+    }
+
+    
+    section {
+        z-index: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            ". . . . . . . . ."
+            ". . . . . . . . ."
+            ". card1 card1 . . . card2 card2 ."
+            ". card1 card1 . . . card2 card2 ."
+            ". . . . . . . . ."
+            ". card3 card3 card3 card3 card3 card3 card3 ."
+            ". card3 card3 card3 card3 card3 card3 card3 ."
+            ". . . . . . . . .";
+        transform: translateY(-150px);
+    }
+
+    .card1 {
+        grid-area: card1;
+    }
+
+    .card3 {
+        grid-area: card3;
+    }
+
+    .card2 {
+        grid-area: card2;
+    }
+
+    .card1 {
+        width: 345px;
+        height: 180px;
+        border-radius: 70px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-right: 20px;
+        transform: translateX(-50px);
+    }
+
+    .card1 h1 {
+        color: $pcolor;
+        align-items: left;
+      
+    }
+
+    .card1 p {
+        align-items: center;
+      
+    }
+
+    .card2 {
+
+        width: 345px;
+        height: 180px;
+        border-radius: 70px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(10px);
+    }
+
+    .card2 h1 {
+        color: #09b9ff;
+        align-items: left;
+    }
+
+    .card2 p {
+        align-items: center;
+    }
+
+    .card3 {
+        width: 900px;
+        height: 180px;
+        border-radius: 60px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateX(-80px);
+    }
+
+
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(-20px) translateY(-220px);
+
+    }
+
+    footer button {
+        background-color: #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+        width: 300px;
+        align-self: center;
+
+
+    }
+
+    .name,
+    .email {
+        background-color: #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        height: 20px;
+        align-self: center;
+
+
+    }
+
+    .message {
+        background-color: #D9D9D9;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 50px;
+        width: 300px;
+        height: 135px;
+        align-self: center;
+
+
+    }
+}
