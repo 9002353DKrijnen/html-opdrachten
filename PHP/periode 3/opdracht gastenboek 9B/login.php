@@ -40,7 +40,6 @@ $loggedIn = false;
 if(isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     // met databse verbinden om te kijken of de gebruiker bestaat + juist wachtwoord
-$conn = dbSelect('gastenboek');
+    login($username, $password);
 }

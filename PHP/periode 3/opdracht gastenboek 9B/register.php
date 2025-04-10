@@ -57,9 +57,11 @@ if (isset($_POST['submit'])) {
 
         $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
 
-
-
         registerUser($email, $username, $password, $isAdmin);
+
+        // na registratie wordt de gebruiker omgeleid naan de login pagina
+
+        header("Location: login.php");
     }
 }
 ?>

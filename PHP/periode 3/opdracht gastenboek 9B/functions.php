@@ -150,4 +150,9 @@ function registerUser($email, $username, $password, $isAdmin)
     // sqlQuery uitvoeren
     $sqlQuery->execute();
 }
+
+
+function login($username, $password){
+    
+}
 ?>
