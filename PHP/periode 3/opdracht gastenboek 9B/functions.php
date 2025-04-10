@@ -153,6 +153,34 @@ function registerUser($email, $username, $password, $isAdmin)
 
 
 function login($username, $password){
+    // verbinding maken met database
+    $conn = dbSelect('gastenboek');
+
+    // sqlQuery maken (zo noemen we ook de variabele)
+    $sqlQuery = $conn->prepare("SELECT * FROM gebruikers WHERE gebruikersnaam = :gebruikersnaam");
+
+    // bind paramater
+    $sqlQuery->bindParam(':gebruikersnaam', $username);
+
+    // sqlQuery uitvoeren
+    $sqlQuery->execute();
+
+    // controleer of er een gebruiker is gevonden met rijen optellen (1 gevonden is 1 rij, dus hoger dan nul)
+    $sqlQuery->rowCount() > 0 ? 
+       $user = $sqlQuery->fetch(PDO::FETCH_ASSOC) : 
+       $user = false;
     
+       // als er een gebruiker is gevonden, check wachtwoord
+       if($user && password_verify($password, $user['wachtwoord'])){
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['gebruikersnaam'] = $user['gebruikersnaam'];
+        if($user['is_admin'] == 1){
+            $_SESSION['isAdmin'] = true;
+        }
+       } else {
+        echo "Gebruikersnaam of wachtwoord onjuist";
+        $_SESSION['loggedIn'] = false;
+        return;
+       }
 }
 ?>
