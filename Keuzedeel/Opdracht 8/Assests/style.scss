@@ -59,6 +59,7 @@ section {
         align-items: $align-center;
         background-color: #2d8ebb;
         }
+
     }
 
 .contactImg {
@@ -70,6 +71,9 @@ section {
         transform: scale(1.2);
         cursor: pointer;
     }
+}
+.contactLink{
+    background-color: #2d8ebb;
 }
 
 .card2 {
