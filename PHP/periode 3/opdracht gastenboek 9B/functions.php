@@ -4,9 +4,7 @@ function dbSelect($dbname = 'default')
     require 'profile.php';
     // Kijken of database bestaat, met errorverwerking wanneer dat niet het geval is 
 
-    if (!isset($database[$dbname])) {
-        die("Database $dbname niet gevonden");
-    }
+   
     // stel $db in zodat we de juiste database kunnen gebruiken 
     $db = $database[$dbname];
 
@@ -124,5 +122,32 @@ function deletePost()
         $sqlQuery->execute();
         header("Location: winniedepooh.php");
     }
+}
+
+
+
+function registerUser($email, $username, $password, $isAdmin)
+{
+    // verbinding maken met database middel de dbSelect functie 
+    $conn = dbSelect('gastenboek');
+
+    // sqlQuery maken (zo noemen we ook de variabele)
+    $sqlQuery = $conn->prepare(
+        "INSERT INTO gebruikers (email, gebruikersnaam, wachtwoord, is_admin) 
+        VALUES (:email, :gebruikersnaam, :wachtwoord, :is_admin)"
+    );
+
+    // wachtwoord hashen
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // binden van de parameters
+    $sqlQuery->bindParam(':email', $email);
+    $sqlQuery->bindParam(':gebruikersnaam', $username);
+    $sqlQuery->bindParam(':wachtwoord', $password);
+    $sqlQuery->bindParam(':is_admin', $isAdmin);
+
+
+    // sqlQuery uitvoeren
+    $sqlQuery->execute();
 }
 ?>
