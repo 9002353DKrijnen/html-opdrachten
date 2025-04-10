@@ -1,4 +1,6 @@
 <?php
+
+
 function dbSelect($dbname = 'default')
 {
     require 'profile.php';
@@ -79,6 +81,10 @@ function insertPost()
 
 function printPosts()
 {
+// ff kijken of de gebruiker admin is
+
+    $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
+
     $conn = dbSelect('gastenboek');
     $sqlQuery = $conn->prepare("SELECT * FROM gastenboek");
     $sqlQuery->execute();
@@ -88,11 +94,13 @@ function printPosts()
         echo "<h3>" . $post['naam'] . "</h3>";
         echo "<p>" . $post['bericht'] . "</p>";
         echo "<p>" . $post['datumtijd'] . "</p>";
+        if($isAdmin){
         echo " <form action='michaeljackson.php' method='get'>
             <input type='hidden' name='id' value='$post[id]'>
             <input type='submit' value='Verwijderen'>
          </form>";
         echo "</div>";
+        }
         $style = '
         <style>
             * {
@@ -115,6 +123,8 @@ function printPosts()
 }
 function deletePost()
 {
+require 'login.php';
+
     if (isset($_GET['id'])) {
         $conn = dbSelect('gastenboek');
         $sqlQuery = $conn->prepare("DELETE FROM gastenboek WHERE id = :id");
@@ -172,10 +182,19 @@ function login($username, $password){
     
        // als er een gebruiker is gevonden, check wachtwoord
        if($user && password_verify($password, $user['wachtwoord'])){
+
+
         $_SESSION['loggedIn'] = true;
         $_SESSION['gebruikersnaam'] = $user['gebruikersnaam'];
+        echo "Gebruiker " . $user['gebruikersnaam'] . " is ingelogd";
+
+
+        // als de gebruiker admin is, zet de sessie variabele op true(1 in dit geval)
         if($user['is_admin'] == 1){
             $_SESSION['isAdmin'] = true;
+            echo " <br> <p>U bent admin</p>";
+        } else {
+            $_SESSION['isAdmin'] = false;
         }
        } else {
         echo "Gebruikersnaam of wachtwoord onjuist";

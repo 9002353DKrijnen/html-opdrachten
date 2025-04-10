@@ -1,6 +1,10 @@
 <?php
-session_start();
-require 'functions.php';
+
+// als er geen sessie is geopend, start een sessie
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'functions.php';
 $loggedIn = false;
 
 ?>
@@ -42,4 +46,8 @@ if(isset($_POST['submit'])) {
     $password = $_POST['password'];
     // met databse verbinden om te kijken of de gebruiker bestaat + juist wachtwoord
     login($username, $password);
+
+    if($_SESSION['loggedIn'] == true) {
+        header("refresh:5; url=winniedepooh.php");
+    }
 }
