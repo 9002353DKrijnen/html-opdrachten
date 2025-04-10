@@ -65,10 +65,6 @@ section {
   cursor: pointer;
 }
 
-.contactLink {
-  background-color: #2d8ebb;
-}
-
 .card2 {
   grid-column: 2/3;
   grid-row: 3;
@@ -84,6 +80,9 @@ section {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+.card2 a {
+  background-color: #2d8ebb;
 }
 
 .card2 h1 {
