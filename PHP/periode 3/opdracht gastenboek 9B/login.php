@@ -49,5 +49,8 @@ if(isset($_POST['submit'])) {
 
     if($_SESSION['loggedIn'] == true) {
         header("refresh:5; url=winniedepooh.php");
+        $loggedIn = true;
+        $_SESSION['loggedIn'] = $loggedIn;
+        
     }
 }

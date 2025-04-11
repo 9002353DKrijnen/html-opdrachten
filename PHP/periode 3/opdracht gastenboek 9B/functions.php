@@ -84,7 +84,6 @@ function printPosts()
 // ff kijken of de gebruiker admin is
 
     $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
-
     $conn = dbSelect('gastenboek');
     $sqlQuery = $conn->prepare("SELECT * FROM gastenboek");
     $sqlQuery->execute();
@@ -99,7 +98,12 @@ function printPosts()
             <input type='hidden' name='id' value='$post[id]'>
             <input type='submit' value='Verwijderen'>
          </form>";
+        echo " <form action='update.php' method='get'>
+         <input type='hidden' name='id' value='$post[id]'>
+         <input type='submit' value='Wijzigen'>
+      </form>";
         echo "</div>";
+        
         }
         $style = '
         <style>
