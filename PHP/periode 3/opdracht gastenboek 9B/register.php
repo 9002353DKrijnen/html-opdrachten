@@ -46,7 +46,7 @@ require_once 'functions.php';
 
 <?php
 
-// na klikken op submit worden er variabelen uitgedeeld
+// na klikken op submit worden er variabelen toegewezen
 if (isset($_POST['submit'])) {
     if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
         $email = $_POST['email'];
