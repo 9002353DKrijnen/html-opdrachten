@@ -1,11 +1,10 @@
 <?php
-function dbSelect($dbname = 'default')
+function dbSelect($database = 'default')
 {
     require 'profile.php';
     // stel $db in zodat we de juiste database kunnen gebruiken 
-    $db = $database[$dbname];
 
-    $dsn = "mysql:host=$host;dbname={$db['dbname']}";
+    $dsn = "mysql:host=$host;dbname={$database}";
 
 
     // Maak verbinding met database
@@ -17,4 +16,19 @@ function dbSelect($dbname = 'default')
     }
 }
 
+
+
+function getTeacher(){
+    $conn = dbSelect('ziek');
+    $sqlQuery = "SELECT naam FROM docent";
+    $stmt = $conn->prepare($sqlQuery);
+    $stmt->execute();
+   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+
+
+    foreach($result as $dropdownResult){
+    echo '<option value = "' . htmlspecialchars($dropdownResult['naam']) . '" >' . htmlspecialchars($dropdownResult['naam']) . '</option>';
+    }
+}
 ?>
