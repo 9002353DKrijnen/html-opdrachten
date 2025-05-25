@@ -9,11 +9,10 @@ include 'functions.php';
     <select name="student" id="student" required>
         <?= getStudent(); ?>
     </select>
-    <input type="textarea" name="message" placeholder="message" required>
     <select name="reason" id="reason">
     <option value="sick" selected="selected">Ziek</option>
     <option value="marriage">Trouwerij</option>
-    <option value="doctor">Dokter of andere instatie</option>
+    <option value="doctor">Dokter of andere instantie</option>
     </select>
     <input type="submit" name="submit" value="submit">
 </form>
@@ -48,7 +47,7 @@ include 'functions.php';
 if(isset($_POST['submit'])){
     $teacher = $_POST['name'];
     $student = $_POST['student'];
-    $message = $_POST['message'];
+    $date = date('Y-m-d');
     $reason = $_POST['reason'];
     
 
@@ -58,8 +57,16 @@ if(isset($_POST['submit'])){
     // test verbinding
     $conn = dbSelect('ziek');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sqlQuery = "INSERT INTO reden (leerling_id, docent_id, omschrijving, datum) 
+    VALUES (:leerling_id, :docent_id, :omschrijving, :datum)";
+    $stmt = $conn->prepare($sqlQuery);
+    $stmt->bindParam(':leerling_id', $student);
+    $stmt->bindParam(':docent_id', $teacher);
+    $stmt->bindParam(':datum', $date);
+    $stmt->bindParam(':omschrijving', $reason);
+    $stmt->execute();	
  
 
-    exit;
-
+    
 }

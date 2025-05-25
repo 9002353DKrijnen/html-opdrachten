@@ -20,7 +20,7 @@ function dbSelect($database = 'default')
 
 function getTeacher(){
     $conn = dbSelect('ziek');
-    $sqlQuery = "SELECT naam FROM docent";
+    $sqlQuery = "SELECT * FROM docent";
     $stmt = $conn->prepare($sqlQuery);
     $stmt->execute();
    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,13 +28,13 @@ function getTeacher(){
 
 
     foreach($result as $dropdownResult){
-    echo '<option value = "' . htmlspecialchars($dropdownResult['naam']) . '" >' . htmlspecialchars($dropdownResult['naam']) . '</option>';
+    echo '<option value = "' . htmlspecialchars($dropdownResult['docent_id']) . '" >' . htmlspecialchars($dropdownResult['naam']) . '</option>';
     }
 }
 
 function getStudent(){
     $conn = dbSelect('ziek');
-    $sqlQuery = "SELECT naam, klas FROM leerling";
+    $sqlQuery = "SELECT * FROM leerling";
     $stmt = $conn->prepare($sqlQuery);
     $stmt->execute();
    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ function getStudent(){
 
 
     foreach($result as $dropdownResult){
-    echo '<option value = "' . htmlspecialchars($dropdownResult['naam']) . '" >' . htmlspecialchars($dropdownResult['naam']) . ' ' . htmlspecialchars($dropdownResult['klas']) . '</option>';
+    echo '<option value = "' . htmlspecialchars($dropdownResult['leerling_id']) . '" >' . htmlspecialchars($dropdownResult['naam']) . ' ' . htmlspecialchars($dropdownResult['klas']) . '</option>';
     }
 }
 ?>
