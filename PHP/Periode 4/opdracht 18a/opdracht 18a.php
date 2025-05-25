@@ -6,7 +6,9 @@ include 'functions.php';
     <select name="name" id="name" required>
         <?= getTeacher(); ?>
     </select>
-    <input type="text" name="student" placeholder="student" required>
+    <select name="student" id="student" required>
+        <?= getStudent(); ?>
+    </select>
     <input type="textarea" name="message" placeholder="message" required>
     <select name="reason" id="reason">
     <option value="sick" selected="selected">Ziek</option>
@@ -32,6 +34,13 @@ include 'functions.php';
         align-items: center;
         justify-content: center;
         height: 100vh;
+    }
+    form input , select , option {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        
     }
 </style>
 

@@ -31,4 +31,18 @@ function getTeacher(){
     echo '<option value = "' . htmlspecialchars($dropdownResult['naam']) . '" >' . htmlspecialchars($dropdownResult['naam']) . '</option>';
     }
 }
+
+function getStudent(){
+    $conn = dbSelect('ziek');
+    $sqlQuery = "SELECT naam, klas FROM leerling";
+    $stmt = $conn->prepare($sqlQuery);
+    $stmt->execute();
+   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+
+
+    foreach($result as $dropdownResult){
+    echo '<option value = "' . htmlspecialchars($dropdownResult['naam']) . '" >' . htmlspecialchars($dropdownResult['naam']) . ' ' . htmlspecialchars($dropdownResult['klas']) . '</option>';
+    }
+}
 ?>
