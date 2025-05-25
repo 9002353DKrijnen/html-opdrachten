@@ -1,4 +1,6 @@
 <?php
+// damien krijnen
+// 9002353
 include 'functions.php';
 ?>
 <form action="" method="post">
@@ -109,7 +111,6 @@ if (isset($_POST['submit'])) {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     echo "<script>alert('Uw melding is verstuurd.')</script>";
-    sleep(4);
 
     $sqlQuery = "INSERT INTO reden (leerling_id, docent_id, omschrijving, datum) 
     VALUES (:leerling_id, :docent_id, :omschrijving, :datum)";
