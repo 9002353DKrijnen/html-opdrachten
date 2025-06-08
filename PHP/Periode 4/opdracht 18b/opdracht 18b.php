@@ -4,21 +4,22 @@
 include 'functions.php';
 ?>
 <form action="" method="post">
-    <input type="submit" name="show" value="Overzicht Ziekmeldingen">
+    <input type="submit" name="show" value="Overzicht nieuwsberichten">
 </form>
 <?php 
 
 if(isset($_POST['show'])){
-    // verwijder (deel opdracht) alle records die ouder dan 'n dag zijn.
-    $conn = dbSelect('ziek');
-    $sqlQuery = "DELETE FROM reden WHERE datum < DATE_SUB(NOW(), INTERVAL 1 DAY)";
+    
+    $conn = dbSelect('nieuws');
+    var_dump($conn);
+    $sqlQuery = "DELETE FROM nieuws WHERE datum < DATE_SUB(NOW(), INTERVAL 1 DAY)";
     $runArgument = $conn->prepare($sqlQuery);
     $runArgument->execute();
 
     if ($runArgument->rowCount() > 0) {
         echo "<p> Oude meldingen zijn verwijderd. </p>";
     }
-    $sqlQuery = "SELECT leerling.naam AS leerling, reden.datum, reden.omschrijving , docent.naam as docent, docent.vak as vak FROM reden INNER JOIN leerling ON reden.leerling_id = leerling.leerling_id INNER JOIN docent ON reden.docent_id = docent.docent_id;";
+    $sqlQuery = "SELECT * from nieuws";
     $stmt = $conn->prepare($sqlQuery);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
