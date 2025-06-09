@@ -15,6 +15,8 @@ function dbSelect($database = 'default')
         die("Connection failed: " . $e->getMessage());
     }
 }
+
+session_start();
   /* Casus 3: Statistiekensysteem
 Maak casus 3 het statistiekensysteem van paragraaf 10.2 Casussen
 
@@ -52,4 +54,43 @@ Stappenplan
             browser (varchar(100))
             datum_tijd (datetime)
             referer (varchar(255))
+            (Done)
  */
+
+ // spam is gebruikt bij http_referer dus we gebruiken met sessies (session[HTTP_REFERER])
+// $ipadres = gethostbyname(gethostname()); doen we niet. Is server IP, niet die van de gebruiker
+
+if(!isset($_SESSION['HTTP_REFERER'])) {
+    $previous_website = "./exampleuwu.php";
+} else {
+    $previous_website = $_SESSION['HTTP_REFERER'];
+}
+
+$ipadres = $_SERVER['REMOTE_ADDR'];
+// provider
+$provider = $_SERVER['HTTP_HOST'];
+// huidie browser
+$browser = $_SERVER['HTTP_USER_AGENT'];
+
+// referentie vorige website
+
+// huidige datum met tijd
+$datum_tijd = date('Y-m-d H:i:s');
+
+var_dump($ipadres);
+var_dump($provider);
+var_dump($browser);
+var_dump($datum_tijd);
+var_dump($previous_website);
+
+
+
+
+
+
+
+?>
+
+
+
+
