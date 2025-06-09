@@ -76,7 +76,17 @@ function printData()
     $stmt = $conn->prepare($sqlQuery);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo "<table>";
+    echo "<table border='1' cellpadding='5'>";
+    echo "<thead > 
+    <tr>
+        <th>Land</th>
+        <th>IP-adres</th>
+        <th>Provider</th>
+        <th>Browser</th>
+        <th>Datum/Tijd</th>
+        <th>Vorige Website</th>
+    </tr>
+    </thead>";
     foreach ($results as $result) {
         echo "
         <tr>
@@ -105,7 +115,7 @@ function userVisit()
         if (isset($_SESSION['HTTP_REFERER'])) {
             $previous_website = $_SESSION['HTTP_REFERER'];
         } else {
-            $previous_website = '$SERVER[HTTP_REFERER]';
+            $previous_website = 'Onbekend';
         }
         // save current website as HTTP_REFERER
         $_SESSION['HTTP_REFERER'] = $_SERVER['REQUEST_URI'];

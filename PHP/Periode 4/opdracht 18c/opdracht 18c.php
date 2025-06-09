@@ -17,8 +17,15 @@ if($_SESSION['has_visited'] == false) {
 printData();
 
 
+echo "<form method='post' action='sort.php' >
+<button type='submit''>Sorteer op datum</button>
+</form>
+";
 
-
+echo "<form method='post' action='filter.php' >
+<button type='submit''>Filter op land</button>
+</form>
+";
 
 
 echo "<form method='post' >
