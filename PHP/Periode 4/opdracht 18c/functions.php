@@ -7,6 +7,7 @@ function dbSelect($database = 'default')
     $dsn = "mysql:host=$host;dbname={$database}";
 
 
+
     // Maak verbinding met database
     try {
         $conn = new PDO($dsn, $username, $password, $options);
@@ -17,6 +18,7 @@ function dbSelect($database = 'default')
 }
 
 session_start();
+
   /* Casus 3: Statistiekensysteem
 Maak casus 3 het statistiekensysteem van paragraaf 10.2 Casussen
 
@@ -59,30 +61,39 @@ Stappenplan
 
  // spam is gebruikt bij http_referer dus we gebruiken met sessies (session[HTTP_REFERER])
 // $ipadres = gethostbyname(gethostname()); doen we niet. Is server IP, niet die van de gebruiker
-
-if(!isset($_SESSION['HTTP_REFERER'])) {
-    $previous_website = "./exampleuwu.php";
-} else {
-    $previous_website = $_SESSION['HTTP_REFERER'];
-}
-
-$ipadres = $_SERVER['REMOTE_ADDR'];
-// provider
-$provider = $_SERVER['HTTP_HOST'];
-// huidie browser
-$browser = $_SERVER['HTTP_USER_AGENT'];
-
 // referentie vorige website
 
-// huidige datum met tijd
-$datum_tijd = date('Y-m-d H:i:s');
 
-var_dump($ipadres);
-var_dump($provider);
-var_dump($browser);
-var_dump($datum_tijd);
-var_dump($previous_website);
 
+
+
+
+
+function printData(){
+    $conn = dbSelect('statistiekensysteem');
+    $sqlQuery = "SELECT * FROM bezoekers";
+    $stmt = $conn->prepare($sqlQuery);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo "<table>";
+     foreach($results as $result ){
+        echo "
+        <tr>
+            <td>{$result['land']}</td>
+            <td>{$result['ip_adres']}</td>
+            <td>{$result['provider']}</td>
+            <td>{$result['browser']}</td>
+            <td>{$result['datum_tijd']}</td>
+            <td>{$result['referer']}</td>
+        </tr>
+        ";
+
+     }
+
+
+
+
+}
 
 
 
