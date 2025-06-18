@@ -4,14 +4,17 @@ include "functions.php";
 
 
 // check if the form has been submitted to server
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // get the value from the form send by XHTTP in JS
     $result = $_POST["result"];
 
     $conn = dbSelect('calculator');
-    var_dump($result);
-    var_dump($conn);
-    
+
+    $sql = "INSERT INTO `berekeningen` (`invoer`, `resultaat`, `tijdstip`) 
+            VALUES ('', :resultaat, current_timestamp())";
+    $statement = $conn->prepare($sql);
+    $statement->bindParam(':resultaat', $result);
+    $statement->execute();
 }
 ?>

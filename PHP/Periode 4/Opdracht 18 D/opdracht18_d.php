@@ -97,4 +97,36 @@ include "functions.php";
 
 </style>
 
+<form action="" method="post" >
+
+<input type="submit" value="Verkrijg resultaten" name="submit">
+</form>
+
+
+
+<?php
+if(isset($_POST['submit'])) {
+
+    // Make connection with database using dbSelect function
+    $conn = dbSelect('calculator');
+
+    // sql request with output writtern in a foreach $result(s) as $result
+    $sqlQuery = "SELECT * FROM berekeningen";
+
+    // execute sql request
+    $statement = $conn->prepare($sqlQuery);
+    $statement->execute();
+
+    // fetch all results
+    $results = $statement->fetchAll();
+    echo "<br>";
+    echo "<table border='1'>";
+    foreach ($results as $result) {
+        echo $result["resultaat"] . "<br>";
+    }
+    echo "</table>";
+
+}
+?>
+
 <script src="./script.js"></script>

@@ -42,8 +42,9 @@ function calculate() {
 
     }
 
-
-    output.value +=  " = " + result;
+    
+    result = output.value += " = " + result;
+    
     // insert result into databse with xhttp
 
 
@@ -62,14 +63,14 @@ function calculate() {
     // encodeURIComponent() will encode special characters llike & to &''amp'';
     xhttp.send("result=" + encodeURIComponent(result));
     xhttp.onload = function () {
-console.log("Raw response:", xhttp.responseText);
+        console.log("Raw response:", xhttp.responseText);
     }
 
 }
 
 function sqrt() {
     let output = document.getElementById("output");
-    
+
 
     output.value = Math.sqrt(output.value);
 }
