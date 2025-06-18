@@ -4,23 +4,28 @@ include "functions.php";
 
 
 <section class="calculator">
-    <button class="num1">1</button>
-    <button class="num2">2</button>
-    <button class="num3">3</button>
-    <button class="num4">4</button>
-    <button class="num5">5</button>
-    <button class="num6">6</button>
-    <button class="num7">7</button>
-    <button class="num8">8</button>
-    <button class="num9">9</button>
-    <button class="num0">0</button>
+    <button class="num1" onclick="add('1')">1</button>
+    <button class="num2"onclick="add('2')" >2</button>
+    <button class="num3"onclick="add('3')" >3</button>
+    <button class="num4"onclick="add('4')"  >4</button>
+    <button class="num5"onclick="add('5')" >5</button>
+    <button class="num6"onclick="add('6')" >6</button>
+    <button class="num7"onclick="add('7')" >7</button>
+    <button class="num8"onclick="add('8')" >8</button>
+    <button class="num9"onclick="add('9')" >9</button>
+    <button class="num0" onclick="add('0')" >0</button>
 </section>
+
+<input type="text" id="output">
+<br><br><br>
    <div>
-        <button id="plus">+</button>
-        <button id="minus">-</button>
-        <button id="multiply">*</button>
-        <button id="divide">/</button>
-        <button id="equals">=</button>
+        <button id="plus"onclick="add('+')">+</button>
+        <button id="minus" onclick="add('-')">-</button>
+        <button id="multiply"onclick="add('*')">*</button>
+        <button id="divide"onclick="add('/')">/</button>
+        <button id="ac"onclick="ac()">AC/C</button>
+        <br><br><br>
+        <button id="equals" onclick="click()">=</button>
     </div>
 
     
@@ -74,6 +79,12 @@ include "functions.php";
         width: 50px;
         height: 50px;
         font-size: 25px;
+    }
+
+    input{
+        min-width: 30%;
+        padding: 20px;
+        border: 1px solid #ccc;
     }
 
 
