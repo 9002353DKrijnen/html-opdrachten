@@ -9,6 +9,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // get the value from the form send by XHTTP in JS
     $result = $_POST["result"];
 
-    $conn = dbSelect('');
+    $conn = dbSelect('calculator');
+    var_dump($result);
+    var_dump($conn);
+    
 }
 ?>

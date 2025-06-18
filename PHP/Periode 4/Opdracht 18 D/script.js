@@ -28,6 +28,11 @@ function calculate() {
     // import output
     let output = document.getElementById("output");
 
+    // if there's no input there will be an alert
+    if (output.value == '') {
+        alert("Voer een waarde in svp");
+        return;
+    }
     // calculate result, userinput
     result = eval(output.value);
 
@@ -38,30 +43,33 @@ function calculate() {
     }
 
 
-        output.value = result;
-// insert result into databse with xhttp
+    output.value +=  " = " + result;
+    // insert result into databse with xhttp
 
 
-// we will asign a variabel to xhttp request, with a new request
+    // we will asign a variabel to xhttp request, with a new request
 
-let xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
 
-// set form to post, url to local location, true for async (otherwise server will keep waiting for reponse)
-xhttp.open("POST", "insert.php", true);
+    // set form to post, url to local location, true for async (otherwise server will keep waiting for reponse)
+    xhttp.open("POST", "insert.php", true);
 
 
-// set server like a HTML form
-xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // set server like a HTML form
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-// send all the data to the server so it can insert it into the database
-// encodeURIComponent() will encode special characters llike & to &''amp'';
-xhttp.send("result=" + encodeURIComponent(result));
-
+    // send all the data to the server so it can insert it into the database
+    // encodeURIComponent() will encode special characters llike & to &''amp'';
+    xhttp.send("result=" + encodeURIComponent(result));
+    xhttp.onload = function () {
+console.log("Raw response:", xhttp.responseText);
+    }
 
 }
 
 function sqrt() {
     let output = document.getElementById("output");
+    
 
     output.value = Math.sqrt(output.value);
 }
