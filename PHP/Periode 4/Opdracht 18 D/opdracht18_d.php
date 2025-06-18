@@ -17,6 +17,9 @@ include "functions.php";
 </section>
 
 <input type="text" id="output">
+
+
+
 <br><br><br>
 <div>
     <button id="plus" onclick="add('+')">+</button>
@@ -110,7 +113,6 @@ include "functions.php";
 </style>
 
 <form action="" method="post">
-
     <input type="submit" value="Verkrijg resultaten" name="submit">
 </form>
 

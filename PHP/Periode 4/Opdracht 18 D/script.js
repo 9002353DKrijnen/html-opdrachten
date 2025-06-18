@@ -9,6 +9,8 @@ function add(value) {
     output.value += value;
 
 }
+
+
 // function clear the output
 function ac() {
 
@@ -18,8 +20,15 @@ function ac() {
 
     // set output to empty
     output.value = '';
-}// uitrekenen
+
+
+
+}
+
+// calculation
 function calculate() {
+
+    // declare result
     let result;
 
     // import round if checked
@@ -46,8 +55,6 @@ function calculate() {
     result = output.value += " = " + result;
     
     // insert result into databse with xhttp
-
-
     // we will asign a variabel to xhttp request, with a new request
 
     let xhttp = new XMLHttpRequest();
@@ -62,6 +69,8 @@ function calculate() {
     // send all the data to the server so it can insert it into the database
     // encodeURIComponent() will encode special characters llike & to &''amp'';
     xhttp.send("result=" + encodeURIComponent(result));
+
+    
     xhttp.onload = function () {
         console.log("Raw response:", xhttp.responseText);
     }
