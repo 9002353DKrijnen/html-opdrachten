@@ -12,10 +12,40 @@ function add(value) {
 // function clear the output
 function ac() {
 
-    
+
     // import output 
     let output = document.getElementById("output");
 
     // set output to empty
     output.value = '';
+}// uitrekenen
+function calculate() {
+    let result;
+
+    // import round if checked
+    let roundOption = document.getElementById("round");
+
+    // import output
+    let output = document.getElementById("output");
+
+    // calculate result, userinput
+    result = eval(output.value);
+
+    if (roundOption.checked) {
+        // round if checked   after we have done the calculation ;)
+        result = Math.round(result);
+
+    }
+
+
+        output.value = result;
+
+
+
+}
+
+function sqrt() {
+    let output = document.getElementById("output");
+
+    output.value = Math.sqrt(output.value);
 }

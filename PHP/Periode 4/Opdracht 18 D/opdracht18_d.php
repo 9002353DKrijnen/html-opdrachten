@@ -23,9 +23,16 @@ include "functions.php";
         <button id="minus" onclick="add('-')">-</button>
         <button id="multiply"onclick="add('*')">*</button>
         <button id="divide"onclick="add('/')">/</button>
+        <button id="dot"onclick="add('.')">.</button>
         <button id="ac"onclick="ac()">AC/C</button>
-        <br><br><br>
-        <button id="equals" onclick="click()">=</button>
+        <!-- worteltrekken -->
+         <button id="sqrt"onclick="sqrt()">√</button>
+        <p>Afronden Ja/Nee</p>
+        <input type="checkbox" name="afronden" id="round">
+         <br><br><br>
+        <button id="equals" onclick="calculate()">=</button>
+
+
     </div>
 
     
