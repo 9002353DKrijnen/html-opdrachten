@@ -39,7 +39,23 @@ function calculate() {
 
 
         output.value = result;
+// insert result into databse with xhttp
 
+
+// we will asign a variabel to xhttp request, with a new request
+
+let xhttp = new XMLHttpRequest();
+
+// set form to post, url to local location, true for async (otherwise server will keep waiting for reponse)
+xhttp.open("POST", "insert.php", true);
+
+
+// set server like a HTML form
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+// send all the data to the server so it can insert it into the database
+// encodeURIComponent() will encode special characters llike & to &''amp'';
+xhttp.send("result=" + encodeURIComponent(result));
 
 
 }
