@@ -78,3 +78,5 @@ include "functions.php";
 
 
 </style>
+
+<script src="./script.js"></script>
