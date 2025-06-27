@@ -3,7 +3,30 @@
 function getData($id)
 {
 
-    connectDataBase('db');
+    // definine array with allowed/whitelisted tablenames
+    $allowedTables = [
+        "style_emoji",
+        "style_text",
+        "visitor_messages",
+        "votes"
+    ];
+    // check if entered tablenames are allowed if not a JS alert will pop up
+    if (!in_array($id, $allowedTables, true)) {
+        echo "<script>alert('Database wordt niet herkend'); </script>";
+        return;
+    }
+    // make connection to database "ideeënbus"
+    $conn = connectDataBase('ideeenbus');
+
+    // sqlquery
+    $sqlquery = "SELECT * FROM `$id`";
+    $statement = $conn->prepare($sqlquery);
+
+
+    // executre the query and fetch results in an associative array, which are returned afterwards.
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 function connectDataBase($dbname)
@@ -33,6 +56,7 @@ function connectDataBase($dbname)
 function emojiReplace($text)
 {
     $emojimap = [
+        // give location aswell as CSS to auto convert it to textual size.
         ':)' => "<img src='./user/emoji/smile.png' alt='smile' style='height:0.9em; vertical-align:middle;'>",
         ':(' => "<img src='./user/emoji/sad.png' alt='sad' style='height:0.9em; vertical-align:middle;'>",
         ':o' => "<img src='./user/emoji/wow.png' alt='wow' style='height:0.9em; vertical-align:middle;'>",
