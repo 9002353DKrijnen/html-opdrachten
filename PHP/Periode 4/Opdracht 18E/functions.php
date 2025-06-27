@@ -1,6 +1,10 @@
 <?php
 
-function getData() {}
+function getData($id) {
+
+    connectDataBase('db');
+    
+}
 
 function connectDataBase($dbname)
 {
