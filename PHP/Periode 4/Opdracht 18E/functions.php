@@ -60,20 +60,24 @@ function emojiReplace($text)
         ':)' => "<img src='./user/emoji/smile.png' alt='smile' style='height:0.9em; vertical-align:middle;'>",
         ':(' => "<img src='./user/emoji/sad.png' alt='sad' style='height:0.9em; vertical-align:middle;'>",
         ':o' => "<img src='./user/emoji/wow.png' alt='wow' style='height:0.9em; vertical-align:middle;'>",
-
+        '[b]'     => '<strong>',
+        '[/b]'    => '</strong>',
+        '[i]'     => '<em>',
+        '[/i]'    => '</em>'
     ];
+
 
     // for every emoji it comes across it will replace it wile an emoji
     foreach ($emojimap as $emoji => $image) {
         $text = str_replace($emoji, $image, $text);
     }
+
+    // rplace color with requested color by user
+        $text = preg_replace(
+        '~\[color=(.*?)\](.*?)\[/color\]~',
+        '<span style="color:$1;">$2</span>',
+        $text
+    );
     // return new $text value 
     return $text;
-}
-
-function textStyle(){
-    switch(true)
-    case * /* : 
-        str_replace("* /*", "<b> </b>")
-        break;
 }
