@@ -1,5 +1,5 @@
 <form action="" method="post">
-    <label for="title">titel</label>
+    <label for="title">Titel</label>
     <input type="text" name="title" required>
     <label for="idea">Idee</label>
     <input type="text" name="idea" required>
@@ -49,21 +49,28 @@
 </style>
 
 <?php
+
+// include functions
 include "functions.php";
+
+// check if form is submitted and if title and idea are set
 if (isset($_POST["submit"]) && isset($_POST["title"]) && isset($_POST["idea"])) {
     $title = $_POST["title"];
     $idea = $_POST["idea"];
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
+    $conn = connectDataBase('ideeenbus');
 
 
+    // votes for each post 
+    // with value 0 so when someone upvotes it will increase or decrease
     $newVote = "INSERT INTO `votes` (`amount`) VALUES (0);";
     $statement = $conn->prepare($newVote);
     $statement->execute();
+    $voteId = $conn->lastInsertId();
 
     // maak de koppeling
-    $conn = connectDataBase('ideeenbus');
-    $sqlquery = "INSERT INTO `visitor_messages` (`titel`, `idea`, `email`, `time`) 
-    VALUES ('$title', '$idea', '$email','NOW()');";
+    $sqlquery = "INSERT INTO `visitor_messages` (`titel`, `idea`, `email`, `time`, `votes_id`) 
+    VALUES (:title, :idea, :email, NOW(), :votes_id);";
     // prepare query
     $statement = $conn->prepare($sqlquery);
 
@@ -71,6 +78,7 @@ if (isset($_POST["submit"]) && isset($_POST["title"]) && isset($_POST["idea"])) 
     $statement->bindParam(":title", $title);
     $statement->bindParam(":idea", $idea);
     $statement->bindParam(":email", $email);
+    $statement->bindParam(":votes_id", $voteId);
     $statement->execute();
 }
 ?>

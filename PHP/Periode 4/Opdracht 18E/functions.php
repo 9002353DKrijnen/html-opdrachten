@@ -70,3 +70,10 @@ function emojiReplace($text)
     // return new $text value 
     return $text;
 }
+
+function textStyle(){
+    switch(true)
+    case * /* : 
+        str_replace("* /*", "<b> </b>")
+        break;
+}

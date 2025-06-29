@@ -89,7 +89,8 @@ foreach ($results as $result) {
     echo "<tr><td>" . htmlspecialchars($result['email']) . "</td></tr>";
     echo "<tr><td>" . htmlspecialchars($result['time']) . "</td></tr>";
     echo "<tr><td><strong>Aantal stemmen: </strong>" . htmlspecialchars($votemap[$result['votes_id']]) . "</td></tr>";
-    echo "<tr><td>" . htmlspecialchars($result['idea']) . "</td></tr>";
+    // run emojireplace() so we can use it on output of $result['idea']
+    echo "<tr><td>" . emojiReplace(htmlspecialchars($result['idea']))  . "</td></tr>";
 }
 echo "</table>";
 ?>
