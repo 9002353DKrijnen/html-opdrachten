@@ -81,12 +81,13 @@ function emojiReplace($text)
 
 
 
-    
+
     $curses = json_decode(file_get_contents("words.json"), true);
 
     if (is_array($curses)) {
         foreach ($curses as $curse) {
-            // Maak case-insensitive vervangen met sterretje(s)
+            
+            // make case patttern and replace
             $pattern = '/' . preg_quote($curse, '/') . '/i';
             $replacement = str_repeat('*', strlen($curse));
             $text = preg_replace($pattern, $replacement, $text);
