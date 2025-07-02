@@ -56,7 +56,7 @@ function connectDataBase($dbname)
 function emojiReplace($text)
 {
     $emojimap = [
-        // give location aswell as CSS to auto convert it to textual size.
+        // give location aswell as CSS to auto convert it.
         ':)' => "<img src='./user/emoji/smile.png' alt='smile' style='height:0.9em; vertical-align:middle;'>",
         ':(' => "<img src='./user/emoji/sad.png' alt='sad' style='height:0.9em; vertical-align:middle;'>",
         ':o' => "<img src='./user/emoji/wow.png' alt='wow' style='height:0.9em; vertical-align:middle;'>",
@@ -72,7 +72,7 @@ function emojiReplace($text)
         $text = str_replace($emoji, $image, $text);
     }
 
-    // rplace color with requested color by user
+    // replace color with requested color by user
         $text = preg_replace(
         '~\[color=(.*?)\](.*?)\[/color\]~',
         '<span style="color:$1;">$2</span>',
@@ -80,4 +80,8 @@ function emojiReplace($text)
     );
     // return new $text value 
     return $text;
+}
+
+function preventCurseWords(){
+    
 }
